@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRM App</title>
+    <!--Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">-->
+
+    <!-- Angular CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+
+</head>
+
+<body ng-app="CRMApp">
+    <!--testing user controllers-->
+    <div class="container" ng-controller="userController">
+        <h1>User Test</h1>
+        <button ng-click="userTestFunction()">User</button>
+
+        <div class="userResult">
+            <p>response: <b>{{userTestText}}</b></p>
+        </div>
+    </div>
+
+    <!--testing customer controllers-->
+    <div class="container" ng-controller="customerController">
+        <h1>Customer Test</h1>
+        <button ng-click="customerTestFunction()">Customer</button>
+
+        <div class="customerResult">
+            <p>response: <b>{{customerTestText}}</b></p>
+        </div>
+    </div>
+
+    <!--testing note controllers-->
+    <div class="container" ng-controller="noteController">
+        <h1>Note Test</h1>
+        <button ng-click="noteTestFunction()">Note</button>
+
+        <div class="noteResult">
+            <p>response: <b>{{noteTestText}}</b></p>
+        </div>
+    </div>
+
+    <!--testing sms controllers-->
+    <div class="container" ng-controller="smsController">
+        <h1>Sms Test</h1>
+        <button ng-click="smsTestFunction()">Sms</button>
+
+        <div class="smsResult">
+            <p>response: <b>{{smsTestText}}</b></p>
+        </div>
+    </div>
+
+    <!--testing email controllers-->
+    <div class="container" ng-controller="emailController">
+        <h1>Email Test</h1>
+        <button ng-click="emailTestFunction()">Email</button>
+
+        <div class="emailResult">
+            <p>response: <b>{{emailTestText}}</b></p>
+        </div>
+    </div>
+    
+    <script src="./app.js"></script>
+    <script src="./controllers/userController.js"></script>
+    <script src="./controllers/customerController.js"></script>
+    <script src="./controllers/noteController.js"></script>
+    <script src="./controllers/smsController.js"></script>
+    <script src="./controllers/emailController.js"></script>
+</body>
+
+</html>
