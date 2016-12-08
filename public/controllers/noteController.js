@@ -4,7 +4,7 @@ angular
     $scope.noteTestText = '';
     $scope.noteTestFunction = function() {
         $scope.noteTestText = '';
-        $http.get('http://localhost:3000/noteTest')
+        $http.get('http://localhost:3000/note')
         .then(function(response) {
             $scope.noteTestText = response.data.message
         })

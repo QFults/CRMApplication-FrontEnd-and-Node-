@@ -4,7 +4,7 @@ angular
     $scope.emailTestText = '';
     $scope.emailTestFunction = function() {
         $scope.emailTestText = '';
-        $http.get('http://localhost:3000/emailTest')
+        $http.get('http://localhost:3000/email')
         .then(function(response) {
             $scope.emailTestText = response.data.message
         })
