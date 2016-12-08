@@ -1,5 +1,6 @@
 var axios = require('axios');
 
+<<<<<<< HEAD
 function index(req, res) {
     axios.get('http://localhost:50313/api/customers')
         .then(function (response) {
@@ -11,6 +12,19 @@ function index(req, res) {
         });
 }
 
+function getCustomerInfo(req, res) {
+        var email = req.query.email;
+        var config = {
+            headers: {'X-FullContact-APIKey': process.env.API_KEY}
+        }
+axios.get('https://api.fullcontact.com/v2/person.json?email=' + email, config)
+.then(function(response) {
+    console.log(response);
+    res.json({object: response.data });
+})
+}
+
 module.exports = {
-    index: index
+    index: index,
+    getCustomerInfo: getCustomerInfo
 }

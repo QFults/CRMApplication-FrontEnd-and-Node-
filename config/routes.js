@@ -11,11 +11,12 @@ var emailController = require('../controllers/emailControllerNode');
 
 // what the route looks like between your public and node controllers
 // just examples, will have more routes based on different methods in controllers
+
 router.get('/users', userController.index);
 router.get('/customers', customerController.index);
 router.get('/noteTest', noteController.index);
-router.get('/smsTest', smsController.test);
-router.get('/emailTest', emailController.test);
-
+router.get('/sms', smsController.test);
+router.get('/email', emailController.test);
+router.get('/customer/newInfo', customerController.getCustomerInfo);
 
 module.exports = router;

@@ -11,4 +11,5 @@ angular
             $scope.noteTestText = response.data.message
         })
     }
-})
+    
+});

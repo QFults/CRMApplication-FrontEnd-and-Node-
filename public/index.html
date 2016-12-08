@@ -32,6 +32,14 @@
         <div class="customerResult">
             <p>response: <b>{{customerTestText}}</b></p>
         </div>
+        <h1>Full Contact API Test</h1>
+        <input type="text" ng-model="customerEmail"/>
+        <button ng-click="moreCustomerInfo()">Full Contact API</button>
+
+        <div class="customerResult">
+            <p>response: <b>{{customerInfo}}</b></p>
+        </div>
+
     </div>
 
     <!--testing note controllers-->
@@ -63,7 +71,7 @@
             <p>response: <b>{{emailTestText}}</b></p>
         </div>
     </div>
-    
+
     <script src="./app.js"></script>
     <script src="./controllers/userController.js"></script>
     <script src="./controllers/customerController.js"></script>
