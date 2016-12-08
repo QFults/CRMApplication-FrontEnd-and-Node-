@@ -1,7 +1,16 @@
-function test(req, res) {
-    res.json({ message: 'userControllerNode.js file working!'})
+var axios = require('axios');
+
+function index(req, res) {
+    axios.get('http://localhost:50313/api/users')
+        .then(function (response) {
+            var users = response.data;
+            res.json({ message: users});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 module.exports = {
-    test: test
+    index: index
 }

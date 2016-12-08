@@ -1,7 +1,14 @@
 var axios = require('axios');
 
-function test(req, res) {
-    res.json({ message: 'customerControllerNode.js file working!'})
+function index(req, res) {
+    axios.get('http://localhost:50313/api/customers')
+        .then(function (response) {
+            var customers = response.data;
+            res.json({ customers: customers});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 function getCustomerInfo(req, res) {
@@ -17,6 +24,6 @@ axios.get('https://api.fullcontact.com/v2/person.json?email=' + email, config)
 }
 
 module.exports = {
-    test: test,
+    index: index,
     getCustomerInfo: getCustomerInfo
 }
