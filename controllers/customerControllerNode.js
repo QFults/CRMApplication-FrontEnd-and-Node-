@@ -1,6 +1,5 @@
 var axios = require('axios');
 
-<<<<<<< HEAD
 function index(req, res) {
     axios.get('http://localhost:50313/api/customers')
         .then(function (response) {
