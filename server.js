@@ -15,6 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(PORT, function() {
-    console.log('LIstening on Port 3000');
+    console.log('Listening on Port 3000');
 });
 module.exports = app;
