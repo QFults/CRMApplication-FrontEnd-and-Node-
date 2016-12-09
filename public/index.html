@@ -32,12 +32,20 @@
         <div class="customerResult">
             <p>response: <b>{{customerTestText}}</b></p>
         </div>
-        <h1>Full Contact API Test</h1>
-        <input type="text" ng-model="customerEmail"/>
-        <button ng-click="searchFCByEmail()">Full Contact API</button>
+
+        <h1>Full Contact API Test (E-Mail)</h1>
+        <input type="text" ng-model="customerEmail" />
+        <button ng-click="searchCustomerEmail()">Search By Email</button>
 
         <div class="customerResult">
-            <p>response: <b>{{customerInfo}}</b></p>
+            <p>response: <b>{{emailCheckResult}}</b></p>
+        </div>
+        <h1>Full Contact API Test (Phone)</h1>
+        <input type="text" ng-model="customerPhone" />
+        <button ng-click="searchCustomerPhone()">Search By Phone</button>
+
+        <div class="customerResult">
+            <p>response: <b>{{phoneCheckResult}}</b></p>
         </div>
 
     </div>

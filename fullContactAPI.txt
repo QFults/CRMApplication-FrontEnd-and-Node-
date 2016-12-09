@@ -1,0 +1,38 @@
+
+//object
+hotdog
+
+    //properties
+    .contactInfo(object)
+    .demographics(object)
+    .likelihood(int)
+    .photos(Array)
+    .requestId(string)
+    .socialProfiles(Array)
+    .status(int)
+
+        //.contactInfo properties
+        .familyName(string)
+        .fullName(string)
+        .givenName(string)
+
+        //.demographics properties
+        .gender(string)
+        .locationDeduced(object)
+        .locationGeneral(string)
+
+        //.photos properties
+        .isPrimary(bool)
+        .type(string)
+        .typeId(string)
+        .typeName(string)
+        .url(string)
+
+        //.socialProfiles properties
+        .type(string)
+        .typeId(string)
+        .typeName(string)
+        .url(string)
+
+
+

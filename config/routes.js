@@ -17,6 +17,6 @@ router.get('/customers', customerController.index);
 router.get('/noteTest', noteController.index);
 router.get('/sms', smsController.test);
 router.get('/email', emailController.test);
-router.get('/customer/newInfo', customerController.getCustomerInfo);
-
+router.get('/customers/byEmail', customerController.searchFCByEmail);
+router.get('/customers/byPhone', customerController.searchFCByPhone);
 module.exports = router;
