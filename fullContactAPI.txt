@@ -1,38 +1,59 @@
+//returned object properties (email or phone):
 
-//object
-hotdog
-
-    //properties
     .contactInfo(object)
     .demographics(object)
     .likelihood(int)
-    .photos(Array)
+    .organizations(array of objects
+    .photos(array of objects)
     .requestId(string)
-    .socialProfiles(Array)
+    .socialProfiles(array of objects)
     .status(int)
 
-        //.contactInfo properties
+    .contactInfo properties
         .familyName(string)
         .fullName(string)
         .givenName(string)
+        .websites
+            websites[0].url
 
-        //.demographics properties
+    .demographics properties
         .gender(string)
-        .locationDeduced(object)
-        .locationGeneral(string)
+        .locationDeduced
+            .city
+                .name
+            .continent
+                .deduced(bool)
+                .name("North America")
+            .country
+                .code("US")
+                .deduced(bool)
+                .name("United States")
+            .county
+                .deduced(bool)
+                .name("Orange")
+        .locationGeneral("La Habra, California")
 
-        //.photos properties
+    .organizations[0]
+        .current(bool)
+        .name("org name")
+        .startDate
+        .title("Customer Success Manager")
+
+    .photos[0]
         .isPrimary(bool)
-        .type(string)
-        .typeId(string)
-        .typeName(string)
-        .url(string)
+        .type("facebook")
+        .typeId("facebook")
+        .typeName("Facebook")
+        .url(string) // img src=
 
-        //.socialProfiles properties
-        .type(string)
-        .typeId(string)
-        .typeName(string)
+    .socialProfiles[0]
+        .followers(int)
+        .id(int)
+        .type(angellist)
+        .typeId(angellist)
+        .typeName(AngelList)
         .url(string)
+        .username("string")
 
 
 
