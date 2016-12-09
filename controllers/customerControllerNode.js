@@ -40,5 +40,3 @@ module.exports = {
     searchFCByEmail: searchFCByEmail,
     searchFCByPhone: searchFCByPhone
 }
-
-console.log('fuck you');
