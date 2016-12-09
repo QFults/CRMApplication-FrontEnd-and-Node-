@@ -2,8 +2,11 @@ angular
 .module("CRMApp")
 .controller("customerController", function($scope, $http) {
     $scope.customerEmail = '';
+    $scope.customerPhone = '';
     $scope.customerInfo = '';
     $scope.customerTestText = '';
+    $scope.emailCheckResult = '';
+    $scope.phoneCheckResult = '';
 
     $scope.getAllCustomers = function() {
         $scope.customerTestText = '';
@@ -13,13 +16,21 @@ angular
         })
     }
 
-    $scope.moreCustomerInfo = function() {
-        $http.get(`http://localhost:3000/customer/newInfo?email=${$scope.customerEmail}`)
+    $scope.searchCustomerEmail = function() {
+        $scope.emailCheckResult = 'loading';
+        $http.get(`http://localhost:3000/customers/byEmail?email=${$scope.customerEmail}`)
         .then(function(response) {
-            $scope.customerInfo = response.data.object;
+            $scope.emailCheckResult = response.data.object;
         })
     }
     
+    $scope.searchCustomerPhone = function() {
+        $scope.phoneCheckResult = 'loading';
+        $http.get(`http://localhost:3000/customers/byPhone?phone=${$scope.customerPhone}`)
+        .then(function(response) {
+            $scope.phoneCheckResult = response.data.object;
+        })
+    }
 });
 
 
