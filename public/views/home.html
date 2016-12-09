@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!--Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Angular CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+
+    <!--Angular UI Router-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+</head>
+
+<body ng-app="CRMApp" ng-controller="customerController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <label>Search All Clients</label>
+                    <input type="text" />
+                    <p>Leave empty to return all clients</p>
+                    <button>Search</button>
+                </div>
+                <div class="row">
+                    <label>Search By Rep</label>
+                    <input type="text" />
+                    <button>Search</button>
+                </div>
+                <div class="row">
+                    <label>Filters</label>
+                    <p>Contact</p>
+                    <input type="radio" />
+                    <p>Other Filters</p>
+                    <input type="radio" />
+                    <p>Other Filters</p>
+                    <input type="radio" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2>Client List</h2>
+                <input type="text" ng-show="searchByRep"/>
+                <div ui-view="clientLIst"></div>
+            </div>
+            <div class="col-md-4">
+                <h2>Button Options</h2>
+                <button>Group SMS</button>
+                <button>Group E-Mail</button>
+                <button>New Person</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="./app.js"></script>
+    <script src="./controllers/customerController.js"></script>
+
+</body>
+
+</html>

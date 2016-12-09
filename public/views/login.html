@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!--Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Angular CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+
+    <!--Angular UI Router-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+</head>
+
+<body ng-app="CRMApp" ng-controller="userController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>CRM Application</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Username</label>
+                        <input type="text" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Password</label>
+                        <input type="text" />
+                        <a ng-sref="recovery">Forgot Password?</a>
+                    </div>
+                    <div class="col-md-4">
+                        <button>Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Customer Relations Management</h2>
+                <h3>communicate effectively.</h3>
+                <h3>learn more information.</h3>
+                <h3>keep track of clients.</h3>
+
+                <button>Continue.</button>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                <h2>Create New User</h2>
+                </div>
+                                <div class="row">
+                <label>E-Mail</label>
+                <input type="text" />
+                </div>
+                                <div class="row">
+                <label>Confirm E-Mail</label>
+                <input type="text" />
+                </div>
+                                <div class="row">
+                <label>Username</label>
+                <input type="text" />
+                </div>
+                                <div class="row">
+                <label>Password</label>
+                <input type="text" />
+                </div>
+                                <div class="row">
+                <label>Confirm Password</label>
+                <input type="text" />
+                </div>
+                                <div class="row">
+                <label>Company ID</label>
+                <input type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./controllers/userController.js"></script>
+
+</body>
+
+</html>
