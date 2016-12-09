@@ -14,8 +14,10 @@ angular
     }
 
     $scope.moreCustomerInfo = function() {
+        $scope.customerInfo = '';
         $http.get(`http://localhost:3000/customer/newInfo?email=${$scope.customerEmail}`)
         .then(function(response) {
+            console.log('full contact test');
             $scope.customerInfo = response.data.object;
         })
     }
