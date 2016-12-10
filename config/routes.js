@@ -17,6 +17,7 @@ res.render('index')
 });
 
 router.get('/users', userController.index);
+router.get('/users/id', userController.show);
 router.get('/customers', customerController.index);
 router.get('/noteTest', noteController.index);
 router.get('/sms', smsController.test);
