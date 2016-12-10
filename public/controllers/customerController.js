@@ -1,6 +1,7 @@
 angular
 .module("CRMApp")
-.controller("customerController", function($scope, $http) {
+.controller("customerController", function($scope, $http, customerService) {
+    
     $scope.customerEmail = '';
     $scope.customerPhone = '';
     $scope.customerInfo = '';
@@ -8,13 +9,13 @@ angular
     $scope.emailCheckResult = '';
     $scope.phoneCheckResult = '';
 
-    $scope.getAllCustomers = function() {
+/*    $scope.getAllCustomers = function() {
         $scope.customerTestText = '';
         $http.get('http://localhost:3000/customers')
         .then(function (response) {
             $scope.customerTestText = response.data.customers;
         })
-    }
+    }*/
 
     $scope.searchCustomerEmail = function() {
         $scope.emailCheckResult = 'loading';

@@ -1,12 +1,12 @@
 var app = angular.module("CRMApp", [ui.router]);
-/*
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouteProvder.otherwise("/welcome"); // default page
+  $urlRouteProvider.otherwise("/login"); // default page
 
-  $stateProvider.state("search", {
-    url: "/search",
-    templateUrl: "../views/search.html",
+  $stateProvider.state("home", {
+    url: "/home",
+    templateUrl: "../views/home.html",
     controller: ""
   })
   .state("customer", {
@@ -14,11 +14,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "../views/customer.html",
     controller: ""
   })
-  .state("newCustomer", {
+  .state("customer.newCustomer", {
     url: "/new-customer",
     templateUrl: "../views/newCustomer.html",
     controller: ""
   })
 
 });
-*/
