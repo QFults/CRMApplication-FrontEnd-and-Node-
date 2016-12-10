@@ -1,6 +1,6 @@
 angular
-.module("CRMApp")
-.controller("userController", function($scope, $http) {
+.module('CRMApp')
+.controller('userController', function($scope, $http) {
     $scope.userTestText = '';
 
     $scope.getAllUsers = function() {

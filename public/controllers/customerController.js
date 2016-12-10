@@ -1,6 +1,6 @@
 angular
-.module("CRMApp")
-.controller("customerController", function($scope, $http) {
+.module('CRMApp')
+.controller('customerController', function($scope, $http) {
     $scope.customerEmail = '';
     $scope.customerPhone = '';
     $scope.customerInfo = '';

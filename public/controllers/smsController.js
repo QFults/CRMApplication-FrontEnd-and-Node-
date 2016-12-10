@@ -1,6 +1,6 @@
 angular
-.module("CRMApp")
-.controller("smsController", function($scope, $http) {
+.module('CRMApp')
+.controller('smsController', function($scope, $http) {
     $scope.smsTestText = '';
     $scope.smsTestFunction = function() {
         $scope.smsTestText = '';
