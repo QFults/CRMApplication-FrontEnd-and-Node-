@@ -9,6 +9,9 @@ require('dotenv').load()
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(function(req,res) {
+//     res.sendFile(__dirname + '/public/views/index.html')
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

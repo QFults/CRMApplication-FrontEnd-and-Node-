@@ -1,6 +1,6 @@
 angular
-.module("CRMApp")
-.controller("noteController", function($scope, $http) {
+.module('CRMApp')
+.controller('noteController', function($scope, $http) {
     $scope.noteTestText = '';
 
     $scope.noteTestFunction = function() {

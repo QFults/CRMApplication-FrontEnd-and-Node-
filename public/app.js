@@ -1,23 +1,34 @@
-var app = angular.module("CRMApp", [ui.router]);
+var app = angular.module('CRMApp', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouteProvider.otherwise("/login"); // default page
+  // $urlRouterProvider.otherwise('/login'); // default page
 
-  $stateProvider.state("home", {
-    url: "/home",
-    templateUrl: "../views/home.html",
-    controller: ""
+  $stateProvider.state('home', {
+    url: '/home',
+    templateUrl: './views/home.html',
+    controller: 'customerController'
   })
-  .state("customer", {
-    url: "/customer",
-    templateUrl: "../views/customer.html",
-    controller: ""
+  .state('customer', {
+    url: '/customer',
+    templateUrl: './views/customer.html',
+    controller: 'customerController'
   })
-  .state("customer.newCustomer", {
-    url: "/new-customer",
-    templateUrl: "../views/newCustomer.html",
-    controller: ""
+  .state('login', {
+    url: '/login',
+    templateUrl: './views/login.html',
+    controller: 'userController'
+  })
+    .state('recovery', {
+    url: '/recovery',
+    templateUrl: './views/recovery.html',
+    controller: 'userController'
+  })
+    .state('contact', {
+    url: '/contact',
+    templateUrl: './views/contact.html',
+    controller: 'smsController'
   })
 
+  
 });

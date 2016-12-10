@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="CRMApp">
 
 <head>
     <meta charset="UTF-8">
@@ -11,21 +11,42 @@
     <!-- Angular CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
 
+    <!--Ui-Router-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+
 </head>
 
-<body ng-app="CRMApp">
-    <!--testing user controllers-->
-    <div class="container" ng-controller="userController">
+<body>
+    <button class="btn btn-primary" ui-sref="contact">contact.html</button>
+    <button class="btn btn-primary" ui-sref="customer">customer.html</button>
+    <button class="btn btn-primary" ui-sref="home">home.html</button>
+    <button class="btn btn-primary" ui-sref="login">login.html</button>
+    <button class="btn btn-primary" ui-sref="recovery">recovery.html</button>
+    <div ui-view>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./controllers/userController.js"></script>
+    <script src="./controllers/customerController.js"></script>
+    <script src="./controllers/noteController.js"></script>
+    <script src="./controllers/smsController.js"></script>
+    <script src="./controllers/emailController.js"></script>
+</body>
+
+</html>
+
+<!--testing user controllers-->
+<!--<div class="container" ng-controller="userController">
         <h1>User Test</h1>
         <button ng-click="getAllUsers()">User</button>
 
         <div class="userResult">
             <p>response: <b>{{userTestText}}</b></p>
         </div>
-    </div>
+    </div>-->
 
-    <!--testing customer controllers-->
-    <div class="container" ng-controller="customerController">
+<!--testing customer controllers-->
+<!--<div class="container" ng-controller="customerController">
         <h1>Customer Test</h1>
         <button ng-click="getAllCustomers()">Customer</button>
 
@@ -48,44 +69,34 @@
             <p>response: <b>{{phoneCheckResult}}</b></p>
         </div>
 
-    </div>
+    </div>-->
 
-    <!--testing note controllers-->
-    <div class="container" ng-controller="noteController">
+<!--testing note controllers-->
+<!--<div class="container" ng-controller="noteController">
         <h1>Note Test</h1>
         <button ng-click="noteTestFunction()">Note</button>
 
         <div class="noteResult">
             <p>response: <b>{{noteTestText}}</b></p>
         </div>
-    </div>
+    </div>-->
 
-    <!--testing sms controllers-->
-    <div class="container" ng-controller="smsController">
+<!--testing sms controllers-->
+<!--<div class="container" ng-controller="smsController">
         <h1>Sms Test</h1>
         <button ng-click="smsTestFunction()">Sms</button>
 
         <div class="smsResult">
             <p>response: <b>{{smsTestText}}</b></p>
         </div>
-    </div>
+    </div>-->
 
-    <!--testing email controllers-->
-    <div class="container" ng-controller="emailController">
+<!--testing email controllers-->
+<!--<div class="container" ng-controller="emailController">
         <h1>Email Test</h1>
         <button ng-click="emailTestFunction()">Email</button>
 
         <div class="emailResult">
             <p>response: <b>{{emailTestText}}</b></p>
         </div>
-    </div>
-
-    <script src="./app.js"></script>
-    <script src="./controllers/userController.js"></script>
-    <script src="./controllers/customerController.js"></script>
-    <script src="./controllers/noteController.js"></script>
-    <script src="./controllers/smsController.js"></script>
-    <script src="./controllers/emailController.js"></script>
-</body>
-
-</html>
+    </div>-->

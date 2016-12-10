@@ -1,6 +1,6 @@
 angular
-.module("CRMApp")
-.controller("emailController", function($scope, $http) {
+.module('CRMApp')
+.controller('emailController', function($scope, $http) {
     $scope.emailTestText = '';
     $scope.emailTestFunction = function() {
         $scope.emailTestText = '';
