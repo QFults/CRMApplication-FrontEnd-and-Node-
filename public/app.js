@@ -29,6 +29,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: './views/contact.html',
     controller: 'smsController'
   })
+  .state('serviceTest', {
+    url: '/serviceTest',
+    templateUrl: './views/serviceTest.html',
+    controller: 'serviceTestController'
+  })
 
   
 });

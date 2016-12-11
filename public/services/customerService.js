@@ -1,13 +1,11 @@
-angular.module("CRMApp").services("customerService", function($http) {
+angular.module("CRMApp").service("customerService", function ($http) {
 
+  this.test = 'service works!';
   this.customers = [];
 
-  this.index = function() {
-    $http.get('http://localhost:3000/customers')
-      .then(function (response) {
-        console.log('get all customers from customerService' + response.data.customers);
-        this.customers = response.data.customers;
-      })
+  this.index = function (allCustomers) {
+    this.customers = allCustomers;
   }
 
 });
+
