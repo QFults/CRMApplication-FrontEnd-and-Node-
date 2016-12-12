@@ -6,16 +6,16 @@
         </div>
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-4">
-                    <label>Username</label>
-                    <input type="text" ng-model="username" />
+                <div class="col-md-6">
+                    <label>E-Mail</label>
+                    <input type="text" ng-model="email" />
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label>Password</label>
                     <input type="text" ng-model="password" />
                     <a ng-sref="/recovery">Forgot Password?</a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <button ng-click="login()">Login</button>
                 </div>
             </div>
@@ -28,11 +28,11 @@
             <h3>learn more information.</h3>
             <h3>keep track of clients.</h3>
 
-            <button>Continue.</button>
+            <button ng-click="continue()">Continue.</button>
         </div>
         <div class="col-md-6">
             <div class="row">
-                <h2>Create New User</h2>
+                <h2>Sign Up</h2>
             </div>
             <div class="row">
                 <label>First Name</label>
@@ -51,10 +51,6 @@
                 <input type="text" ng-model="confirmNewEmail" />
             </div>
             <div class="row">
-                <label>Username</label>
-                <input type="text" ng-model="newUsername" />
-            </div>
-            <div class="row">
                 <label>Password</label>
                 <input type="text" ng-model="newPassword" />
             </div>
@@ -63,9 +59,12 @@
                 <input type="text" ng-model="confirmNewPassword" />
             </div>
             <div class="row">
-                <label>Company ID</label>
-                <input type="text" ng-model="newCompanyID"/>
+                <button class="btn btn-primary" ng-click="newUser()">Sign Up</button>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <span ng-show="loginTestView"> {{loginTest}} </span>
+            <span ng-show="signUpTestView"> {{signUpTest}} </span>
     </div>
 </div>

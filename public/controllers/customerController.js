@@ -7,8 +7,12 @@ angular
     $scope.customerTestText = '';
     $scope.emailCheckResult = '';
     $scope.phoneCheckResult = '';
+    $scope.repInfo = '';
+    $scope.filtering = '';
 
-    $scope.getAllCustomers = function() {
+
+
+    $scope.findCLient = function() {
         $scope.customerTestText = '';
         $http.get('http://localhost:3000/customers')
         .then(function (response) {
