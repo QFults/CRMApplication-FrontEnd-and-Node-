@@ -4,35 +4,29 @@
         <div class="col-md-4">
             <div class="row">
                 <label>Search All Clients</label>
-                <input type="text" />
+                <input type="text" ng-model="clientInfo"/>
                 <p>Leave empty to return all clients</p>
-                <button>Search</button>
+                <button ng-click="findClient()">Search</button>
             </div>
             <div class="row">
                 <label>Search By Rep</label>
-                <input type="text" />
-                <button>Search</button>
-            </div>
-            <div class="row">
-                <label>Filters</label>
-                <p>Contact</p>
-                <input type="radio" />
-                <p>Other Filters</p>
-                <input type="radio" />
-                <p>Other Filters</p>
-                <input type="radio" />
+                <input type="text" ng-model="repInfo"/>
+                <button ng-click="findRepClients()">Search</button>
             </div>
         </div>
         <div class="col-md-4">
             <h2>Client List</h2>
-            <input type="text" ng-show="searchByRep" />
-            <div ui-view="clientLIst"></div>
+            <input type="text" ng-show="isSearching" ng-model="filtering"/>
+            <ul>    
+
+                <li ng-repeat="customer in displayedCustomers | filter:filterCustomer"></li>
+            </ul>
         </div>
         <div class="col-md-4">
             <h2>Button Options</h2>
-            <button>Group SMS</button>
-            <button>Group E-Mail</button>
-            <button>New Person</button>
+            <button ng-click="groupSMS()">Group SMS</button>
+            <button ng-click="groupEmail()">Group E-Mail</button>
+            <button ng-click="createCustomer()">New Person</button>
         </div>
     </div>
 </div>

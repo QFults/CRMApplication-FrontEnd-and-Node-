@@ -11,6 +11,29 @@ function index(req, res) {
         });
 }
 
+function show(req, res) {
+    var username = req.query.username;
+    var password = req.query.password;
+    axios.get('http://localhost:50313/api/users')
+        .then(function (response) {
+            res.json({ message: 'we found you!'});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function create(req, res) {
+    axios.get('http://localhost:50313/api/users')
+        .then(function (response) {
+            res.json({ message: 'we made you!'});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
 module.exports = {
-    index: index
+    index: index,
+    show: show,
+    create: create
 }
