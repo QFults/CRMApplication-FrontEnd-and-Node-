@@ -1,4 +1,4 @@
-angular.module("CRMApp").service("customerService", function ($http) {
+angular.module("CRMApp").service("userService", function ($http) {
 
   this.test = 'service works!';
   this.users = [];

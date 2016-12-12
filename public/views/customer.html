@@ -2,17 +2,22 @@
     <div class="container" ng-app="CRMApp" ng-app="customerController">
         <div class="row">
             <div class="col-md-6">
-                <label>Transfer Client to :</label>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Client List</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Client1</a>
-                        <a class="dropdown-item" href="#">Client2</a>
-                        <a class="dropdown-item" href="#">Client3</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">My Account</a>
-                    </div>
-                </div>
+                <label>Transfer Customer To :</label>
+
+<div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" id="selectAgent" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <span>test</span>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="selectAgent">
+        <!--<li ng-repeat="player in players" ng-hide="player.Id == redPlayer.Id ||  player.Id == bluePlayer.Id"  ng-click="selectRedPlayer(player)">{{player.FirstName}}
+        </li>-->
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+</div>
                 <button>Transfer</button>
                 </br>
                 </br>

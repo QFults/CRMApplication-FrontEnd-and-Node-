@@ -1,15 +1,20 @@
-angular
-.module('CRMApp')
-.controller('noteController', function($scope, $http, noteService, customerService) {
-    $scope.noteTestText = '';
+angular.module('CRMApp').controller('noteController', function($scope, $http, noteService, customerService) {
 
-    $scope.noteTestFunction = function() {
-        $scope.noteTestText = '';
+    $scope.noteService = noteService;
+    $scope.notes = '';
+
+    $scope.index = function() {
+        $scope.notes = 'loading';
         
-        $http.get('http://localhost:3000/noteTest')
-        .then(function(response) {
-            $scope.noteTestText = response.data.message
+        $http.get('http://localhost:3000/notes')
+        .then(function (response) {
+            $scope.notes = response.data.message;
+            noteService.index(response.data.message);
         })
     }
+
+
+
+
     
 });
