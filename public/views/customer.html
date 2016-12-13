@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-    <div class="container" ng-app="CRMApp" ng-app="customerController">
-        <div class="row">
-            <div class="col-md-6">
-                <label>Transfer Client to :</label>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Client List</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Client1</a>
-                        <a class="dropdown-item" href="#">Client2</a>
-                        <a class="dropdown-item" href="#">Client3</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">My Account</a>
-                    </div>
+<div class="container" ng-app="CRMApp" ng-app="customerController">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Transfer Customer to :</label>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customer List</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Customer1</a>
+                    <a class="dropdown-item" href="#">Customer2</a>
+                    <a class="dropdown-item" href="#">Customer3</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">My Account</a>
                 </div>
-                <button>Transfer</button>
-                </br>
-                </br>
-                <button class="btn btn-primary">Basic Information</button>
-                <div class="clientInfo" ng-show="true"></div>
-                <button class="btn btn-primary">Full Contact Information</button>
-                <div class="clientInfo" ng-show="true"></div>
             </div>
-            <div class="col-md-6">
-                <button>Create SMS</button>
-                <button>Create E-Mail</button>
-                <button>Create Note</button>
-                <div class="buttonReaction"></div>
-                <div class="noteList"></div>
-            </div>
+            <button>Transfer</button>
+            </br>
+            </br>
+            <button class="btn btn-primary">Basic Information</button>
+            <div class="CustomerInfo" ng-show="true"></div>
+            <button class="btn btn-primary">Full Contact Information</button>
+            <div class="CustomerInfo" ng-show="true"></div>
+        </div>
+        <div class="col-md-6">
+            <button>Create SMS</button>
+            <button>Create E-Mail</button>
+            <button>Create Note</button>
+            <div class="buttonReaction"></div>
+            <div class="noteList"></div>
         </div>
     </div>
+</div>

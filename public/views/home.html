@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<div class="container">
+<div class="container" ng-controller="customerController">
     <div class="row">
         <div class="col-md-4">
             <div class="row">
-                <label>Search All Clients</label>
-                <input type="text" ng-model="clientInfo"/>
-                <p>Leave empty to return all clients</p>
-                <button ng-click="findClient()">Search</button>
+                <label>Search All customers</label>
+                <input type="text" ng-model="customerInfo" />
+                <p>Leave empty to return all customers</p>
+                <button ng-click="findCustomer()">Search</button>
             </div>
             <div class="row">
                 <label>Search By Rep</label>
-                <input type="text" ng-model="repInfo"/>
-                <button ng-click="findRepClients()">Search</button>
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="selectAgent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>test</span>
+        <span class="caret"></span>
+    </button>
+                    <ul class="dropdown-menu" aria-labelledby="selectAgent">
+                        <li ng-repeat="user in users" ng-click="setSelectedUser(user)">{{user.FirstName}} {{user.LastName}}</li>
+                    </ul>
+                </div>
+                <button ng-click="findRepCustomers()">Search</button>
             </div>
         </div>
         <div class="col-md-4">
-            <h2>Client List</h2>
-            <input type="text" ng-show="isSearching" ng-model="filtering"/>
-            <ul>    
+            <h2>Customer List</h2>
+            <input type="text" ng-show="isSearching" ng-model="filtering" />
+            <ul>
 
                 <li ng-repeat="customer in displayedCustomers | filter:filterCustomer"></li>
             </ul>

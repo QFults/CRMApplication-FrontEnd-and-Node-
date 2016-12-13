@@ -4,7 +4,7 @@ function index(req, res) {
     axios.get('http://localhost:50313/api/users')
         .then(function (response) {
             var users = response.data;
-            res.json({ message: users});
+            res.json({ users: users});
         })
         .catch(function (error) {
             console.log(error);

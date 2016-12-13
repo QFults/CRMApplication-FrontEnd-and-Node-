@@ -15,15 +15,13 @@ angular
         $scope.signUpTestView = false;
         $scope.loginTestView = false;
 
-        // $scope.getAllUsers = function() {
-        //     $scope.userTestText = '';
-
-        //     $http.get('http://localhost:3000/users')
-        //     .then(function(response) {
-        //         $scope.userTestText = response.data.message;
-        //         console.log(response.data.message);
-        //     })
-        // }
+        $scope.index = function () {
+          $http.get('http://localhost:3000/users')
+        .then(function (response) {
+            console.log(response.data.users);
+            userService.index(response.data.users);
+        })
+        }
         $scope.login = function () {
             $http.get(`http://localhost:3000/users/${$scope.userID}?email=${$scope.email}&password=${$scope.password}`)
                 .then(function (response) {
