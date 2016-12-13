@@ -1,8 +1,8 @@
 var axios = require('axios');
 
 function index(req, res) {
-    console.log(req.query.customerId);
-    if ( !req.query.customerId ) {
+    console.log(req.body.customerId);
+    if ( !req.body.customerId ) {
         axios.get('http://localhost:50313/api/notes')
             .then(function (response) {
                 var notes = response.data;

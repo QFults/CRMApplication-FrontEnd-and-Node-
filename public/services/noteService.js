@@ -5,7 +5,7 @@ angular.module("CRMApp").service("noteService", function ($http) {
   /* GETS
   ********************/
 
-  this.index = function (allNotes) {
+  this.getNotes = function (allNotes) {
     this.notes = allNotes;
   }
 

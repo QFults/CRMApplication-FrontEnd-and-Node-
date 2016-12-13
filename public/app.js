@@ -32,7 +32,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   .state('serviceTest', {
     url: '/serviceTest',
     templateUrl: './views/serviceTest.html',
-    controller: 'serviceTestController'
+    controller: 'customerController'
   })
 
   
