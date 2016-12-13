@@ -14,3 +14,5 @@ angular.module("CRMApp").service("userService", function ($http) {
 
 
 });
+
+console.log('dont delete me neil you asshat')
