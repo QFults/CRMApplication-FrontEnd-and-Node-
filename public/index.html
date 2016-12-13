@@ -23,13 +23,19 @@
 </head>
 
 <body>
+    <div ui-view>
+    </div>
     <button class="btn btn-primary" ui-sref="contact">contact.html</button>
     <button class="btn btn-primary" ui-sref="customer">customer.html</button>
     <button class="btn btn-primary" ui-sref="home">home.html</button>
     <button class="btn btn-primary" ui-sref="login">login.html</button>
     <button class="btn btn-primary" ui-sref="recovery">recovery.html</button>
+<<<<<<< HEAD
 
     <div ui-view></div>
+=======
+    <div ng-controller="userController"><div ng-init="index()"></div></div>
+>>>>>>> 2c5d78b6048b23b57adab59fe25debe8a11c6338
 
     <script src="./app.js"></script>
     <script src="./controllers/userController.js"></script>

@@ -15,12 +15,11 @@ angular
         $scope.signUpTestView = false;
         $scope.loginTestView = false;
 
-        $scope.index = function() {
-
-            $http.get('http://localhost:3000/users')
-            .then(function(response) {
-
-                console.log(response.data.message);
+        $scope.index = function () {
+          $http.get('http://localhost:3000/users')
+            .then(function (response) {
+                console.log(response.data.users);
+                userService.index(response.data.users);
             })
         }
 
