@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>CRM App</title>
-    <!--JQuery-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <!--Bootstrap CDN -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Angular CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js">
+    </script>
 
     <!--Ui-Router-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js">
+    </script>
 
 </head>
 
@@ -27,6 +30,7 @@
     <button class="btn btn-primary" ui-sref="home">home.html</button>
     <button class="btn btn-primary" ui-sref="login">login.html</button>
     <button class="btn btn-primary" ui-sref="recovery">recovery.html</button>
+
     <div ng-controller="userController"><div ng-init="index()"></div></div>
 
     <script src="./app.js"></script>

@@ -20,6 +20,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
                 userService.index(response.data.users);
             })
     }
+
     $scope.login = function () {
         $http.get(`http://localhost:3000/users/${$scope.userID}?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
@@ -27,7 +28,8 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
                 $scope.loginTest = response.data.message;
                 $scope.loginTestView = true;
             })
-    }
+    };
+
     $scope.newUser = function () {
         $http.post('http://localhost:3000/users', { firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.newEmail, password: $scope.password })
             .then(function (response) {
@@ -35,7 +37,8 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
                 $scope.signUpTest = response.data.message;
                 $scope.signUpTestView = true;
             })
-    }
+    };
+
     $scope.continue = function () {
         $state.go('home')
     }

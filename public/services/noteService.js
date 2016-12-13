@@ -1,11 +1,22 @@
 angular.module("CRMApp").service("noteService", function ($http) {
 
-  this.test = 'service works!';
-  this.notes = [];
+  this.notes = '';
 
-  this.index = function (allNotes) {
+  /* GETS
+  ********************/
+
+  this.getNotes = function (allNotes) {
     this.notes = allNotes;
   }
+
+  /* CREATE
+  ********************/
+
+  /* UPDATE
+  ********************/
+
+  /* DELETE
+  ********************/
 
 });
 

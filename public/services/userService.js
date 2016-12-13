@@ -12,4 +12,5 @@ angular.module("CRMApp").service("userService", function ($http) {
     this.selectedUser = user;
   }
 
+
 });
