@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
     <div class="container" ng-app="CRMApp" ng-app="customerController">
         <div class="row">
             <div class="col-md-6">
@@ -32,6 +33,36 @@
                 <button>Create Note</button>
                 <div class="buttonReaction"></div>
                 <div class="noteList"></div>
+=======
+<div class="container" ng-app="CRMApp" ng-app="customerController">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Transfer Customer to :</label>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customer List</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Customer1</a>
+                    <a class="dropdown-item" href="#">Customer2</a>
+                    <a class="dropdown-item" href="#">Customer3</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">My Account</a>
+                </div>
+>>>>>>> d628fc75a7c93e46442d098118a6c350eca617c3
             </div>
+            <button>Transfer</button>
+            </br>
+            </br>
+            <button class="btn btn-primary">Basic Information</button>
+            <div class="CustomerInfo" ng-show="true"></div>
+            <button class="btn btn-primary">Full Contact Information</button>
+            <div class="CustomerInfo" ng-show="true"></div>
+        </div>
+        <div class="col-md-6">
+            <button>Create SMS</button>
+            <button>Create E-Mail</button>
+            <button>Create Note</button>
+            <div class="buttonReaction"></div>
+            <div class="noteList"></div>
         </div>
     </div>
+</div>
