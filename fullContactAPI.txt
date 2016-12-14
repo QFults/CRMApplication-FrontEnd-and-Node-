@@ -9,14 +9,23 @@
     .socialProfiles(array of objects)
     .status(int)
 
-    .contactInfo properties
-        .familyName(string)
-        .fullName(string)
-        .givenName(string)
+    .contactInfo
+        .familyName(last name)
+        .fullName(first + last)
+        .givenName(first name)
         .websites
             websites[0].url
 
-    .demographics properties
+    .digitalFootprint
+        .scores[0]
+            .provider("klout")
+            .type("general")
+            .value(int)
+        .topics[0]
+            .provider("klout")
+            .value("Twitter")
+
+    .demographics
         .gender(string)
         .locationDeduced
             .city

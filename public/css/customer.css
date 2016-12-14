@@ -12,6 +12,10 @@ nav div h2 {
 /* LEFT COL
 ****************************************/
 
+.fcHeader {
+  border-top: 2px solid #e7e7e7;
+}
+
 /* LEFT COL
 ****************************************/
 
@@ -20,4 +24,10 @@ nav div h2 {
 
 .vh-90 {
   height: 90vh;
+  overflow-y: scroll;
 }
+
+.underline {
+  text-decoration: underline;
+}
+

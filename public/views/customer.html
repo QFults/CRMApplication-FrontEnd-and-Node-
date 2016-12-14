@@ -13,26 +13,74 @@
     </nav>
 
     <div class="row divBelowNav">
+        <!-- Left Col -->
         <div class="col-md-6 well vh-90">
             <h3 class="text-center">
                 Personal Information
             </h3>
-            <div>
-                only show info that is not null
-            </div>
 
             <div>
-                
+                <h4>Lead State</h4>
+                <h4>First Name</h4>
+                <h4>Last Name</h4>
+                <h4>Email</h4>
+                <h4>Phone Number</h4>
+                <h4>Customer Since: date</h4>
+                <h4>Street Address</h4>
+                <h4>City, State zip</h4>
+                <h4>Date of Birth</h4>
+                <h4>Gender</h4>
             </div>
+            <!-- Full Contact Results -->
+            <div>
+                <h3 class="text-center fcHeader">Full Contact Results</h3>
+                <button ng-click="getFCByEmail()" class="btn btn-info btn-block">Retrieve By Email</button>
+                <div><!-- Contact Info -->
+                    <h4>
+                        <span class="underline">Contact Info</span>
+                    </h4>
+                    <p>
+                        {{ fcEmailResults.contactInfo.givenName }}
+                    </p>
+                    <p>
+                        {{ fcEmailResults.contactInfo.familyName }}
+                    </p>
+                    <h4>
+                        <span class="underline">Websites</span>
+                    </h4>
+                    <ul>
+                        <li ng-repeat="website in fcEmailResults.contactInfo.websites">
+                            <a href="{{ website.url }}">{{ website.url }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4><span class="underline">Demographics</span></h4>
+                    <p>{{ fcEmailResults.demographics.locationGeneral }}</p>
+                </div>
+                <div><!-- Digital Footprint -->
+                    <h4>
+                        <span class="underline">Digital Footprint</span>
+                    </h4>
+                    <p ng-repeat="score in fcEmailResults.digitalFootprint.scores">
+                        {{ score.type }} {{score.provider}} score: {{ score.value }}
+                    </p>
+                    <p>
+                        Score(s) based on: <span ng-repeat="topic in fcEmailResults.digitalFootprint.topics">
+                            {{ topic.value }} 
+                        </span>
+                    </p>
+                </div>
 
+            </div><!-- Full Contact Results -->
 
-        </div>
-
+        </div><!-- Left Col -->
+        <!-- Right Col -->
         <div class="col-md-6 well vh-90">
             <h3 class="text-center">
                 Notes
             </h3>
-        </div>
+        </div><!-- Right Col -->
 
     </div>
     <!-- Row 1 -->
