@@ -1,0 +1,16 @@
+.home-scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+.myModalClass {
+    width: 50%;
+}
+.customerList {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+.container {
+    height: 100%;
+    width: 100%;
+}

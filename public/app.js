@@ -34,6 +34,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: './views/serviceTest.html',
     controller: 'customerController'
   })
-
-  
 });

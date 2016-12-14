@@ -1,5 +1,5 @@
 angular.module('CRMApp').controller('userController', function ($scope, $http, $state, $stateParams, userService) {
-    $scope.userID = 1;
+    $scope.userID = null;
     $scope.email - '';
     $scope.password = '';
     $scope.newFirstName = '';
@@ -22,11 +22,16 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     }
 
     $scope.login = function () {
-        $http.get(`http://localhost:3000/users/${$scope.userID}?email=${$scope.email}&password=${$scope.password}`)
+        $http.get(`http://localhost:3000/users?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
-                console.log(response.data.message);
-                $scope.loginTest = response.data.message;
+                if(response.data.userExists == true){
+                userService.setLoggedInUser(response.data);
+                $scope.loginTest = response.data;
                 $scope.loginTestView = true;
+                }
+                else{
+                    alert('Invalid Email or Password')
+                }
             })
     };
 

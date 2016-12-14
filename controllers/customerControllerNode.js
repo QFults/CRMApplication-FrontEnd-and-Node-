@@ -1,26 +1,36 @@
 var axios = require('axios');
 
 function index(req, res) {
-    console.log(req.query.userId)
-    if(!req.query.userId){
-    axios.get('http://localhost:50313/api/customers')
-        .then(function (response) {
-            var customers = response.data;
-            res.json({ customers: customers });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    if (!req.query.userId & !req.query.information) {
+        axios.get('http://localhost:50313/api/customers')
+            .then(function (response) {
+                var customers = response.data;
+                res.json({ customers: customers });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
-    else{
-    axios.get('http://localhost:50313/api/customers?userId=' + req.query.userId)
-        .then(function (response) {
-            var customers = response.data;
-            res.json({ customers: customers });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    else if (!req.query.information) {
+        axios.get('http://localhost:50313/api/customers?userId=' + req.query.userId)
+            .then(function (response) {
+                var customers = response.data;
+                res.json({ customers: customers });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    else {
+        console.log(req.query.information);
+        axios.get('http://localhost:50313/api/customers?searchFor=' + req.query.information)
+            .then(function (response) {
+                console.log(response.data);
+                res.json({ customers: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 }
 
@@ -49,8 +59,23 @@ function searchFCByPhone(req, res) {
         })
 }
 
+function create(req, res) {
+    if (req.body.Email == '' && req.body.Phone == '') {
+        res.json({ post: false })
+    }
+    else {
+        axios.post('http://localhost:50313/api/customers', req.body)
+            .then(function (response) {
+                res.json({ post: true, customer : response.data })
+            })
+            .catch(function (error) {
+                res.json({ post: false })
+            })
+    }
+}
 module.exports = {
     index: index,
     searchFCByEmail: searchFCByEmail,
-    searchFCByPhone: searchFCByPhone
+    searchFCByPhone: searchFCByPhone,
+    create: create
 }

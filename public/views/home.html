@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="container" ng-controller="customerController">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 searchCustomers">
             <div class="row">
                 <label>Search All customers</label>
                 <input type="text" ng-model="customerInfo" />
@@ -10,31 +10,96 @@
             </div>
             <div class="row">
                 <label>Search By Rep</label>
-                <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle" type="button" id="selectAgent" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span>test</span>
-        <span class="caret"></span>
-    </button>
-                    <ul class="dropdown-menu" aria-labelledby="selectAgent">
-                        <li ng-repeat="user in users" ng-click="setSelectedUser(user)">{{user.FirstName}} {{user.LastName}}</li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{selectedUserName}}<span class="caret"></span></button>
+                    <ul class="dropdown-menu home-scrollable-menu" role="menu">
+                        <li ng-repeat="user in users"><a ng-click="setSelectedUser(user)">{{user.FirstName}} {{user.LastName}}</a></li>
                     </ul>
                 </div>
-                <button ng-click="findRepCustomers()">Search</button>
+                <button ng-click="findUserCustomers()">Search</button>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 customerList">
             <h2>Customer List</h2>
             <input type="text" ng-show="isSearching" ng-model="filtering" />
             <ul>
-
-                <li ng-repeat="customer in displayedCustomers | filter:filterCustomer"></li>
+                <li ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}</li>
             </ul>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 homeOptions">
             <h2>Button Options</h2>
-            <button ng-click="groupSMS()">Group SMS</button>
-            <button ng-click="groupEmail()">Group E-Mail</button>
-            <button ng-click="createCustomer()">New Person</button>
+            <button ng-click="contact()" class="btn btn-primary">Contact Customers</button>
+            <button class="btn btn-primary" ng-click="createNewCustomerModal()">New Customer</button>
+            <!-- Create New Instructor -->
+            <div class="text-center modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="addNewCustomerTitle">Add New Customer</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>First Name
+                                    <input ng-model="newFName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name
+                                    <input ng-model="newLName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Email
+                                    <input ng-model="newEmail" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number
+                                    <input ng-model="newPNumber" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Birth
+                                    <input ng-model="newDOB" class="form-control" type="datetime">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Status
+                                    <input ng-model="isLead" type="radio">Lead
+                                    <input ng-model="isClient" type="radio">Client
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender
+                                    <input ng-model="newGender" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Address
+                                    <input ng-model="newAddr" class="form-control" type="text">
+                                    </label>
+                                <label>City
+                                    <input ng-model="newCity" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>State
+                                    <input ng-model="newState" class="form-control" type="text">
+                                    </label>
+                                <label>Zip Code
+                                    <input ng-model="newZip" class="form-control" type="text">
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                            <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End #createNewInstructorModal -->
         </div>
     </div>
 </div>

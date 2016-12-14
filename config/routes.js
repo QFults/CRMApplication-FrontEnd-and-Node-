@@ -25,6 +25,7 @@ router.post('/users', userController.create);
 router.get('/customers', customerController.index);
 router.get('/customers/byEmail', customerController.searchFCByEmail);
 router.get('/customers/byPhone', customerController.searchFCByPhone);
+router.post('/customers', customerController.create);
 
 // note routes
 router.get('/notes', noteController.index);

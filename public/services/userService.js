@@ -3,6 +3,7 @@ angular.module("CRMApp").service("userService", function ($http) {
   this.test = 'service works!';
   this.users = [];
   this.seletedUser = {};
+  this.loggedInUser = {};
 
   this.index = function (allUsers) {
     this.users = allUsers;
@@ -12,7 +13,7 @@ angular.module("CRMApp").service("userService", function ($http) {
     this.selectedUser = user;
   }
 
-
+  this.setloggedInUser = function (user){
+    this.loggedInUser = user;
+  }
 });
-
-console.log('dont delete me neil you asshat')
