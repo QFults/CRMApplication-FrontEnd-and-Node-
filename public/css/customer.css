@@ -1,0 +1,33 @@
+/* NAVBAR
+****************************************/
+
+.divBelowNav {
+  padding-top: 70px;
+}
+
+nav div h2 {
+  margin-right: 6.5%;
+}
+
+/* LEFT COL
+****************************************/
+
+.fcHeader {
+  border-top: 2px solid #e7e7e7;
+}
+
+/* LEFT COL
+****************************************/
+
+/* MISC
+****************************************/
+
+.vh-90 {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
