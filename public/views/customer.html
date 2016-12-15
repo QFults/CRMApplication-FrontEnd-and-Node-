@@ -18,47 +18,74 @@
 			<h3 class="text-center">
 				Personal Information
 			</h3>
-
+			<!-- Personal Info-->
 			<div>
-				<h4>Lead State</h4>
-				<h4>First Name</h4>
-				<h4>Last Name</h4>
-				<h4>Email</h4>
-				<h4>Phone Number</h4>
-				<h4>Customer Since: date</h4>
-				<h4>Street Address</h4>
-				<h4>City, State zip</h4>
-				<h4>Date of Birth</h4>
-				<h4>Gender</h4>
+				<h4>
+					First Name: {{ selectedCustomer.FirstName }}
+				</h4>
+				<h4>
+					Last Name: {{ selectedCustomer.LastName }}
+				</h4>
+				<h4>
+					Lead State: {{ selectedCustomer.LeadState }}
+				</h4>
+				<h4>
+					Email: <a href="mailto:{{ selectedCustomer.Email }}">{{ selectedCustomer.Email }}</a>
+				</h4>
+				<h4>
+					Phone Number: <a href="tel:{{ selectedCustomer.Phone }}">{{ selectedCustomer.Phone }}</a>
+				</h4>
+				<h4>
+					Customer Since: {{ selectedCustomer.DateAdded }}
+				</h4>
+				<h4>
+					Street Address: {{ selectedCustomer.StreetAddress }}
+				</h4>
+				<h4>
+					City, State Zip: {{ selectedCustomer.City }}, {{ selectedCustomer.State }} {{ selectedCustomer.Zip }}
+				</h4>
+				<h4>
+					Date of Birth: {{ selectedCustomer.DOB }}
+				</h4>
+				<h4>
+					Gender: {{ selectedCustomer.Gender }}
+				</h4>
 			</div>
+
 			<!-- Full Contact Results -->
-			<div>
-				<h3 class="text-center fcHeader">Full Contact Results</h3>
+			<div class="greyTopBorder">
+				<h3 class="text-center">Full Contact Results</h3>
 				<button ng-click="getFCByEmail()" class="btn btn-info btn-block">Retrieve By Email</button>
-				<div><!-- Contact Info -->
+				<!-- Contact Info -->
+				<div ng-if="fcEmailResults.contactInfo">
 					<h4>
-						<span class="underline">Contact Info</span>
+						<span class="underline">Name</span>
 					</h4>
-					<p>
+					<p ng-if="fcEmailResults.contactInfo.givenName">
 						{{ fcEmailResults.contactInfo.givenName }}
 					</p>
-					<p>
+					<p ng-if="fcEmailResults.contactInfo.familyName">
 						{{ fcEmailResults.contactInfo.familyName }}
 					</p>
-					<h4>
-						<span class="underline">Websites</span>
-					</h4>
-					<ul>
-						<li ng-repeat="website in fcEmailResults.contactInfo.websites">
-							<a href="{{ website.url }}">{{ website.url }}</a>
-						</li>
-					</ul>
+					<!-- Websites -->
+					<div ng-if="fcEmailResults.contactInfo.websites">
+						<h4>
+							<span class="underline">Websites</span>
+						</h4>
+						<ul>
+							<li ng-repeat="website in fcEmailResults.contactInfo.websites">
+								<a href="{{ website.url }}">{{ website.url }}</a>
+							</li>
+						</ul>
+					</div>
 				</div>
-				<div>
+				<!-- Demographics -->
+				<div ng-if="fcEmailResults.demographics">
 					<h4><span class="underline">Demographics</span></h4>
 					<p>{{ fcEmailResults.demographics.locationGeneral }}</p>
 				</div>
-				<div><!-- Digital Footprint -->
+				<!-- Digital Footprint -->
+				<div ng-if="fcEmailResults.digitalFootprint">
 					<h4>
 						<span class="underline">Digital Footprint</span>
 					</h4>
@@ -71,7 +98,7 @@
 						</span>
 					</p>
 				</div> <!-- Digital Footprint -->
-				<div><!-- Social Profiles -->
+				<div ng-if="fcEmailResults.socialProfiles"><!-- Social Profiles -->
 					<h4>
 						<span class="underline">Social Profiles</span>
 					</h4>
@@ -84,18 +111,19 @@
 							</li>
 							<li>
 								<ul class="marginLeft15px">
-									<li>
+									<li ng-if="profile.followers">
 										Followers: {{ profile.followers }}
 									</li>
-									<li>
+									<li ng-if="profile.username">
 										Username: {{ profile.username }}
 									</li>
 								</ul>
 							</li>
 						</ul>
-					</div>
+					</div> <!-- Repeat Social Profiles -->
 				</div><!-- Social Profiles -->
-				<div><!-- Organizations -->
+				<!-- Organizations -->
+				<div ng-if="fcEmailResults.organizations">
 					<h4>
 						<span class="underline">Organizations</span>
 					</h4>
@@ -106,13 +134,13 @@
 							</li>
 							<li>
 								<ul class="marginLeft15px">
-									<li>
+									<li ng-if="organization.title">
 										Title: {{ organization.title }}
 									</li>
-									<li>
+									<li ng-if="organization.current">
 										Current: {{ organization.current }}
 									</li>
-									<li>
+									<li ng-if="organization.startDate">
 										Start Date: {{ organization.startDate }}
 									</li>
 								</ul>
@@ -120,7 +148,8 @@
 						</ul>
 					</div> <!-- Organizations Repeat -->
 				</div><!-- Organizations -->
-				<div><!-- Photos -->
+				<!-- Photos -->
+				<div ng-if="fcEmailResults.photos">
 					<h4>
 						<span class="underline">Photos</span>
 					</h4>
@@ -130,15 +159,35 @@
 						</li>
 					</ul>
 				</div><!-- Photos -->
-
 			</div><!-- Full Contact Results -->
-
 		</div><!-- Left Col -->
+
 		<!-- Right Col -->
 		<div class="col-md-6 well vh-90">
 			<h3 class="text-center">
 				Notes
 			</h3>
+			<!-- New Note -->
+			<div>
+				<div class="form-group">
+					<!--<label for="">Subject</label>-->
+					<input ng-model="newNoteSubject" type="text" placeholder="Note Subject" class="form-control">
+				</div>
+				<div class="form-group">
+					<!--<label for="">Body</label>-->
+					<textarea ng-model="newNoteBody" placeholder="Note Body" cols="30" rows="6" class="form-control"></textarea>
+				</div>
+				<div class="pull-right">
+					<button class="btn btn-success moodBtn">:)</button>
+					<button class="btn btn-warning moodBtn">:|</button>
+					<button class="btn btn-danger moodBtn">:(</button>
+					<button class="btn btn-default">Save Note</button>
+					</div>
+			</div>
+			<!-- Current Notes -->
+			<div ng-repeat="note in notes" class="form-group">
+
+			</div>
 		</div><!-- Right Col -->
 
 	</div>

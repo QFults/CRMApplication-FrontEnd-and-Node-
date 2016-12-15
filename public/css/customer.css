@@ -2,7 +2,7 @@
 ****************************************/
 
 .divBelowNav {
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 nav div h2 {
@@ -12,12 +12,13 @@ nav div h2 {
 /* LEFT COL
 ****************************************/
 
-.fcHeader {
-  border-top: 2px solid #e7e7e7;
-}
 
-/* LEFT COL
+
+/* RIGHT COL
 ****************************************/
+.moodBtn {
+  border-radius: 100%;
+}
 
 /* MISC
 ****************************************/
@@ -33,4 +34,12 @@ nav div h2 {
 
 .marginLeft15px {
   margin-left: 15px;
+}
+
+.greyBtmBorder {
+  border-bottom: 2px solid #e7e7e7;
+}
+
+.greyTopBorder {
+  border-top: 2px solid #e7e7e7;
 }

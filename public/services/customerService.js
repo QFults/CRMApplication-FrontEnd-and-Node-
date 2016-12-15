@@ -2,13 +2,18 @@ angular.module("CRMApp").service("customerService", function ($http) {
 
   this.test = 'service works!';
   this.customers = [];
-  this.seletedCustomer = {};
+  var _selectedCustomer = {};
 
   this.index = function (allCustomers) {
     this.customers = allCustomers;
   }
-  this.setSelectedCustomer = function (customer) {
-    this.seletedCustomer = customer;
+
+  function setSelectedCustomer (customer) {
+    _selectedCustomer = customer;
+  }
+
+  function getSelectedCustomer () {
+    return _selectedCustomer;
   }
 
 });
