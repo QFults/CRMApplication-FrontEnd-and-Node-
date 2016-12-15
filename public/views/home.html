@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<div class="container" ng-controller="customerController">
-    <div class="row">
-        <div class="col-md-4 searchCustomers">
+
+<div class="container-fluid" ng-controller="customerController">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" ui-sref="home">
+                <img alt="Brand" src="...">
+            </a>
+            <h2 class="text-center">Customer's Profile</h2>
+            <a href="" class="pull-right"></a>
+        </div>
+    </nav>
+
+    <div class="row divBelowNav">
+        <div class="col-md-4 searchCustomers well vh-90">
+            <h3 class="text-center">Find Customers</h3>
             <div class="row">
                 <label>Search All customers</label>
                 <input type="text" ng-model="customerInfo" />
-                <p>Leave empty to return all customers</p>
+                <p>Leave empty to return all</p>
                 <button ng-click="findCustomer()">Search</button>
             </div>
             <div class="row">
@@ -19,14 +31,15 @@
                 <button ng-click="findUserCustomers()">Search</button>
             </div>
         </div>
-        <div class="col-md-4 customerList">
+        <div class="col-md-4 customerList well vh-90">
             <h2>Customer List</h2>
             <input type="text" ng-show="isSearching" ng-model="filtering" />
             <ul>
                 <li ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}</li>
             </ul>
         </div>
-        <div class="col-md-4 homeOptions">
+
+        <div class="col-md-4 homeOptions well vh-90">
             <h2>Button Options</h2>
             <button ng-click="contact()" class="btn btn-primary">Contact Customers</button>
             <button class="btn btn-primary" ng-click="createNewCustomerModal()">New Customer</button>

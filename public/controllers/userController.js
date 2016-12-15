@@ -8,10 +8,6 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.confirmEmail = '';
     $scope.newPassword = '';
     $scope.confirmPassword = '';
-    $scope.loginTest = '';
-    $scope.signUpTest = '';
-    $scope.signUpTestView = false;
-    $scope.loginTestView = false;
 
     $scope.index = function () {
         $http.get('http://localhost:3000/users')
@@ -26,8 +22,8 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
             .then(function (response) {
                 if(response.data.userExists == true){
                 userService.setLoggedInUser(response.data);
-                $scope.loginTest = response.data;
-                $scope.loginTestView = true;
+                $state.go('home');
+
                 }
                 else{
                     alert('Invalid Email or Password')
@@ -38,9 +34,13 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.newUser = function () {
         $http.post('http://localhost:3000/users', { firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.newEmail, password: $scope.password })
             .then(function (response) {
-                console.log(response.data.message);
-                $scope.signUpTest = response.data.message;
-                $scope.signUpTestView = true;
+                if(response.data.userCreated == true) {
+                    userService.setLoggedInUser(response.data.user);
+                    $state.go('home');
+                }
+                else {
+                    alert('One or more entries are invalid. Please check your information and try again.')
+                }
             })
     };
 
