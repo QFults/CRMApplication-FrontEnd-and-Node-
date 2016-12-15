@@ -33,12 +33,12 @@ function show(req, res) {
 }
 
 function create(req, res) {
-    axios.get('http://localhost:50313/api/users')
+    axios.post('http://localhost:50313/api/users', req.body)
         .then(function(response) {
-            res.json({ message: 'we made you!' });
+            res.json({user: response.data, userCreated: true})
         })
         .catch(function(error) {
-            console.log(error);
+            res.json({userCreated: false})
         });
 }
 module.exports = {

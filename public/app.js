@@ -34,4 +34,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: './views/serviceTest.html',
     controller: 'customerController'
   })
+    .state('userPage', {
+    url: '/userPage',
+    templateUrl: './views/userPage.html',
+    controller: 'userController'
+  })
 });
