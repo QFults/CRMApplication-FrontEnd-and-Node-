@@ -15,7 +15,7 @@
 	<div class="row divBelowNav">
 		<!-- Left Col -->
 		<div class="col-md-6 well vh-90">
-			<h3 class="text-center">
+			<h3 class="text-center paddingLeftEditBtn">
 				Personal Information <span class="pull-right"><button class="btn btn-warning">Edit</button></span>
 			</h3>
 			<!-- Personal Info-->
@@ -49,10 +49,10 @@
 						{{ selectedCustomer.State }} {{ selectedCustomer.Zip }}
 					</span>
 				</h4>
-				<h4>
+				<h4 ng-if="selectedCustomer.DOB">
 					Date of Birth: {{ selectedCustomer.DOB }}
 				</h4>
-				<h4>
+				<h4 ng-if="selectedCustomer.Gender">
 					Gender: {{ selectedCustomer.Gender }}
 				</h4>
 			</div>
