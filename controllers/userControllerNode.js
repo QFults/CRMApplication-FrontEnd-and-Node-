@@ -41,8 +41,34 @@ function create(req, res) {
             res.json({userCreated: false})
         });
 }
+function update(req, res) {
+    if (req.body.Email == '' || req.body.FirstName == '' || req.body.LastName == '') {
+        res.json({ edited: false })
+    }
+    else {
+        axios.put('http://localhost:50313/api/users/' + req.body.Id, req.body)
+            .then(function (response) {
+                res.json({ edited: true, user : response.data })
+            })
+            .catch(function (error) {
+                res.json({ edited: false })
+            })
+    }
+}
+function destroy(req,res) {
+    var Id = req.params.id;
+    axios.delete('http://localhost:50313/api/users/?id=' + Id)
+    .then(function(response) {
+        res.json({deleted: true})
+    })
+    .catch(function(error) {
+        res.json({deleted: false})
+    })
+}
 module.exports = {
     index: index,
     show: show,
-    create: create
+    create: create,
+    update:update,
+    destroy: destroy
 }

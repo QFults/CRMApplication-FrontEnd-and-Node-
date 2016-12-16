@@ -21,7 +21,8 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
         $http.get(`http://localhost:3000/users?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
                 if(response.data.userExists == true){
-                userService.setLoggedInUser(response.data);
+                    console.log(response.data.user);
+                userService.setLoggedInUser(response.data.user);
                 $state.go('home');
 
                 }

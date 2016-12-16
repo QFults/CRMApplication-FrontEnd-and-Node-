@@ -20,6 +20,8 @@ router.get('/', function (req, res) {
 router.get('/users', userController.index);
 router.get('/users/:id', userController.show);
 router.post('/users', userController.create);
+router.put('/users/:id', userController.update);
+router.delete('/users/:id', userController.destroy)
 
 // customer routes
 router.get('/customers', customerController.index);
