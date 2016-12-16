@@ -35,7 +35,7 @@
             <h2>Customer List</h2>
             <input type="text" ng-show="isSearching" ng-model="filtering" />
             <ul>
-                <li ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}</li>
+                <li ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering" >{{customer.FirstName}} {{customer.LastName}}</li>
             </ul>
         </div>
 

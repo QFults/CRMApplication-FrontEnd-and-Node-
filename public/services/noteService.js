@@ -1,19 +1,26 @@
 angular.module("CRMApp").service("noteService", function ($http) {
 
-  this.notes = '';
+  var _customerNotes = [];
 
+// asfhthj;o'pkojoyurrsegvjnk
+  this.setSelectedCustomerNotes = function(notes) {
+    _customerNotes = notes;
+  }
   /* GETS
   ********************/
 
-  this.getNotes = function (allNotes) {
-    this.notes = allNotes;
+  this.getCustomerNotes = function () {
+    return _customerNotes;
   }
+
 
   /* CREATE
   ********************/
 
+
   /* UPDATE
   ********************/
+
 
   /* DELETE
   ********************/

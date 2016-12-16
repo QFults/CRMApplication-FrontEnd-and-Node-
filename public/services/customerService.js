@@ -8,11 +8,11 @@ angular.module("CRMApp").service("customerService", function ($http) {
     this.customers = allCustomers;
   }
 
-  function setSelectedCustomer (customer) {
+  this.setSelectedCustomer = function (customer) {
     _selectedCustomer = customer;
   }
 
-  function getSelectedCustomer () {
+  this.getSelectedCustomer = function () {
     return _selectedCustomer;
   }
 
