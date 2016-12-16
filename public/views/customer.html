@@ -110,7 +110,7 @@
 					<div ng-repeat="profile in fcEmailResults.socialProfiles">
 						<ul>
 							<li>
-								<a href="{{ profile.url }}">
+								<a class="underline" href="{{ profile.url }}">
 									{{ profile.typeName }}
 								</a>
 							</li>
@@ -190,18 +190,28 @@
 				</div>
 			</div>
 			<!-- Current Notes -->
-			<div class="greyTopBorder clearfix paddingTop10px">
+			<div 
+			 ng-if="note in customerNotes"
+			class="greyTopBorder clearfix paddingTop10px">
 				<div class="form-group">
-					<label for="" class="label-info form-control">{{ note.DateAdded }} - {{ note.Author }}</label>
+					<label>
+						<span ng-if="">
+							<button ng-if="note.Mood == 'Happy'" class="btn btn-success moodBtn">:)</button>
+							<button ng-if="note.Mood == 'Neutral'" class="btn btn-warning moodBtn">:|</button>
+							<button ng-if="note.Mood == 'Mad'" class="btn btn-danger moodBtn">:(</button>
+						</span>
+						{{ note.DateAdded }} - {{ note.Author }}
+					</label>
 					<input type="text" class="form-control" readonly value="test">
 				</div>
 					<div class="form-group">
-						<textarea cols="30" rows="6" readonly class="form-control">test</textarea>
+						<textarea cols="30" rows="6" readonly class="form-control">{{ note.Body }}</textarea>
 					</div>
-					<button class="btn btn-danger pull-right">Delete</button>
-					<button class="btn btn-warning pull-right">Edit</button>
-			</div>
-			
+					<div class="form-group pull-right">
+						<button class="btn btn-danger">Delete</button>
+						<button class="btn btn-warning marginRight3px">Edit</button>
+					</div>
+			</div> <!-- Current Notes -->
 		</div><!-- Right Col -->
 
 	</div>
