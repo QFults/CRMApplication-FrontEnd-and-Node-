@@ -16,33 +16,38 @@
 		<!-- Left Col -->
 		<div class="col-md-6 well vh-90">
 			<h3 class="text-center">
-				Personal Information
+				Personal Information <span class="pull-right"><button class="btn btn-warning">Edit</button></span>
 			</h3>
 			<!-- Personal Info-->
 			<div>
-				<h4>
+				<h4 ng-if="selectedCustomer.FirstName">
 					First Name: {{ selectedCustomer.FirstName }}
 				</h4>
-				<h4>
+				<h4 ng-if="selectedCustomer.LastName">
 					Last Name: {{ selectedCustomer.LastName }}
 				</h4>
-				<h4>
+				<h4 ng-if="selectedCustomer.LeadState">
 					Lead State: {{ selectedCustomer.LeadState }}
 				</h4>
-				<h4>
+				<h4 ng-if="selectedCustomer.Email">
 					Email: <a href="mailto:{{ selectedCustomer.Email }}">{{ selectedCustomer.Email }}</a>
 				</h4>
-				<h4>
-					Phone Number: <a href="tel:{{ selectedCustomer.Phone }}">{{ selectedCustomer.Phone }}</a>
+				<h4 ng-if="selectedCustomer.Phone">
+					Phone: <a href="tel:{{ selectedCustomer.Phone }}">{{ selectedCustomer.Phone }}</a>
 				</h4>
 				<h4>
 					Customer Since: {{ selectedCustomer.DateAdded }}
 				</h4>
-				<h4>
-					Street Address: {{ selectedCustomer.StreetAddress }}
-				</h4>
-				<h4>
-					City, State Zip: {{ selectedCustomer.City }}, {{ selectedCustomer.State }} {{ selectedCustomer.Zip }}
+				<h4 ng-if="selectedCustomer.StreetAddress">
+					<span>
+						Address: {{ selectedCustomer.StreetAddress }}
+					</span><br>
+					<span ng-if="selectedCustomer.City">
+						{{ selectedCustomer.City }}, 
+					</span>
+					<span>
+						{{ selectedCustomer.State }} {{ selectedCustomer.Zip }}
+					</span>
 				</h4>
 				<h4>
 					Date of Birth: {{ selectedCustomer.DOB }}
@@ -177,17 +182,26 @@
 					<!--<label for="">Body</label>-->
 					<textarea ng-model="newNoteBody" placeholder="Note Body" cols="30" rows="6" class="form-control"></textarea>
 				</div>
-				<div class="pull-right">
+				<div class="pull-right form-group">
 					<button class="btn btn-success moodBtn">:)</button>
 					<button class="btn btn-warning moodBtn">:|</button>
 					<button class="btn btn-danger moodBtn">:(</button>
 					<button class="btn btn-default">Save Note</button>
-					</div>
+				</div>
 			</div>
 			<!-- Current Notes -->
-			<div ng-repeat="note in notes" class="form-group">
-
+			<div class="greyTopBorder clearfix paddingTop10px">
+				<div class="form-group">
+					<label for="" class="label-info form-control">{{ note.DateAdded }} - {{ note.Author }}</label>
+					<input type="text" class="form-control" readonly value="test">
+				</div>
+					<div class="form-group">
+						<textarea cols="30" rows="6" readonly class="form-control">test</textarea>
+					</div>
+					<button class="btn btn-danger pull-right">Delete</button>
+					<button class="btn btn-warning pull-right">Edit</button>
 			</div>
+			
 		</div><!-- Right Col -->
 
 	</div>

@@ -45,6 +45,9 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.selectedUserName = 'Select A User';
     
     $scope.notes;
+    $scope.selectedNote = {
+        
+    }
     
     $scope.createNewCustomer = function () {
         $http.post(`http://localhost:3000/customers`,

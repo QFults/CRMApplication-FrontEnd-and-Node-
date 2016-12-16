@@ -43,3 +43,7 @@ nav div h2 {
 .greyTopBorder {
   border-top: 2px solid #e7e7e7;
 }
+
+.clearRight {
+  clear: both;
+}
