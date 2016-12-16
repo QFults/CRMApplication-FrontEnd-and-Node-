@@ -85,3 +85,39 @@ border: 2px solid #eee;
 box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 vertical-align: middle;
 }
+/* NAVBAR
+****************************************/
+
+.homeDivBelowNav {
+  padding-top: 70px;
+}
+
+nav div h2 {
+  margin-right: 6.5%;
+}
+
+/* LEFT COL
+****************************************/
+
+.homeFcHeader {
+  border-top: 2px solid #e7e7e7;
+}
+
+/* LEFT COL
+****************************************/
+
+/* MISC
+****************************************/
+
+.vh-90 {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.homeUnderline {
+  text-decoration: underline;
+}
+
+.homeMarginLeft15px {
+  margin-left: 15px;
+}
