@@ -1,5 +1,6 @@
 angular.module("CRMApp").controller("customerController", function ($scope, $http, customerService, userService, noteService, $state) {
 
+    // Customers
     $scope.newFName = '';
     $scope.newLName = '';
     $scope.newFName = '';
@@ -14,23 +15,28 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.newCity = '';
     $scope.newState = '';
     $scope.newZip = '';
-    $scope.customerEmail = '';
     $scope.customerEmail = 'rhythmic88@gmail.com';
     $scope.customerPhone = '';
     $scope.customerInfo = '';
-    $scope.fcEmailResults = '';
-    $scope.fcPhoneResults = '';
     $scope.filtering = '';
+    $scope.isSearching = false;
     $scope.displayedCustomers = [];
     $scope.customerId = '';
     $scope.selectedCustomer = customerService.getSelectedCustomer();
-    $scope.selectedUser = {};
-    $scope.users = userService.users;
-    $scope.isSearching = false;
+    $scope.editedCustomer = {};
+    // Users
     $scope.selectedUserName = 'Select A User';
-
-    $scope.customerNotes = noteService.getCustomerNotes();
     $scope.loggedInUser = userService.loggedInUser;
+    $scope.users = userService.users;
+    $scope.selectedUser = {};
+    // Notes
+    $scope.customerNotes = noteService.getCustomerNotes();
+    // Full Contact
+    $scope.fcEmailResults = '';
+    $scope.fcPhoneResults = '';
+
+    /* CUSTOMERS
+    ****************************************/
 
     // set the selected customer to view
     $scope.setSelectedCustomer = function (customer) {
@@ -76,6 +82,40 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                 }
             })
     }
+
+    // Edit Customer Modal
+    $scope.editCustomerModal = function () {
+        $scope.editedCustomer = angular.copy($scope.selectedCustomer);
+        $("#editCustomerModal").modal();
+    }
+
+    $scope.saveEditedCustomer = function () {
+        console.log($scope.selectedCustomer.Id);
+        $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, {
+            'Id': $scope.editedCustomer.Id,
+            'FirstName': $scope.editedCustomer.FirstName,
+            'LastName': $scope.editedCustomer.LastName,
+            'Email': $scope.editedCustomer.Email,
+            'Phone': $scope.editedCustomer.Phone,
+            'DOB': $scope.editedCustomer.DOB,
+            'LeadState': $scope.editedCustomer.LeadState,
+            'Gender': $scope.editedCustomer.Gender,
+            'DateAdded': $scope.editedCustomer.DateAdded,
+            'City': $scope.editedCustomer.City,
+            'State': $scope.editedCustomer.State,
+            'Zip': $scope.editedCustomer.Zip,
+            'StreetAddress': $scope.editedCustomer.StreetAddress,
+            'UserId': $scope.editedCustomer.UserId
+
+        })
+        .then(function (response) {
+            $scope.selectedCustomer = $scope.editedCustomer;
+            console.log('saveEditedCustomer');
+        });
+    }
+
+    /* USERS
+    ****************************************/
 
     // edit user modal functions
     $scope.editUserModal = function () {

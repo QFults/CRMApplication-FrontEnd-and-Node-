@@ -55,6 +55,7 @@ function update(req, res) {
             })
     }
 }
+
 function destroy(req,res) {
     var Id = req.params.id;
     axios.delete('http://localhost:50313/api/users/?id=' + Id)
