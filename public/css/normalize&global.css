@@ -25,3 +25,15 @@ li {
 .marginRight3px {
   margin-right: 3px;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.cursorDefault {
+  cursor: default !important;
+}
+
+.cursorText {
+  cursor: text !important;
+}

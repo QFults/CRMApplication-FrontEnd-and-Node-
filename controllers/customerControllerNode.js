@@ -59,16 +59,29 @@ function create(req, res) {
     else {
         axios.post('http://localhost:50313/api/customers', req.body)
             .then(function (response) {
-                res.json({ post: true, customer : response.data })
+                res.json({ post: true, customer: response.data })
             })
             .catch(function (error) {
                 res.json({ post: false })
             })
     }
 }
+
+function update (req, res) {
+    axios.put('http://localhost:50313/api/customers/' + req.body.Id, req.body)
+        .then(function (response) {
+            res.json(response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+            res.json(error);
+        })
+}
+
 module.exports = {
     index: index,
     searchFCByEmail: searchFCByEmail,
     searchFCByPhone: searchFCByPhone,
-    create: create
+    create: create,
+    update: update
 }

@@ -12,6 +12,11 @@ angular.module("CRMApp").service("userService", function ($http) {
   this.setSelectedUser = function (user) {
     this.selectedUser = user;
   }
+
+  this.getSelectedUser = function () {
+    return this.selectedUser;
+  }
+  
   this.setLoggedInUser = function (user){
     this.loggedInUser = user;
   }

@@ -6,7 +6,7 @@
 }
 
 nav div h2 {
-  margin-right: 6.5%;
+  margin-right: 1.53%;
 }
 
 /* LEFT COL
@@ -48,6 +48,7 @@ nav div h2 {
   clear: both;
 }
 
-.paddingLeftEditBtn {
-  padding-left: 49.58px;
+.paddLeftEditAndDelete {
+  padding-left: 122.18px;
 }
+

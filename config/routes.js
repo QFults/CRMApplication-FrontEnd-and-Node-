@@ -23,16 +23,19 @@ router.get('/users', userController.index);
 router.get('/users/:id', userController.show);
 router.post('/users', userController.create);
 router.put('/users/:id', userController.update);
-router.delete('/users/:id', userController.destroy)
+router.delete('/users/:id', userController.destroy);
 
 // customer routes
 router.get('/customers', customerController.index);
 router.get('/customers/byEmail', customerController.searchFCByEmail);
 router.get('/customers/byPhone', customerController.searchFCByPhone);
 router.post('/customers', customerController.create);
+router.put('/customers/:id', customerController.update);
 
 // note routes
 router.get('/notes', noteController.index);
+router.post('/notes', noteController.create);
+router.delete('/notes/:id', noteController.destroy);
 
 // sms routes
 router.get('/sms', smsController.test);
