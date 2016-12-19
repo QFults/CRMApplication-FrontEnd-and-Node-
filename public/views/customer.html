@@ -284,7 +284,7 @@
 	</div><!-- END Row 1 -->
 </div><!-- END Main Container -->
 
-<!-- START Edit Customer Modal -->
+<!-- START #editCustomerModal -->
 <div class="text-center modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerTitle">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -356,3 +356,48 @@
 		</div>
 	</div>
 </div><!-- END #editCustomerModal -->
+
+<!-- START #editNoteModal -->
+<div class="modal fade" id="editNoteModal" tabindex="-1" role="dialog" aria-labelledby="editNoteModalTitle">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center" id="editNoteModalTitle">Editing Note</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Subject
+					</label>
+						<input ng-model="editedNote.Subject" class="form-control" type="text" value="{{ editedNote.Subject }}">
+				</div>
+				<div class="form-group">
+					<label>Body
+					</label>
+					<textarea ng-model="editedNote.Body" placeholder="Body" cols="30" rows="6" class="form-control" value="{{ editedNote.Body }}"></textarea>
+				</div>
+				<div class="form-group pull-right">
+					<button 
+					ng-click="editedNote.Mood = 'Happy'"
+					class="btn btn-success moodBtn">
+						:)
+					</button>
+					<button 
+					ng-click="editedNote.Mood = 'Neutral'"
+					class="btn btn-warning moodBtn">
+						:|
+					</button>
+					<button 
+					ng-click="editedNote.Mood = 'Mad'"
+					class="btn btn-danger moodBtn">
+						:(
+					</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">Close</button>
+				<button ng-click="saveEditedNote()" type="button" class="btn btnPrimary" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div><!-- END #editNoteModal -->

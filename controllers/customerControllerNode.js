@@ -85,10 +85,21 @@ function update (req, res) {
         })
 }
 
+function destroy (req, res) {
+    axios.delete('http://localhost:50313/api/customers/?id=' + req.params.id)
+        .then(function (response) {
+            res.json(response);
+        })
+        .catch(function (error) {
+            res.json(error);
+        });
+}
+
 module.exports = {
     index: index,
     searchFCByEmail: searchFCByEmail,
     searchFCByPhone: searchFCByPhone,
     create: create,
-    update: update
+    update: update,
+    destroy: destroy
 }

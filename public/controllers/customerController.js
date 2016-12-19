@@ -124,6 +124,22 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         });
     }
 
+    $scope.deleteCustomer = function () {
+        var confirmed = confirm('Are you sure you want to permanently delete this customer and all of their information?');
+
+        if ( confirmed == true ) {
+            $http.delete('http://localhost:3000/customers/' + $scope.selectedCustomer.Id)
+            .then(function (response) {
+                if ( response.status != 200 ) {
+                    alert( 'error status' + response.status );
+                }
+                else {
+                    $state.go('home');
+                }
+            });
+        }
+    }
+
     /* USERS
     ****************************************/
 
@@ -219,10 +235,6 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* NOTES
     **************************************/
 
-    // $scope.getNotes = function () {
-    //     $scope.notes = 'loading'
-    // }
-
     $scope.setNewNoteMood = function (mood) {
         $scope.newNoteMood = mood;
     }
@@ -253,16 +265,10 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                     $scope.newNoteSubject = '';
                     $scope.newNoteBody = '';
 
-                    $http.get('http://localhost:3000/notes?customerId=' + $scope.selectedCustomer.Id)
-                        .then(function (response) {
-                            noteService.setSelectedCustomerNotes(response.data.notes);
-                            $scope.customerNotes = noteService.getCustomerNotes();
-                        });
+                    getSelectedCustomerNotes();
                 }
-
             });
         }
-        
     }
 
     function getSelectedCustomerNotes () {
@@ -273,9 +279,18 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         });
     }
 
-    $scope.deleteNote = function (note) {
-        console.log(note);
-        $http.delete('http://localhost:3000/notes/' + note.Id)
+    $scope.editNote = function (note) {
+        $scope.editedNote = angular.copy(note);
+        $("#editNoteModal").modal();
+    }
+
+    $scope.saveEditedNote = function () {
+        if ( $scope.editedNote.Subject == '' || $scope.editedNote.Body == '' ) {
+            alert( 'Please fill out both the subject line and body of before saving.' );
+        }
+        else {
+            $http.put('http://localhost:3000/notes/' + $scope.editedNote.Id,$scope.editedNote
+            )
             .then(function (response) {
                 if ( response.status != 200 ) {
                     alert( 'error status ' + response.status );
@@ -283,7 +298,24 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                 else {
                     getSelectedCustomerNotes();
                 }
-            })
+            });
+        }
+    }
+
+    $scope.deleteNote = function (note) {
+        var confirmed = confirm('Are you sure you want to permanently delete this note?');
+
+        if ( confirmed == true ) {
+            $http.delete('http://localhost:3000/notes/' + note.Id)
+                .then(function (response) {
+                    if ( response.status != 200 ) {
+                        alert( 'error status ' + response.status );
+                    }
+                    else {
+                        getSelectedCustomerNotes();
+                    }
+                });
+        }
     }
 
     /* FULL CONTACT
