@@ -50,10 +50,10 @@ function update (req, res) {
 function destroy (req, res) {
     axios.delete('http://localhost:50313/api/notes/?id=' + req.params.id)
         .then(function (response) {
-            res.json('deleted');
+            res.json(response);
         })
         .catch(function (error) {
-            res.json('error');
+            res.json(error);
         });
 }
 

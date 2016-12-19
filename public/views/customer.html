@@ -7,16 +7,7 @@
 			<a class="navbar-brand" ui-sref="home">
 				<img alt="Brand" src="...">
 			</a>
-			<h2 class="text-center">Customer's Profile</h2>
-			<a href="" class="pull-right"></a>
-		</div>
-	</nav>
-
-	<div class="row divBelowNav">
-		<!-- Left Col -->
-		<div class="col-md-6 well vh-90">
-			<h3 class="text-center paddLeftEditAndDelete">
-				Personal Information 
+			<h2 class="text-center">Customer's Profile
 				<span class="pull-right">
 					<button 
 					ng-click="editCustomerModal()"
@@ -29,7 +20,18 @@
 						Delete
 					</button>
 				</span>
+			</h2>
+		</div>
+	</nav>
+
+	<div class="row divBelowNav">
+
+		<!-- Left Col -->
+		<div class="col-md-6 well vh-90">
+			<h3 class="text-center">
+				Personal Information 
 			</h3>
+
 			<!-- Personal Info-->
 			<div>
 				<div ng-if="selectedCustomer.FirstName">
@@ -60,7 +62,7 @@
 				</div>
 				<div ng-if="selectedCustomer.DateAdded">
 					<h5 class="bold underline">Customer Since</h5>
-					<h5>{{ selectedCustomer.DateAdded }}</h5>
+					<h5>{{ selectedCustomer.DateAdded | date:'medium'}}</h5>
 				</div>
 				<div 
 				ng-if="selectedCustomer.StreetAddress 
@@ -86,8 +88,8 @@
 				<h5 class="bold underline">Gender</h5>
 				<h5>{{ selectedCustomer.Gender }}</h5>
 				</div>
-			</div>
-
+			</div><!-- End Personal Info -->
+			
 			<!-- Full Contact Results -->
 			<div class="greyTopBorder">
 				<h3 class="text-center">Full Contact Results</h3>
@@ -257,7 +259,7 @@
 								:(
 								</button>
 						</span>
-						{{ note.DateAdded }} - {{ note.Author }}
+						{{ note.DateAdded | date:'medium' }} - {{ note.Author }}
 					</label>
 					<input type="text" class="form-control cursorText" readonly value="{{ note.Subject }}">
 				</div>
