@@ -31,9 +31,19 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.selectedUser = {};
     // Notes
     $scope.customerNotes = noteService.getCustomerNotes();
+    $scope.newNoteSubject = '';
+    $scope.newNoteBody = '';
+    $scope.newNoteAuthor;
+    $scope.newNoteDate;
+    $scope.newNoteMood = '';
     // Full Contact
     $scope.fcEmailResults = '';
     $scope.fcPhoneResults = '';
+
+    function returnDate () {
+        var now = new Date();
+        return (now.getMonth() + 1) + '/' + now.getDate() + '/' + now.getFullYear() + ' ' + now.getHours() + ':' + now.getMinutes()
+    }
 
     /* CUSTOMERS
     ****************************************/
@@ -90,7 +100,6 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     }
 
     $scope.saveEditedCustomer = function () {
-        console.log($scope.selectedCustomer.Id);
         $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, {
             'Id': $scope.editedCustomer.Id,
             'FirstName': $scope.editedCustomer.FirstName,
@@ -109,6 +118,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
 
         })
         .then(function (response) {
+            // this works, but maybe run get customers by user id instead?
             $scope.selectedCustomer = $scope.editedCustomer;
             console.log('saveEditedCustomer');
         });
@@ -211,7 +221,43 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
 
     $scope.getNotes = function () {
         $scope.notes = 'loading'
+    }
 
+    $scope.setNewNoteMood = function (mood) {
+        $scope.newNoteMood = mood;
+    }
+
+    $scope.saveNewNote = function () {
+        if ( $scope.newNoteMood == '' || $scope.newNoteBody == '' || $scope.newNoteSubject == '') {
+            alert( "Please specify a mood, subject, and body of for this note." );
+        }
+        
+        var dateAdded = returnDate();
+        var userFullName = $scope.selectedUser.FirstName + ' ' + $scope.selectedUser.LastName;
+        $http.post('http://localhost:3000/notes/',
+        {
+            'CustomerId': $scope.selectedCustomer.Id,
+            'DateAdded': dateAdded,
+            'Author': userFullName,
+            'Subject': $scope.newNoteSubject,
+            'Body': $scope.newNoteBody,
+            'Mood': $scope.newNoteMood
+        })
+        .then(function (response) {
+            console.log(response);
+            // if error popup alert
+            $scope.newNoteMood = '';
+            $scope.newNoteSubject = '';
+            $scope.newNoteBody = '';
+
+            $http.get('http://localhost:3000/notes?customerId=' + $scope.selectedCustomer.Id)
+                .then(function (response) {
+                    console.log(response.data.notes);
+                    noteService.setSelectedCustomerNotes(response.data.notes);
+                    $scope.customerNotes = noteService.getCustomerNotes();
+                })
+
+        })
     }
 
     /* FULL CONTACT

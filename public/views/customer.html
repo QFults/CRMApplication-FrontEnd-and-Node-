@@ -15,10 +15,19 @@
 	<div class="row divBelowNav">
 		<!-- Left Col -->
 		<div class="col-md-6 well vh-90">
-			<h3 class="text-center paddingLeftEditBtn">
+			<h3 class="text-center paddLeftEditAndDelete">
 				Personal Information 
-				<span ng-click="editCustomerModal()" class="pull-right">
-					<button class="btn btn-warning">Edit</button>
+				<span class="pull-right">
+					<button 
+					ng-click="editCustomerModal()"
+					class="btn btn-warning">
+						Edit
+					</button>
+					<button 
+					ng-click="deleteCustomer()"
+					class="btn btn-danger">
+						Delete
+					</button>
 				</span>
 			</h3>
 			<!-- Personal Info-->
@@ -185,61 +194,95 @@
 							<img src="{{photo.url}}" alt="Profile Picture">
 						</li>
 					</ul>
-				</div><!-- Photos -->
-			</div><!-- Full Contact Results -->
-		</div><!-- Left Col -->
+				</div><!-- END Photos -->
+			</div><!-- END Full Contact Results -->
+		</div><!-- END Left Col -->
 
-		<!-- Right Col -->
+		<!-- START Right Col -->
 		<div class="col-md-6 well vh-90">
 			<h3 class="text-center">
 				Notes
 			</h3>
-			<!-- New Note -->
+			<!-- START New Note -->
 			<div>
 				<div class="form-group">
-					<!--<label for="">Subject</label>-->
 					<input ng-model="newNoteSubject" type="text" placeholder="Subject" class="form-control">
 				</div>
 				<div class="form-group">
-					<!--<label for="">Body</label>-->
 					<textarea ng-model="newNoteBody" placeholder="Body" cols="30" rows="6" class="form-control"></textarea>
 				</div>
 				<div class="pull-right form-group">
-					<button class="btn btn-success moodBtn">:)</button>
-					<button class="btn btn-warning moodBtn">:|</button>
-					<button class="btn btn-danger moodBtn">:(</button>
-					<button class="btn btn-default">Save Note</button>
+					<button 
+					ng-click="setNewNoteMood('Happy')"
+					class="btn btn-success moodBtn">
+						:)
+					</button>
+					<button 
+					ng-click="setNewNoteMood('Neutral')"
+					class="btn btn-warning moodBtn">
+						:|
+					</button>
+					<button 
+					ng-click="setNewNoteMood('Mad')"
+					class="btn btn-danger moodBtn">
+						:(
+					</button>
+					<button 
+					ng-click="saveNewNote()"
+					class="btn btn-default">
+						Save Note
+					</button>
 				</div>
-			</div>
-			<!-- Current Notes -->
+			</div> <!-- END New Note -->
+			<!-- START Current Notes -->
 			<div 
-			 ng-repeat="note in customerNotes"
+			ng-repeat="note in customerNotes"
 			class="greyTopBorder clearfix paddingTop10px">
 				<div class="form-group">
 					<label>
-						<span ng-if="">
-							<button ng-if="note.Mood == 'Happy'" class="btn btn-success moodBtn">:)</button>
-							<button ng-if="note.Mood == 'Neutral'" class="btn btn-warning moodBtn">:|</button>
-							<button ng-if="note.Mood == 'Mad'" class="btn btn-danger moodBtn">:(</button>
+						<span ng-if="note.Mood" class="smallerMoodBtn">
+							<button 
+							ng-if="note.Mood == 'Happy'"
+							class="btn btn-success moodBtn cursorDefault">
+								:)
+							</button>
+							<button 
+							ng-if="note.Mood == 'Neutral'"
+							class="btn btn-warning moodBtn cursorDefault">
+								:|
+							</button>
+							<button 
+							ng-if="note.Mood == 'Mad'"
+							class="btn btn-danger moodBtn cursorDefault">
+								:(
+								</button>
 						</span>
 						{{ note.DateAdded }} - {{ note.Author }}
 					</label>
-					<input type="text" class="form-control" readonly value="test">
+					<input type="text" class="form-control cursorText" readonly value="{{ note.Subject }}">
 				</div>
 					<div class="form-group">
-						<textarea cols="30" rows="6" readonly class="form-control">{{ note.Body }}</textarea>
+						<textarea cols="30" rows="6" readonly class="form-control cursorText">{{ note.Body }}</textarea>
 					</div>
 					<div class="form-group pull-right">
-						<button class="btn btn-danger">Delete</button>
-						<button class="btn btn-warning marginRight3px">Edit</button>
+						<button 
+						ng-click="editNote(note)"
+						class="btn btn-warning marginRight3px">
+							Edit
+						</button>
+						<button 
+						ng-click="deleteNote(note)"
+						class="btn btn-danger">
+							Delete
+						</button>
 					</div>
-			</div> <!-- Current Notes -->
-		</div><!-- Right Col -->
+			</div> <!-- END Current Notes ng-repeat -->
+		</div><!-- END Right Col -->
 
-	</div><!-- Row 1 -->
-</div><!-- Main Container -->
+	</div><!-- END Row 1 -->
+</div><!-- END Main Container -->
 
-<!-- Edit Customer Modal -->
+<!-- START Edit Customer Modal -->
 <div class="text-center modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerTitle">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -310,4 +353,4 @@
 			</div>
 		</div>
 	</div>
-</div><!-- End #editCustomerModal -->
+</div><!-- END #editCustomerModal -->

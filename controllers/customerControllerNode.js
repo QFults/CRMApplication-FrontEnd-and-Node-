@@ -75,11 +75,8 @@ function create(req, res) {
 }
 
 function update (req, res) {
-    console.log('log req.body');
-    console.log(req.body);
     axios.put('http://localhost:50313/api/customers/' + req.body.Id, req.body)
         .then(function (response) {
-            console.log(response.data);
             res.json(response.data)
         })
         .catch(function (error) {

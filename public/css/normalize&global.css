@@ -29,3 +29,11 @@ li {
 .bold {
   font-weight: bold;
 }
+
+.cursorDefault {
+  cursor: default !important;
+}
+
+.cursorText {
+  cursor: text !important;
+}

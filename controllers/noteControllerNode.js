@@ -10,6 +10,7 @@ function index(req, res) {
             })
             .catch(function (error) {
                 console.log(error);
+                res.json(error);
             });
     }
     else {
@@ -20,10 +21,45 @@ function index(req, res) {
         })
         .catch(function (error) {
             console.log(error);
+            res.json(error);
         });
     }
 }
 
+function create (req, res) {
+    axios.post('http://localhost:50313/api/notes', req.body)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            res.json(error);
+        });
+}
+
+function update (req, res) {
+    axios.put('http://localhost:50313/api/notes/' + req.body.Id, req.body)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+            res.json(error);
+        })
+}
+
+function destroy (req, res) {
+    axios.delete('http://localhost:50313/api/notes/?id=' + req.params.id)
+        .then(function (response) {
+            res.json('deleted');
+        })
+        .catch(function (error) {
+            res.json('error');
+        });
+}
+
 module.exports = {
-    index: index
+    index: index,
+    create: create,
+    destroy: destroy,
+    update: update
 }
