@@ -91,8 +91,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             'Password': userService.loggedInUser.Password
         })
             .then(function (response) {
-                if (response.data.edited == true) {
-                    console.log('good job');
+                
+               if (response.data.edited == true) {
                     userService.setLoggedInUser(response.data.user);
                     alert('Your account has been successfully updated!')
 
@@ -106,8 +106,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     // delete user modal functions
     $scope.deleteUserModal = function () {
         $http.get(`http://localhost:3000/customers?userId=${$scope.loggedInUser.Id}`)
-            .then(function (response) {
-                console.log(response.data);
+            .then(function(response){
+
                 $scope.loggedInUserCustomers = response.data.customers;
                 if ($scope.loggedInUserCustomers.length == 0) {
                     $scope.canDelete = true
@@ -166,14 +166,6 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $state.go('contact')
     }
 
-    /* NOTES
-    **************************************/
-
-    $scope.getNotes = function () {
-        $scope.notes = 'loading'
-
-    }
-
     /* FULL CONTACT
     **************************************/
 
@@ -181,8 +173,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $scope.fcEmailResults = 'loading';
         $http.get(`http://localhost:3000/customers/byEmail?email=${$scope.customerEmail}`)
             .then(function (response) {
-                $scope.fcEmailResults = response.data.object;
-                console.log(response.data.object);
+            
+            ata.object;
             })
     }
 

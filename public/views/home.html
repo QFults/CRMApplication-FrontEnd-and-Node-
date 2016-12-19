@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                             <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Create</button>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                             <button ng-click="editUser()" class="btn btn-success" data-dismiss="modal">Edit Profile</button>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <spann>**WARNING** You will not be able to delete your account until all YOUR clients have been reassigned.</spann>
+                                <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR clients have been reassigned.</spann>
                                 <div>
                                 <h4>Customers to Reassign</h4>
                                 <ul>
@@ -165,8 +165,8 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">Close</button>
-                                <button ng-click="deleteAccount()" ng-disabled="canDelete">Delete Profile</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                <button ng-click="deleteAccount()" class="btn btn-danger" ng-disabled="canDelete">Delete Profile</button>
                         </div>
                     </div>
                 </div>

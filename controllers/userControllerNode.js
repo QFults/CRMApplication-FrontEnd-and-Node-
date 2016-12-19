@@ -3,18 +3,18 @@ var axios = require('axios');
 function index(req, res) {
     if (!req.query.email || !req.query.password) {
         axios.get('http://localhost:50313/api/users')
-            .then(function(response) {
+            .then(function (response) {
                 res.json({ users: response.data });
             })
-            .catch(function(error) {
+            .catch(function (error) {
             });
     }
     else {
         axios.get('http://localhost:50313/api/users?email=' + req.query.email + '&password=' + req.query.password)
-            .then(function(response) {
+            .then(function (response) {
                 res.json({ user: response.data, userExists: true });
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 res.json({ userExists: false })
             });
     }
@@ -23,22 +23,21 @@ function index(req, res) {
 
 function show(req, res) {
     axios.get('http://localhost:50313/api/user?id=' + userId)
-        .then(function(response) {
+        .then(function (response) {
             res.json({ message: 'we found you!' });
         })
-        .catch(function(error) {
-            console.log(error);
+        .catch(function (error) {
         });
 
 }
 
 function create(req, res) {
     axios.post('http://localhost:50313/api/users', req.body)
-        .then(function(response) {
-            res.json({user: response.data, userCreated: true})
+        .then(function (response) {
+            res.json({ user: response.data, userCreated: true })
         })
-        .catch(function(error) {
-            res.json({userCreated: false})
+        .catch(function (error) {
+            res.json({ userCreated: false })
         });
 }
 function update(req, res) {
@@ -48,27 +47,27 @@ function update(req, res) {
     else {
         axios.put('http://localhost:50313/api/users/' + req.body.Id, req.body)
             .then(function (response) {
-                res.json({ edited: true, user : response.data })
+                res.json({ edited: true, user: response.data })
             })
             .catch(function (error) {
                 res.json({ edited: false })
             })
     }
 }
-function destroy(req,res) {
+function destroy(req, res) {
     var Id = req.params.id;
     axios.delete('http://localhost:50313/api/users/?id=' + Id)
-    .then(function(response) {
-        res.json({deleted: true})
-    })
-    .catch(function(error) {
-        res.json({deleted: false})
-    })
+        .then(function (response) {
+            res.json({ deleted: true })
+        })
+        .catch(function (error) {
+            res.json({ deleted: false })
+        })
 }
 module.exports = {
     index: index,
     show: show,
     create: create,
-    update:update,
+    update: update,
     destroy: destroy
 }

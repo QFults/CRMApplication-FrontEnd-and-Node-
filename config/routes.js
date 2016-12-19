@@ -8,6 +8,7 @@ var customerController = require('../controllers/customerControllerNode');
 var noteController = require('../controllers/noteControllerNode');
 var smsController = require('../controllers/smsControllerNode');
 var emailController = require('../controllers/emailControllerNode');
+var indexController = require('../controllers/indexControllerNode');
 
 // what the route looks like between your public and node controllers
 // just examples, will have more routes based on different methods in controllers
@@ -15,6 +16,7 @@ var emailController = require('../controllers/emailControllerNode');
 router.get('/', function (req, res) {
   res.render('index')
 });
+
 
 // user routes
 router.get('/users', userController.index);
@@ -37,6 +39,5 @@ router.get('/sms', smsController.test);
 
 // email routes
 router.get('/email', emailController.test);
-
 
 module.exports = router;

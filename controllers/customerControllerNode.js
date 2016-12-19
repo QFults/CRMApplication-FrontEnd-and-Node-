@@ -8,7 +8,6 @@ function index(req, res) {
                 res.json({ customers: customers });
             })
             .catch(function (error) {
-                console.log(error);
             });
     }
     else if (!req.query.information) {
@@ -18,18 +17,14 @@ function index(req, res) {
                 res.json({ customers: customers });
             })
             .catch(function (error) {
-                console.log(error);
             });
     }
     else {
-        console.log(req.query.information);
         axios.get('http://localhost:50313/api/customers?searchFor=' + req.query.information)
             .then(function (response) {
-                console.log(response.data);
                 res.json({ customers: response.data });
             })
             .catch(function (error) {
-                console.log(error);
             });
     }
 }
@@ -42,7 +37,6 @@ function searchFCByEmail(req, res) {
     }
     axios.get('https://api.fullcontact.com/v2/person.json?email=' + email, config)
         .then(function (response) {
-            console.log(response);
             res.json({ object: response.data });
         })
 }
@@ -54,7 +48,6 @@ function searchFCByPhone(req, res) {
     }
     axios.get('https://api.fullcontact.com/v2/person.json?phone=' + phone, config)
         .then(function (response) {
-            console.log(response);
             res.json({ object: response.data });
         })
 }
