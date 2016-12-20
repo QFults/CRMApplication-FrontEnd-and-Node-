@@ -1,6 +1,9 @@
 angular
 .module('CRMApp')
 .controller('emailController', function($scope, $http) {
+        if(document.cookie == "") {
+        $state.go('login')
+    }
     $scope.emailTestText = '';
     $scope.emailTestFunction = function() {
         $scope.emailTestText = '';

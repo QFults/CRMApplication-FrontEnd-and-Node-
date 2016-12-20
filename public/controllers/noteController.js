@@ -1,5 +1,7 @@
 angular.module('CRMApp').controller('noteController', function($scope, $http, noteService, customerService) {
-
+    if(document.cookie == "") {
+        $state.go('login')
+    }
     $scope.noteService = noteService;
     $scope.notes = '';
 

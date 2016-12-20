@@ -20,4 +20,8 @@ angular.module("CRMApp").service("userService", function ($http) {
   this.setLoggedInUser = function (user){
     this.loggedInUser = user;
   }
+    this.getLoggedInUser = function () {
+    return this.loggedInUser;
+  }
+  
 });

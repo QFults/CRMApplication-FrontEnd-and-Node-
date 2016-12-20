@@ -1,6 +1,9 @@
 angular
 .module('CRMApp')
-.controller('smsController', function($scope, $http) {
+.controller('smsController', function($scope, $http, $state) {
+        if(document.cookie == "") {
+        $state.go('login')
+    }
     $scope.smsTestText = '';
     $scope.smsTestFunction = function() {
         $scope.smsTestText = '';

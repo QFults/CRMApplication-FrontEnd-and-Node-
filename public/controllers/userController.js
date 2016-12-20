@@ -1,4 +1,7 @@
 angular.module('CRMApp').controller('userController', function ($scope, $http, $state, $stateParams, userService) {
+    if(document.cookie == "") {
+        $state.go('login')
+    }
     $scope.userID = null;
     $scope.email - '';
     $scope.password = '';
@@ -8,13 +11,27 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.confirmEmail = '';
     $scope.newPassword = '';
     $scope.confirmPassword = '';
-    $scope.test = function() {
+    $scope.test = function () {
         alert(document.cookie)
     }
     $scope.loggedIn = function () {
         console.log('hello')
     }
     $scope.index = function () {
+        if (document.cookie !== "") {
+            $http.get('http://localhost:3000/getCookie')
+                .then(function (response) {
+                    var Id = response.data.user;
+                    $http.get('http://localhost:3000/users/' + Id)
+                        .then(function (response) {
+                            userService.setLoggedInUser(response.data.user)
+                            $state.go('home')
+                        })
+                })
+        }
+        else {
+            $state.go('login')
+        };
         $http.get('http://localhost:3000/users')
             .then(function (response) {
                 userService.index(response.data.users);
@@ -24,14 +41,14 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.login = function () {
         $http.get(`http://localhost:3000/users?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
-                if(response.data.userExists == true){
-                userService.setLoggedInUser(response.data.user);
-        $http.get(`http://localhost:3000/userCookie?email=${$scope.email}&password=${$scope.password}`) 
-            .then(function (response) {
-                $state.go('home');
-            })
+                if (response.data.userExists == true) {
+                    userService.setLoggedInUser(response.data.user);
+                    $http.get('http://localhost:3000/createCookie?Id=' + response.data.user.Id)
+                        .then(function (response) {
+                            $state.go('home');
+                        })
                 }
-                else{
+                else {
                     alert('Invalid Email or Password')
                 }
             })
@@ -40,7 +57,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.newUser = function () {
         $http.post('http://localhost:3000/users', { firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.newEmail, password: $scope.password })
             .then(function (response) {
-                if(response.data.userCreated == true) {
+                if (response.data.userCreated == true) {
                     userService.setLoggedInUser(response.data.user);
                     $state.go('home');
                 }
@@ -54,10 +71,10 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
         $state.go('home')
     }
 
-    $scope.recoverAccountModal = function() {
+    $scope.recoverAccountModal = function () {
         $('#recoverAccountModal').modal();
     }
-    $scope.recover = function() {
-        
+    $scope.recover = function () {
+
     }
 });
