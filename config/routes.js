@@ -31,10 +31,12 @@ router.get('/customers/byEmail', customerController.searchFCByEmail);
 router.get('/customers/byPhone', customerController.searchFCByPhone);
 router.post('/customers', customerController.create);
 router.put('/customers/:id', customerController.update);
+router.delete('/customers/:id', customerController.destroy);
 
 // note routes
 router.get('/notes', noteController.index);
 router.post('/notes', noteController.create);
+router.put('/notes/:id', noteController.update);
 router.delete('/notes/:id', noteController.destroy);
 
 // sms routes
