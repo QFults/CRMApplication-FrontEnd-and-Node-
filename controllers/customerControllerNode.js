@@ -92,6 +92,7 @@ function destroy (req, res) {
         })
         .catch(function (error) {
             res.json(error);
+            console.log(error);
         });
 }
 
