@@ -28,7 +28,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.editedCustomer = {};
     // Users
     $scope.selectedUserName = 'Select A User';
-    $scope.loggedInUser = userService.loggedInUser;
+    $scope.loggedInUser = userService.getLoggedInUser();
     $scope.users = userService.users;
     $scope.selectedUser = userService.getSelectedUser();
     // Notes
