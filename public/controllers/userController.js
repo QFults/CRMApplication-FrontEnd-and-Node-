@@ -1,5 +1,5 @@
 angular.module('CRMApp').controller('userController', function ($scope, $http, $state, $stateParams, userService) {
-    if(document.cookie == "") {
+    if (document.cookie == "") {
         $state.go('login')
     }
     $scope.userID = null;
@@ -34,7 +34,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
         };
         $http.get('http://localhost:3000/users')
             .then(function (response) {
-                userService.index(response.data.users);
+                userService.setAllUsers(response.data.users);
             })
     }
 

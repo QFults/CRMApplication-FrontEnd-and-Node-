@@ -39,6 +39,9 @@ function searchFCByEmail(req, res) {
         .then(function (response) {
             res.json({ object: response.data });
         })
+        .catch(function (error) {
+            res.json(error)
+        });
 }
 
 function searchFCByPhone(req, res) {
@@ -50,6 +53,9 @@ function searchFCByPhone(req, res) {
         .then(function (response) {
             res.json({ object: response.data });
         })
+        .catch(function (error) {
+            res.json(error)
+        });
 }
 
 function create(req, res) {
