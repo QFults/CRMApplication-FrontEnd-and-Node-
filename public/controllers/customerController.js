@@ -26,11 +26,14 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.customerId = '';
     $scope.selectedCustomer = customerService.getSelectedCustomer();
     $scope.editedCustomer = {};
+    $scope.fcByEmailShown = false;
+    $scope.fcByPhoneShown = false;
     // Users
     $scope.selectedUserName = 'Select A User';
     $scope.loggedInUser = userService.getLoggedInUser();
     $scope.users = userService.users;
     $scope.selectedUser = userService.getSelectedUser();
+    $scope.assignedUser = returnAssignedUser();
     // Notes
     $scope.customerNotes = noteService.getCustomerNotes();
     $scope.newNoteSubject = '';
@@ -54,7 +57,6 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* CUSTOMERS
     ****************************************/
 
-    // set the selected customer to view
     $scope.setSelectedCustomer = function (customer) {
         customerService.setSelectedCustomer(customer);
         $http.get('http://localhost:3000/notes?customerId=' + customer.Id)
@@ -110,8 +112,21 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             .then(function (response) {
                 // this works, but maybe run get customers by user id instead?
                 $scope.selectedCustomer = $scope.editedCustomer;
-                console.log('saveEditedCustomer');
             });
+    }
+
+    $scope.transferCustomer = function (user) {
+        $scope.selectedCustomer.UserId = user.Id;
+
+        $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, $scope.selectedCustomer)
+            .then(function (response) {
+                if ( response.status != 200 ) {
+                    alert( 'error status ' + response.status );
+                }
+                else {
+                    returnAssignedUser();
+                }
+            })
     }
 
     $scope.deleteCustomer = function () {
@@ -132,6 +147,15 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
 
     /* USERS
     ****************************************/
+
+    // used in conjunction with $scope.transferCustomers()
+    function returnAssignedUser () {
+        for ( var i = 0; i < $scope.users.length; i++ ) {
+            if ( $scope.users[i].Id == $scope.selectedCustomer.UserId ) {
+                return $scope.users[i];
+            }
+        }
+    }
 
     // edit user modal functions
     $scope.editUserModal = function () {

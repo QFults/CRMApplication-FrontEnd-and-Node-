@@ -9,6 +9,24 @@
 			</a>
 			<h2 class="text-center">Customer's Profile
 				<span class="pull-right">
+						<div class="btn-group">
+								<button 
+								type="button"
+								class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+									Assignee {{ assignedUser.FirstName }} {{ assignedUser.LastName }}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu home-scrollable-menu" role="menu">
+										<li 
+										ng-repeat="user in users"
+										ng-if="!assignedUser">
+											<a ng-click="transferCustomer(user)">
+												{{user.FirstName}} {{user.LastName}}
+											</a>
+										</li>
+								</ul>
+						</div>
+					
 					<button 
 					ng-click="editCustomerModal()"
 					class="btn btn-warning">
