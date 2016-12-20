@@ -106,23 +106,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     }
 
     $scope.saveEditedCustomer = function () {
-        $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, {
-            'Id': $scope.editedCustomer.Id,
-            'FirstName': $scope.editedCustomer.FirstName,
-            'LastName': $scope.editedCustomer.LastName,
-            'Email': $scope.editedCustomer.Email,
-            'Phone': $scope.editedCustomer.Phone,
-            'DOB': $scope.editedCustomer.DOB,
-            'LeadState': $scope.editedCustomer.LeadState,
-            'Gender': $scope.editedCustomer.Gender,
-            'DateAdded': $scope.editedCustomer.DateAdded,
-            'City': $scope.editedCustomer.City,
-            'State': $scope.editedCustomer.State,
-            'Zip': $scope.editedCustomer.Zip,
-            'StreetAddress': $scope.editedCustomer.StreetAddress,
-            'UserId': $scope.editedCustomer.UserId
-
-        })
+        $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, $scope.editedCustomer)
             .then(function (response) {
                 // this works, but maybe run get customers by user id instead?
                 $scope.selectedCustomer = $scope.editedCustomer;
@@ -252,12 +236,12 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         else {
 
             var dateAdded = returnDate();
-            var userFullName = $scope.selectedUser.FirstName + ' ' + $scope.selectedUser.LastName;
+            var authorName = $scope.loggedInUser.FirstName + ' ' + $scope.loggedInUser.LastName;
             $http.post('http://localhost:3000/notes/',
             {
                 'CustomerId': $scope.selectedCustomer.Id,
                 'DateAdded': dateAdded,
-                'Author': userFullName,
+                'Author': authorName,
                 'Subject': $scope.newNoteSubject,
                 'Body': $scope.newNoteBody,
                 'Mood': $scope.newNoteMood
