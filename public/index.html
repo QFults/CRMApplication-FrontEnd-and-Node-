@@ -26,72 +26,206 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/normalize&global.css">
     <link rel="stylesheet" href="./css/customer.css">
+    <link rel="stylesheet" href="./css/login.css">
 
 </head>
 
 <body ng-cloak>
-      <div class="dropdown">
-      <a href="" # class="account">
-        <img src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" class="profile-circle" />
-      </a>
-      <div class="submenu" style="display: none; ">
-        <ul class="root">
-          <li>
-            <a href="#">Dashboard</a>
-          </li>
-          <li>
-            <a href="#">Profile</a>
-          </li>
-          <li>
-            <a href="#">Settings</a>
-          </li>
-          <li>
-            <a href="#">Sign Out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <script> 
-        $(document).ready(function(){
-
-        $(".account").click(function(){
-        var X=$(this).attr('id');
-        if(X==1){
-        $(".submenu").hide();
-        $(this).attr('id', '0'); 
-        }
-        else{
-        $(".submenu").show();
-        $(this).attr('id', '1');
-        }
-        });
-
-        $(".submenu").mouseup(function(){
-        return false
-        });
-
-        $(".account").mouseup(function(){
-        return false
-        });
-
-        $(document).mouseup(function(){
-        $(".submenu").hide();
-        $(".account").attr('id', '');
-        });
-
-        });
-</script>
-    <div ui-view class="uiViewClass">
-    </div>
-    <button class="btn btn-primary" ui-sref="contact">contact.html</button>
-    <button class="btn btn-primary" ui-sref="customer">customer.html</button>
-    <button class="btn btn-primary" ui-sref="home">home.html</button>
-    <button class="btn btn-primary" ui-sref="login">login.html</button>
-    <button class="btn btn-primary" ui-sref="recovery">recovery.html</button>
-
-
     <div ng-controller="userController">
-        <div ng-init="index()"></div>
+        <div ng-init="index()">
+        </div>
+    </div>
+    <div ng-controller="customerController">
+        <div ng-init="initUserCustomers()">
+        <div>
+      				<div class="dropdown pull-right">
+    <a class="account">
+        <img src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" class="profile-circle"
+        />
+    </a>
+    <div class="submenu" style="display: none; ">
+<ul class="root">
+    <li>
+        <a ui-sref="home">Home</a>
+    </li>
+    <li>
+        <a ng-click="editUserModal()">Edit Profile</a>
+    </li>
+    <li>
+        <a ng-click="deleteUserModal()">Delete Profile</a>
+    </li>
+    <li>
+        <a ng-click="logOutUserModal()">Log Out</a>
+    </li>
+</ul>
+</div>
+</div>
+<script> 
+        $(document).ready(function () {
+
+            $(".account").click(function () {
+                var X = $(this).attr('id');
+                if (X == 1) {
+                    $(".submenu").hide();
+                    $(this).attr('id', '0');
+                }
+                else {
+                    $(".submenu").show();
+                    $(this).attr('id', '1');
+                }
+            });
+
+            $(".submenu").mouseup(function () {
+                return false
+            });
+
+            $(".account").mouseup(function () {
+                return false
+            });
+
+            $(document).mouseup(function () {
+                $(".submenu").hide();
+                $(".account").attr('id', '');
+            });
+
+        });
+    </script>
+                        <!-- Create New Modal -->
+            <div class="text-center modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="addNewCustomerTitle">Add New Customer</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>First Name
+                                    <input ng-model="newFName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name
+                                    <input ng-model="newLName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Email
+                                    <input ng-model="newEmail" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number
+                                    <input ng-model="newPNumber" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Date of Birth
+                                    <input ng-model="newDOB" class="form-control" type="datetime">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Status
+                                    <input ng-model="isLead" type="radio">Lead
+                                    <input ng-model="isClient" type="radio">Client
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender
+                                    <input ng-model="newGender" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Address
+                                    <input ng-model="newAddr" class="form-control" type="text">
+                                    </label>
+                                <label>City
+                                    <input ng-model="newCity" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>State
+                                    <input ng-model="newState" class="form-control" type="text">
+                                    </label>
+                                <label>Zip Code
+                                    <input ng-model="newZip" class="form-control" type="text">
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End #createNewInstructorModal -->
+            <div class="text-center modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="editUserTitle">Edit Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>First Name
+                                    <input ng-model="editUserFName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name
+                                    <input ng-model="editUserLName" class="form-control" type="text">
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Email
+                                    <input ng-model="editUserEmail" class="form-control" type="text">
+                                    </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            <button ng-click="editUser()" class="btn btn-success" data-dismiss="modal">Edit Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End #createNewInstructorModal -->
+
+            <div class="text-center modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="userDeleteTitle">Edit Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR clients have been
+                                    reassigned.</spann>
+                                <div ng-show="cantDelete">
+                                    <h4>Customers to Reassign</h4>
+                                    <ul>
+                                        <li ng-repeat="customer in loggedInUserCustomers">
+                                            {{customer.FirstName}} {{customer.LastName}}
+                                            <button ng-click="reassignCustomer(customer)">Reassign</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                <button ng-click="deleteAccount()" class="btn btn-danger" ng-disabled="cantDelete">Delete Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div ui-view class="uiViewClass">
     </div>
 
     <script src="./app.js"></script>

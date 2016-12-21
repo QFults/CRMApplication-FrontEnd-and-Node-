@@ -24,7 +24,6 @@ function index(req, res) {
 function show(req, res) {
     axios.get('http://localhost:50313/api/users/' + req.params.id)
             .then(function (response) {
-                console.log(response)
                 res.json({ user: response.data });
             })
             .catch(function (error) {

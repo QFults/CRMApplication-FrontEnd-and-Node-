@@ -1,20 +1,10 @@
 <!DOCTYPE html>
-
 <div class="container-fluid" ng-controller="customerController">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" ui-sref="home">
-                <img alt="Brand" src="...">
-            </a>
-            <h2 class="text-center">Customer's Profile</h2>
-            <a href="" class="pull-right"></a>
-        </div>
-    </nav>
 
-    <div class="row homeDivBelowNav">
-        <div class="col-md-4 searchCustomers well vh-90">
-            <h3 class="text-center">Find Customers</h3>
-            <div class="row">
+    <div class="row home">
+        <div class="col-md-4 searchCustomers">
+            <h3 class="findCustomersLabel">Find Customers</h3>
+            <div class="row findCustomerOptions">
                 <label>Search All customers</label>
                 <input type="text" ng-model="customerInfo" />
                 <p>Leave empty to return all</p>
@@ -31,22 +21,17 @@
                 <button ng-click="findUserCustomers()">Search</button>
             </div>
         </div>
-        <div class="col-md-4 customerList well vh-90">
+        <div class="col-md-4 customerList">
             <h2>Customer List</h2>
             <input type="text" ng-show="isSearching" ng-model="filtering" />
             <ul>
-                <li ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering" >{{customer.FirstName}} {{customer.LastName}}</li>
+                <li ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}</li>
             </ul>
         </div>
 
-        <div class="col-md-4 homeOptions well vh-90">
-            <h2>Button Options</h2>
-            <button ng-click="contact()" class="btn btn-primary">Contact Customers</button>
-            <button class="btn btn-primary" ng-click="createNewCustomerModal()">New Customer</button>
-            <button class="btn btn-primary" ng-click="editUserModal()">Edit Profile</button>
-            <button class="btn btn-primary" ng-click="deleteUserModal()">Delete Profile</button>
-            <button class="btn btn-primary" ng-click="check()">check</button>
-            
+        <div class="col-md-4 homeOptions">
+            <img src="http://downloadicons.net/sites/default/files/email-message-icon-82430.png" class="emailPic" ng-click="contact()"> Send Email
+            <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()"> Create New Customer
             <!-- Create New Modal -->
             <div class="text-center modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
                 <div class="modal-dialog" role="document">
@@ -117,7 +102,7 @@
                 </div>
             </div>
             <!-- End #createNewInstructorModal -->
-             <div class="text-center modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
+            <div class="text-center modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -149,7 +134,7 @@
                 </div>
             </div>
             <!-- End #createNewInstructorModal -->
-             <div class="text-center modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal">
+            <div class="text-center modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -158,22 +143,23 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR clients have been reassigned.</spann>
+                                <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR clients have been
+                                    reassigned.</spann>
                                 <div>
-                                <h4>Customers to Reassign</h4>
-                                <ul>
-                                    <li ng-repeat="customer in loggedInUserCustomers">{{customer.FirstName}} {{customer.LastName}} <button ng-click="reassignCustomer(customer)">Reassign</button></li>
-                                </ul>
+                                    <h4>Customers to Reassign</h4>
+                                    <ul>
+                                        <li ng-repeat="customer in loggedInUserCustomers">{{customer.FirstName}} {{customer.LastName}} <button ng-click="reassignCustomer(customer)">Reassign</button></li>
+                                    </ul>
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                 <button ng-click="deleteAccount()" class="btn btn-danger" ng-disabled="canDelete">Delete Profile</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- End #createNewInstructorModal -->
             </div>
-            <!-- End #createNewInstructorModal -->
         </div>
     </div>
-</div>

@@ -2,6 +2,7 @@ var axios = require('axios');
 
 function index(req, res) {
     if (!req.query.userId & !req.query.information) {
+        console.log('nothing passed')
         axios.get('http://localhost:50313/api/customers')
             .then(function (response) {
                 var customers = response.data;
@@ -11,6 +12,7 @@ function index(req, res) {
             });
     }
     else if (!req.query.information) {
+        console.log(req.query.userId)
         axios.get('http://localhost:50313/api/customers?userId=' + req.query.userId)
             .then(function (response) {
                 var customers = response.data;
@@ -20,6 +22,7 @@ function index(req, res) {
             });
     }
     else {
+        console.log('Info')
         axios.get('http://localhost:50313/api/customers?searchFor=' + req.query.information)
             .then(function (response) {
                 res.json({ customers: response.data });
