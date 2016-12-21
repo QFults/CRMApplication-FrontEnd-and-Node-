@@ -2,10 +2,13 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     if (document.cookie == "") {
         $state.go('login')
     }
-    $http.get('http://localhost:3000/users')
-        .then(function (response) {
-            userService.index(response.data.users);
-        })
+    $scope.getUsers = function () {
+        $http.get('http://localhost:3000/users')
+            .then(function (response) {
+                userService.index(response.data.users);
+            })
+    }
+    $scope.getUsers();
     $scope.userID = null;
     $scope.email - '';
     $scope.password = '';
@@ -28,7 +31,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
                     var Id = response.data.user;
                     $http.get('http://localhost:3000/users/' + Id)
                         .then(function (response) {
-                            userService.setLoggedInUser(response.data.user)
+                            userService.setLoggedInUser(response.data.user);
                             $state.go('home')
                         })
                 })
@@ -55,11 +58,15 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     };
 
     $scope.newUser = function () {
-        $http.post('http://localhost:3000/users', { firstName: $scope.firstName, lastName: $scope.lastName, email: $scope.newEmail, password: $scope.password })
+        $http.post('http://localhost:3000/users', { firstName: $scope.newFirstName, lastName: $scope.newLastName, email: $scope.newEmail, password: $scope.newPassword })
             .then(function (response) {
                 if (response.data.userCreated == true) {
                     userService.setLoggedInUser(response.data.user);
-                    $state.go('home');
+                    $http.get('http://localhost:3000/createCookie?Id=' + response.data.user.Id)
+                        .then(function (response) {
+                            $scope.getUsers();
+                            $state.go('home');
+                        })
                 }
                 else {
                     alert('One or more entries are invalid. Please check your information and try again.')

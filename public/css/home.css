@@ -5,11 +5,12 @@ width: 143px;
 position: relative;
 height: 17px;
 text-align:left;
+z-index: 1031;
 }
 
 div.submenu {
 position: absolute;
-z-index: 100;
+z-index: 1032;
 width: 135px;
 display: none;
 margin-left: 10px;
@@ -40,7 +41,7 @@ line-height: 16px;
 color: #555;
 position: absolute;
 padding-left: 1px;
-z-index: 110;
+z-index: 1032;
 display: block;
 padding: 18px 0 0 70px;
 height: 28px;
@@ -164,7 +165,6 @@ nav div h2 {
   margin-right: 1px;
   padding-top: 30px;
   padding-bottom: 30px;
-  /*padding-left: 65px;*/
 }
 
 .emailPic {

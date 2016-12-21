@@ -3,6 +3,10 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     if (document.cookie == "") {
         $state.go('login')
     }
+        $http.get('http://localhost:3000/users')
+        .then(function (response) {
+            userService.index(response.data.users);
+        })
 
     // Customers
     $scope.newFName = '';
@@ -65,6 +69,13 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
 
                         }
                     })
+            })
+    }
+
+    $scope.logout = function() {
+                $http.get('http://localhost:3000/clearcookie')
+            .then(function (response) {
+                $state.go('login');
             })
     }
 

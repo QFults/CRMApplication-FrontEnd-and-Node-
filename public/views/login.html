@@ -1,7 +1,57 @@
 <!DOCTYPE html>
-<div class="container" ng-controller="userController">
+<div class="container-fluid loginContainer" ng-controller="userController">
     <div class="row">
-        <div class="col-md-6">
+        <nav class="navbar navbar-default navbar-inverse myNav" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                    <a class="navbar-brand" href="#"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 myLogin">
+                    <ul class="nav navbar-nav navbar-right loginOptions">
+                        <li class="navSpan">
+                            <p class="navbar-text">Already have an account?</p>
+                        </li>
+                        <li class="dropdown navDropDown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                    <input type="email" ng-model="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                    <input type="password" ng-model="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                    <div class="help-block text-right"><a href="">Forgot your password?</a></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary btn-block" ng-click="login()">Login</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!--<div class="col-md-6">
             <h1>CRM Application</h1>
         </div>
         <div class="col-md-6">
@@ -19,7 +69,7 @@
                     <button ng-click="login()">Login</button>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -32,7 +82,32 @@
             <button ng-click="test()">test</button>
         </div>
         <div class="col-md-6">
-            <div class="row">
+            <form class="form-style-9">
+                <ul>
+                    <li>
+                        <input type="text" name="field1" class="field-style field-split align-left" placeholder="First Name" ng-model="newFirstName"
+                        />
+                        <input type="text" name="field2" class="field-style field-split align-right" placeholder="Last Name" ng-model="newLastName"
+                        />
+
+                    </li>
+                    <li>
+                        <input type="text" name="field3" class="field-style field-split align-left" placeholder="Email" ng-model="newEmail" />
+                        <input type="url" name="field4" class="field-style field-split align-right" placeholder="Confirm Email" ng-model="confirmNewEmail"
+                        />
+                    </li>
+                    <li>
+                        <input type="text" name="field3" class="field-style field-split align-left" placeholder="Password" ng-model="newPassword"
+                        />
+                        <input type="url" name="field4" class="field-style field-split align-right" placeholder="Confirm Password" ng-model="confirmNewPassword"
+                        />
+                    </li>
+                    <li>
+                        <input type="submit" value="Create User" ng-click="newUser()" />
+                    </li>
+                </ul>
+            </form>
+            <!--<div class="row">
                 <h2>Sign Up</h2>
             </div>
             <div class="row">
@@ -61,28 +136,28 @@
             </div>
             <div class="row">
                 <button class="btn btn-primary" ng-click="newUser()">Sign Up</button>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
 <div class="text-center modal fade" id="recoverAccountModal" tabindex="-1" role="dialog" aria-labelledby="recoverAccountModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="recoverAccountTitle">Please Verify Your Email</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Enter your Email and we will send you a link to recover your account.
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="recoverAccountTitle">Please Verify Your Email</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Enter your Email and we will send you a link to recover your account.
                                     <input ng-model="newFName" class="form-control" type="text">
                                     </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Recover</button>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Recover</button>
+            </div>
+        </div>
+    </div>
+</div>
