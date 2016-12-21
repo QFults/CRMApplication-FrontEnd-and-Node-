@@ -37,3 +37,11 @@ li {
 .cursorText {
   cursor: text !important;
 }
+
+.botBordBlue {
+  border-bottom: 3px solid #357ebd;
+}
+
+.inlineBlock {
+  display: inline-block;
+}
