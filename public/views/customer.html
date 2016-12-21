@@ -7,7 +7,7 @@
 			<a class="navbar-brand" ui-sref="home">
 				<img alt="Brand" src="...">
 			</a>
-			<h2 class="text-center">Customer's Profile
+			<h2 class="text-center">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
 				<span class="pull-right">
 						<div class="btn-group">
 								<button 
@@ -26,7 +26,6 @@
 										</li>
 								</ul>
 						</div>
-					
 					<button 
 					ng-click="editCustomerModal()"
 					class="btn btn-warning">
@@ -41,16 +40,16 @@
 			</h2>
 		</div>
 	</nav>
-
+	<!-- START Row 1 -->
 	<div class="row divBelowNav">
 
-		<!-- Left Col -->
+		<!-- START Left Col -->
 		<div class="col-md-6 well vh-90">
 			<h3 class="text-center">
 				Personal Information 
 			</h3>
 
-			<!-- Personal Info-->
+			<!-- START Personal Info-->
 			<div>
 				<div ng-if="selectedCustomer.FirstName">
 					<h5 class="bold underline">First Name</h5>
@@ -61,6 +60,10 @@
 				<div ng-if="selectedCustomer.LastName">
 					<h5 class="bold underline">Last Name</h5>
 					<h5>{{ selectedCustomer.LastName }}</h5>
+				</div>
+				<div ng-if="selectedCustomer.Nickname">
+					<h5 class="bold underline">Nickname</h5>
+					<h5>{{ selectedCustomer.Nickname }}</h5>
 				</div>
 				<div ng-if="selectedCustomer.LeadState">
 					<h5 class="bold underline">Lead State</h5>
@@ -77,10 +80,6 @@
 					<h5>
 						<a href="tel:{{ selectedCustomer.Phone }}">{{ selectedCustomer.Phone }}</a>
 					</h5>
-				</div>
-				<div ng-if="selectedCustomer.DateAdded">
-					<h5 class="bold underline">Customer Since</h5>
-					<h5>{{ selectedCustomer.DateAdded | date:'medium'}}</h5>
 				</div>
 				<div 
 				ng-if="selectedCustomer.StreetAddress 
@@ -103,118 +102,147 @@
 					<h5>{{ selectedCustomer.DOB }}</h5>
 				</div>
 				<div ng-if="selectedCustomer.Gender">
-				<h5 class="bold underline">Gender</h5>
-				<h5>{{ selectedCustomer.Gender }}</h5>
+					<h5 class="bold underline">Gender</h5>
+					<h5>{{ selectedCustomer.Gender }}</h5>
+				</div>
+				<div ng-if="selectedCustomer.DateAdded">
+					<h5 class="bold underline">Customer Since</h5>
+					<h5>{{ selectedCustomer.DateAdded | date:'medium'}}</h5>
+				</div>
+				<div ng-if="selectedCustomer.Employer">
+					<h5 class="bold underline">Employer</h5>
+					<h5>{{ selectedCustomer.Employer }}</h5>
+				</div>
+				<div ng-if="selectedCustomer.JobTitle">
+					<h5 class="bold underline">Job Title</h5>
+					<h5>{{ selectedCustomer.JobTitle }}</h5>
+				</div>
+				<div ng-if="selectedCustomer.Tenure">
+					<h5 class="bold underline">Tenure (years)</h5>
+					<h5>{{ selectedCustomer.Tenure }}</h5>
 				</div>
 			</div><!-- End Personal Info -->
 			
 			<!-- Full Contact Results -->
 			<div class="greyTopBorder">
 				<h3 class="text-center">Full Contact Results</h3>
-				<button ng-click="getFCByEmail()" class="btn btn-info btn-block">Retrieve By Email</button>
-				<!-- Contact Info -->
-				<div ng-if="fcEmailResults.contactInfo">
-					<h4>
-						<span class="underline">Name</span>
-					</h4>
-					<p ng-if="fcEmailResults.contactInfo.givenName">
-						{{ fcEmailResults.contactInfo.givenName }}
-					</p>
-					<p ng-if="fcEmailResults.contactInfo.familyName">
-						{{ fcEmailResults.contactInfo.familyName }}
-					</p>
-					<!-- Websites -->
-					<div ng-if="fcEmailResults.contactInfo.websites">
+				<button 
+				ng-click="getFCByEmail()"
+				class="btn btn-info btn-block">
+					Retrieve By Email
+				</button>
+				<button
+				ng-if="fcByEmailShown"
+				ng-click="hideFCEmailResults()"
+				class="btn btn-default pull-right hideBtn">
+					Hide
+				</button>
+				<div ng-if="fcByEmailShown" class="fcEmailResults">
+					<h4 ng-if="fcEmailStatus == 'searching'" class="text-center">{{ fcEmailStatus }}</h4>
+					<!-- Contact Info -->
+					<div ng-if="fcEmailResults.contactInfo">
 						<h4>
-							<span class="underline">Websites</span>
+							<span class="underline">Name</span>
+						</h4>
+						<p ng-if="fcEmailResults.contactInfo.givenName">
+							{{ fcEmailResults.contactInfo.givenName }}
+						</p>
+						<p ng-if="fcEmailResults.contactInfo.familyName">
+							{{ fcEmailResults.contactInfo.familyName }}
+						</p>
+						<!-- Websites -->
+						<div ng-if="fcEmailResults.contactInfo.websites">
+							<h4>
+								<span class="underline">Websites</span>
+							</h4>
+							<ul>
+								<li ng-repeat="website in fcEmailResults.contactInfo.websites">
+									<a href="{{ website.url }}">{{ website.url }}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- Demographics -->
+					<div ng-if="fcEmailResults.demographics">
+						<h4><span class="underline">Demographics</span></h4>
+						<p>{{ fcEmailResults.demographics.locationGeneral }}</p>
+					</div>
+					<!-- Digital Footprint -->
+					<div ng-if="fcEmailResults.digitalFootprint">
+						<h4>
+							<span class="underline">Digital Footprint</span>
+						</h4>
+						<p ng-repeat="score in fcEmailResults.digitalFootprint.scores">
+							{{ score.type }} {{score.provider}} score: {{ score.value }}
+						</p>
+						<p>
+							Score(s) based on: <span ng-repeat="topic in fcEmailResults.digitalFootprint.topics">
+								{{ topic.value }} 
+							</span>
+						</p>
+					</div> <!-- Digital Footprint -->
+					<div ng-if="fcEmailResults.socialProfiles"><!-- Social Profiles -->
+						<h4>
+							<span class="underline">Social Profiles</span>
+						</h4>
+						<div ng-repeat="profile in fcEmailResults.socialProfiles">
+							<ul>
+								<li>
+									<a class="underline" href="{{ profile.url }}">
+										{{ profile.typeName }}
+									</a>
+								</li>
+								<li>
+									<ul class="marginLeft15px">
+										<li ng-if="profile.followers">
+											Followers: {{ profile.followers }}
+										</li>
+										<li ng-if="profile.username">
+											Username: {{ profile.username }}
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div> <!-- Repeat Social Profiles -->
+					</div><!-- Social Profiles -->
+					<!-- Organizations -->
+					<div ng-if="fcEmailResults.organizations">
+						<h4>
+							<span class="underline">Organizations</span>
+						</h4>
+						<div ng-repeat="organization in fcEmailResults.organizations">
+							<ul>
+								<li class="underline">
+									{{ organization.name }}
+								</li>
+								<li>
+									<ul class="marginLeft15px">
+										<li ng-if="organization.title">
+											Title: {{ organization.title }}
+										</li>
+										<li ng-if="organization.current">
+											Current: {{ organization.current }}
+										</li>
+										<li ng-if="organization.startDate">
+											Start Date: {{ organization.startDate }}
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div> <!-- Organizations Repeat -->
+					</div><!-- Organizations -->
+					<!-- Photos -->
+					<div ng-if="fcEmailResults.photos">
+						<h4>
+							<span class="underline">Photos</span>
 						</h4>
 						<ul>
-							<li ng-repeat="website in fcEmailResults.contactInfo.websites">
-								<a href="{{ website.url }}">{{ website.url }}</a>
+							<li ng-repeat="photo in fcEmailResults.photos">
+								<img src="{{photo.url}}" alt="Profile Picture">
 							</li>
 						</ul>
-					</div>
-				</div>
-				<!-- Demographics -->
-				<div ng-if="fcEmailResults.demographics">
-					<h4><span class="underline">Demographics</span></h4>
-					<p>{{ fcEmailResults.demographics.locationGeneral }}</p>
-				</div>
-				<!-- Digital Footprint -->
-				<div ng-if="fcEmailResults.digitalFootprint">
-					<h4>
-						<span class="underline">Digital Footprint</span>
-					</h4>
-					<p ng-repeat="score in fcEmailResults.digitalFootprint.scores">
-						{{ score.type }} {{score.provider}} score: {{ score.value }}
-					</p>
-					<p>
-						Score(s) based on: <span ng-repeat="topic in fcEmailResults.digitalFootprint.topics">
-							{{ topic.value }} 
-						</span>
-					</p>
-				</div> <!-- Digital Footprint -->
-				<div ng-if="fcEmailResults.socialProfiles"><!-- Social Profiles -->
-					<h4>
-						<span class="underline">Social Profiles</span>
-					</h4>
-					<div ng-repeat="profile in fcEmailResults.socialProfiles">
-						<ul>
-							<li>
-								<a class="underline" href="{{ profile.url }}">
-									{{ profile.typeName }}
-								</a>
-							</li>
-							<li>
-								<ul class="marginLeft15px">
-									<li ng-if="profile.followers">
-										Followers: {{ profile.followers }}
-									</li>
-									<li ng-if="profile.username">
-										Username: {{ profile.username }}
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- Repeat Social Profiles -->
-				</div><!-- Social Profiles -->
-				<!-- Organizations -->
-				<div ng-if="fcEmailResults.organizations">
-					<h4>
-						<span class="underline">Organizations</span>
-					</h4>
-					<div ng-repeat="organization in fcEmailResults.organizations">
-						<ul>
-							<li class="underline">
-								{{ organization.name }}
-							</li>
-							<li>
-								<ul class="marginLeft15px">
-									<li ng-if="organization.title">
-										Title: {{ organization.title }}
-									</li>
-									<li ng-if="organization.current">
-										Current: {{ organization.current }}
-									</li>
-									<li ng-if="organization.startDate">
-										Start Date: {{ organization.startDate }}
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- Organizations Repeat -->
-				</div><!-- Organizations -->
-				<!-- Photos -->
-				<div ng-if="fcEmailResults.photos">
-					<h4>
-						<span class="underline">Photos</span>
-					</h4>
-					<ul>
-						<li ng-repeat="photo in fcEmailResults.photos">
-							<img src="{{photo.url}}" alt="Profile Picture">
-						</li>
-					</ul>
-				</div><!-- END Photos -->
+					</div><!-- END Photos -->
+				</div> <!-- END fc email results ng-show -->
 			</div><!-- END Full Contact Results -->
 		</div><!-- END Left Col -->
 
@@ -232,24 +260,38 @@
 					<textarea ng-model="newNoteBody" placeholder="Body" cols="30" rows="6" class="form-control"></textarea>
 				</div>
 				<div class="pull-right form-group">
-					<button 
-					ng-click="setNewNoteMood('Happy')"
-					class="btn btn-success moodBtn">
-						:)
-					</button>
-					<button 
-					ng-click="setNewNoteMood('Neutral')"
-					class="btn btn-warning moodBtn">
-						:|
-					</button>
-					<button 
-					ng-click="setNewNoteMood('Mad')"
-					class="btn btn-danger moodBtn">
-						:(
-					</button>
+					<div
+					ng-class="{botBordBlue: isHappy}"
+					class="inlineBlock moodDivs">
+						<button 
+						ng-click="setNoteMood('Happy', 'new')"
+						class="btn btn-success moodBtn">
+							:)
+						</button>
+					</div>
+					<div
+					ng-class="{botBordBlue: isNeutral}"
+					class="inlineBlock moodDivs">
+						<button 
+						ng-click="setNoteMood('Neutral', 'new')"
+						class="btn btn-warning moodBtn">
+							:|
+						</button>
+					</div>
+					<div
+					ng-class="{botBordBlue: isMad}"
+					class="inlineBlock moodDivs"
+					id="madDiv">
+						<button 
+						ng-click="setNoteMood('Mad', 'new')"
+						class="btn btn-danger moodBtn">
+							:(
+						</button>
+					</div>
 					<button 
 					ng-click="saveNewNote()"
-					class="btn btn-default">
+					class="btn btn-default"
+					id="saveNewNote">
 						Save Note
 					</button>
 				</div>
@@ -322,6 +364,11 @@
 					</label>
 				</div>
 				<div class="form-group">
+					<label>Nickname
+						<input ng-model="editedCustomer.Nickname" class="form-control" type="text" value="{{ editedCustomer.Nickname }}">
+					</label>
+				</div>
+				<div class="form-group">
 					<label>Lead State
 						<input ng-model="editedCustomer.LeadState" class="form-control" type="text" value="{{ editedCustomer.LeadState }}">
 					</label>
@@ -366,6 +413,21 @@
 						<input ng-model="editedCustomer.Gender" class="form-control" type="text" value="{{ editedCustomer.Gender }}">
 					</label>
 				</div>
+				<div class="form-group">
+					<label>Employer
+						<input ng-model="editedCustomer.Employer" class="form-control" type="text" value="{{ editedCustomer.Employer }}">
+					</label>
+				</div>
+				<div class="form-group">
+					<label>Job Title
+						<input ng-model="editedCustomer.JobTitle" class="form-control" type="text" value="{{ editedCustomer.JobTitle }}">
+					</label>
+				</div>
+				<div class="form-group">
+					<label>Tenure
+						<input ng-model="editedCustomer.Tenure" class="form-control" type="number" value="{{ editedCustomer.Tenure }}">
+					</label>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn" data-dismiss="modal">Close</button>
@@ -394,21 +456,40 @@
 					</label>
 					<textarea ng-model="editedNote.Body" placeholder="Body" cols="30" rows="6" class="form-control" value="{{ editedNote.Body }}"></textarea>
 				</div>
-				<div class="form-group pull-right">
+				<div class="pull-right form-group">
+					<div
+					ng-class="{botBordBlue: isHappy}"
+					class="inlineBlock moodDivs">
+						<button 
+						ng-click="setNoteMood('Happy', 'new')"
+						class="btn btn-success moodBtn">
+							:)
+						</button>
+					</div>
+					<div
+					ng-class="{botBordBlue: isNeutral}"
+					class="inlineBlock moodDivs">
+						<button 
+						ng-click="setNoteMood('Neutral', 'new')"
+						class="btn btn-warning moodBtn">
+							:|
+						</button>
+					</div>
+					<div
+					ng-class="{botBordBlue: isMad}"
+					class="inlineBlock moodDivs"
+					id="madDiv">
+						<button 
+						ng-click="setNoteMood('Mad', 'new')"
+						class="btn btn-danger moodBtn">
+							:(
+						</button>
+					</div>
 					<button 
-					ng-click="editedNote.Mood = 'Happy'"
-					class="btn btn-success moodBtn">
-						:)
-					</button>
-					<button 
-					ng-click="editedNote.Mood = 'Neutral'"
-					class="btn btn-warning moodBtn">
-						:|
-					</button>
-					<button 
-					ng-click="editedNote.Mood = 'Mad'"
-					class="btn btn-danger moodBtn">
-						:(
+					ng-click="saveNewNote()"
+					class="btn btn-default"
+					id="saveNewNote">
+						Save Note
 					</button>
 				</div>
 			</div>

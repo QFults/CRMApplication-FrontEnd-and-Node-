@@ -11,13 +11,16 @@ nav div h2 {
 
 /* LEFT COL
 ****************************************/
-
+.hideBtn {
+  margin-top: 5px;
+}
 
 
 /* RIGHT COL
 ****************************************/
 .moodBtn {
   border-radius: 100%;
+  font-weight: bold;
 }
 
 /* MISC
