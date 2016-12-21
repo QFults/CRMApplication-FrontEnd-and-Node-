@@ -199,19 +199,6 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     // delete user modal functions
     $scope.deleteUserModal = function () {
         $("#deleteUserModal").modal();
-        // $http.get(`http://localhost:3000/customers?userId=${$scope.loggedInUser.Id}`)
-        //     .then(function (response) {
-        //         if (response.data.customers.length == 0) {
-        //             $scope.canDelete = true;
-        //             $("#deleteUserModal").modal();
-        //         }
-        //         else {
-        //             $scope.loggedInUserCustomers = response.data.customers;
-        //             console.log($scope.loggedInUserCustomers);
-        //             $scope.canDelete = false;
-        //             $("#deleteUserModal").modal();
-        //         }
-        //     })
     }
     $scope.deleteAccount = function () {
         $http.delete('http://localhost:3000/users/' + userService.loggedInUser.Id)
