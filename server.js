@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/createCookie', function(req,res){
     res.cookie('user' , req.query.Id).send('Cookie set');
-    console.log(req.cookies.user)
 });
 app.get('/getCookie', function(req,res){
     cookieParser.JSONCookie(req.cookies);

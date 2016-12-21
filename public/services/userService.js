@@ -9,6 +9,14 @@ angular.module("CRMApp").service("userService", function ($http) {
     this.users = allUsers;
   }
 
+  this.setAllUsers = function (users) {
+    this.users = users;
+  }
+
+  this.getAllUsers = function () {
+    return this.users;
+  }
+
   this.setSelectedUser = function (user) {
     this.selectedUser = user;
   }

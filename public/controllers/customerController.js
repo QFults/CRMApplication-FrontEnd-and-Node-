@@ -41,6 +41,27 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     // Full Contact
     $scope.fcEmailResults = '';
     $scope.fcPhoneResults = '';
+    $scope.loggedInUserCustomers = [];
+    $scope.initUserCustomers = function () {
+        $http.get('http://localhost:3000/getCookie')
+            .then(function (response) {
+                var Id = response.data.user;
+                $http.get('http://localhost:3000/customers?userId=' + Id)
+                    .then(function (response) {
+                        if (response.data.customers.length == 0) {
+                            console.log(response.data)
+                            $scope.cantDelete = false;
+
+                        }
+                        else {
+                            $scope.loggedInUserCustomers = response.data.customers;
+                            console.log($scope.loggedInUserCustomers);
+                            $scope.cantDelete = true;
+
+                        }
+                    })
+            })
+    }
 
     $scope.check = function () {
         console.log(userService.getLoggedInUser())
@@ -133,16 +154,16 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.deleteCustomer = function () {
         var confirmed = confirm('Are you sure you want to permanently delete this customer and all of their information?');
 
-        if ( confirmed == true ) {
+        if (confirmed == true) {
             $http.delete('http://localhost:3000/customers/' + $scope.selectedCustomer.Id)
-            .then(function (response) {
-                if ( response.status != 200 ) {
-                    alert( 'error status' + response.status );
-                }
-                else {
-                    $state.go('home');
-                }
-            });
+                .then(function (response) {
+                    if (response.status != 200) {
+                        alert('error status' + response.status);
+                    }
+                    else {
+                        $state.go('home');
+                    }
+                });
         }
     }
 
@@ -177,18 +198,20 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
 
     // delete user modal functions
     $scope.deleteUserModal = function () {
-        $http.get(`http://localhost:3000/customers?userId=${$scope.loggedInUser.Id}`)
-            .then(function (response) {
-
-                $scope.loggedInUserCustomers = response.data.customers;
-                if ($scope.loggedInUserCustomers.length == 0) {
-                    $scope.canDelete = true
-                }
-                else {
-                    $scope.canDelete = false
-                    $("#deleteUserModal").modal();
-                }
-            })
+        $("#deleteUserModal").modal();
+        // $http.get(`http://localhost:3000/customers?userId=${$scope.loggedInUser.Id}`)
+        //     .then(function (response) {
+        //         if (response.data.customers.length == 0) {
+        //             $scope.canDelete = true;
+        //             $("#deleteUserModal").modal();
+        //         }
+        //         else {
+        //             $scope.loggedInUserCustomers = response.data.customers;
+        //             console.log($scope.loggedInUserCustomers);
+        //             $scope.canDelete = false;
+        //             $("#deleteUserModal").modal();
+        //         }
+        //     })
     }
     $scope.deleteAccount = function () {
         $http.delete('http://localhost:3000/users/' + userService.loggedInUser.Id)
@@ -254,26 +277,26 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             var dateAdded = returnDate();
             var userFullName = $scope.selectedUser.FirstName + ' ' + $scope.selectedUser.LastName;
             $http.post('http://localhost:3000/notes/',
-            {
-                'CustomerId': $scope.selectedCustomer.Id,
-                'DateAdded': dateAdded,
-                'Author': userFullName,
-                'Subject': $scope.newNoteSubject,
-                'Body': $scope.newNoteBody,
-                'Mood': $scope.newNoteMood
-            })
-            .then(function (response) {
-                if ( response.status != 200 ) {
-                    alert( 'status error ' + response.status );
-                }
-                else {
-                    $scope.newNoteMood = '';
-                    $scope.newNoteSubject = '';
-                    $scope.newNoteBody = '';
+                {
+                    'CustomerId': $scope.selectedCustomer.Id,
+                    'DateAdded': dateAdded,
+                    'Author': userFullName,
+                    'Subject': $scope.newNoteSubject,
+                    'Body': $scope.newNoteBody,
+                    'Mood': $scope.newNoteMood
+                })
+                .then(function (response) {
+                    if (response.status != 200) {
+                        alert('status error ' + response.status);
+                    }
+                    else {
+                        $scope.newNoteMood = '';
+                        $scope.newNoteSubject = '';
+                        $scope.newNoteBody = '';
 
-                    getSelectedCustomerNotes();
-                }
-            });
+                        getSelectedCustomerNotes();
+                    }
+                });
         }
     }
 
@@ -291,31 +314,31 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     }
 
     $scope.saveEditedNote = function () {
-        if ( $scope.editedNote.Subject == '' || $scope.editedNote.Body == '' ) {
-            alert( 'Please fill out both the subject line and body of before saving.' );
+        if ($scope.editedNote.Subject == '' || $scope.editedNote.Body == '') {
+            alert('Please fill out both the subject line and body of before saving.');
         }
         else {
-            $http.put('http://localhost:3000/notes/' + $scope.editedNote.Id,$scope.editedNote
+            $http.put('http://localhost:3000/notes/' + $scope.editedNote.Id, $scope.editedNote
             )
-            .then(function (response) {
-                if (response.status != 200) {
-                    alert('error status ' + response.status);
-                }
-                else {
-                    getSelectedCustomerNotes();
-                }
-            });
+                .then(function (response) {
+                    if (response.status != 200) {
+                        alert('error status ' + response.status);
+                    }
+                    else {
+                        getSelectedCustomerNotes();
+                    }
+                });
         }
     }
 
     $scope.deleteNote = function (note) {
         var confirmed = confirm('Are you sure you want to permanently delete this note?');
 
-        if ( confirmed == true ) {
+        if (confirmed == true) {
             $http.delete('http://localhost:3000/notes/' + note.Id)
                 .then(function (response) {
-                    if ( response.status != 200 ) {
-                        alert( 'error status ' + response.status );
+                    if (response.status != 200) {
+                        alert('error status ' + response.status);
                     }
                     else {
                         getSelectedCustomerNotes();
