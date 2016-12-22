@@ -7,9 +7,7 @@
 			<a class="navbar-brand" ui-sref="home">
 				<img alt="Brand" src="./css/img/turn_blk.png">
 			</a>
-			<h2 class="text-center">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
-				<span class="pull-right">
-				</span>
+			<h2 class="customerNameNav">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
 			</h2>
 		</div>
 	</nav>
@@ -40,7 +38,7 @@
 	<div class="row row2">
 
 		<!-- START Left Col -->
-		<div class="col-md-6 vh-90">
+		<div class="col-md-6 vhCol">
 			<h3 class="text-center">
 				Personal Information
 			</h3>
@@ -122,14 +120,14 @@
 			<!-- Full Contact Results -->
 			<div class="greyTopBorder">
 				<h3 class="text-center">Full Contact Results</h3>
-				<button ng-click="getFCByEmail()" class="btn btn-info btn-block">
+				<button ng-click="getFCByEmail()" class="btn btn-info btn-block byEmailBtn">
 					Retrieve By Email
 				</button>
 				<button ng-if="fcByEmailShown" ng-click="hideFCEmailResults()" class="btn btn-default pull-right hideBtn">
 					Hide
 				</button>
 				<div ng-if="fcByEmailShown" class="fcEmailResults">
-					<h4 ng-if="fcEmailStatus == 'searching'" class="text-center">{{ fcEmailStatus }}</h4>
+					<h4 ng-if="fcEmailStatus == 'searching...'" class="text-center offsetHideBtn">{{ fcEmailStatus }}</h4>
 					<!-- Contact Info -->
 					<div ng-if="fcEmailResults.contactInfo">
 						<h4>
@@ -248,7 +246,7 @@
 		<!-- END Left Col -->
 
 		<!-- START Right Col -->
-		<div class="col-md-6 vh-90">
+		<div class="col-md-6 vhCol">
 			<h3 class="text-center">
 				Notes
 			</h3>
@@ -296,7 +294,7 @@
 							<button 
 							ng-if="note.Mood == 'Mad'"
 							class="btn btn-danger moodBtn cursorDefault">
-								</button>
+							</button>
 						</span>
 						{{ note.DateAdded | date:'medium' }} - {{ note.Author }}
 					</label>
@@ -305,6 +303,17 @@
 				<div class="form-group">
 					<textarea cols="30" rows="6" readonly class="form-control cursorText">{{ note.Body }}</textarea>
 				</div>
+					<p 
+					ng-if="note.LastEditAuthor"
+					class="lastEditText">
+						Last edited by: {{ note.LastEditAuthor }} on {{ note.LastEditDate | date: 'medium'}}
+					</p>
+				<button 
+				 ng-click="viewNoteEditHistory(note)"
+				 ng-if="note.LastEditAuthor"
+				 class="btn btn-default">
+					Edit History
+				</button>
 				<div class="form-group pull-right">
 					<button ng-click="editNote(note)" class="btn btn-warning marginRight3px">
 							Edit
@@ -334,77 +343,77 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label>First Name
-						<input ng-model="editedCustomer.FirstName" class="form-control" type="text" value="{{ editedCustomer.FirstName }}">
+						<input ng-model="editedCustomer.FirstName" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Last Name
-						<input ng-model="editedCustomer.LastName" class="form-control" type="text" value="{{ editedCustomer.LastName }}">
+						<input ng-model="editedCustomer.LastName" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Nickname
-						<input ng-model="editedCustomer.Nickname" class="form-control" type="text" value="{{ editedCustomer.Nickname }}">
+						<input ng-model="editedCustomer.Nickname" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Lead State
-						<input ng-model="editedCustomer.LeadState" class="form-control" type="text" value="{{ editedCustomer.LeadState }}">
+						<input ng-model="editedCustomer.LeadState" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Email
-						<input ng-model="editedCustomer.Email" class="form-control" type="text" value="{{ editedCustomer.Email }}">
+						<input ng-model="editedCustomer.Email" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Phone
-						<input ng-model="editedCustomer.Phone" class="form-control" type="text" value="{{ editedCustomer.Phone }}">
+						<input ng-model="editedCustomer.Phone" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Street Address
-						<input ng-model="editedCustomer.StreetAddress" class="form-control" type="text" value="{{ editedCustomer.StreetAddress }}">
+						<input ng-model="editedCustomer.StreetAddress" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>City
-						<input ng-model="editedCustomer.City" class="form-control" type="text" value="{{ editedCustomer.City }}" >
+						<input ng-model="editedCustomer.City" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>State
-						<input ng-model="editedCustomer.State" class="form-control" type="text" value="{{ editedCustomer.State }}" >
+						<input ng-model="editedCustomer.State" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Zip
-						<input ng-model="editedCustomer.Zip" class="form-control" type="number" value="{{ editedCustomer.Zip }}" >
+						<input ng-model="editedCustomer.Zip" class="form-control" type="number">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>DOB
-						<input ng-model="editedCustomer.DOB" class="form-control" type="text" value="{{ editedCustomer.DOB }}" >
+						<input ng-model="editedCustomer.DOB" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Gender
-						<input ng-model="editedCustomer.Gender" class="form-control" type="text" value="{{ editedCustomer.Gender }}">
+						<input ng-model="editedCustomer.Gender" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Employer
-						<input ng-model="editedCustomer.Employer" class="form-control" type="text" value="{{ editedCustomer.Employer }}">
+						<input ng-model="editedCustomer.Employer" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Job Title
-						<input ng-model="editedCustomer.JobTitle" class="form-control" type="text" value="{{ editedCustomer.JobTitle }}">
+						<input ng-model="editedCustomer.JobTitle" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Tenure
-						<input ng-model="editedCustomer.Tenure" class="form-control" type="number" value="{{ editedCustomer.Tenure }}">
+						<input ng-model="editedCustomer.Tenure" class="form-control" type="number">
 					</label>
 				</div>
 			</div>
@@ -427,7 +436,8 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Subject
+					<label>
+						Subject
 					</label>
 					<input ng-model="editedNote.Subject" class="form-control" type="text" value="{{ editedNote.Subject }}">
 				</div>
@@ -436,17 +446,33 @@
 					</label>
 					<textarea ng-model="editedNote.Body" placeholder="Body" cols="30" rows="6" class="form-control" value="{{ editedNote.Body }}"></textarea>
 				</div>
+				<span>
+							<button 
+							ng-if="editedNoteCopy.Mood == 'Happy'"
+							class="btn btn-success moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="editedNoteCopy.Mood == 'Neutral'"
+							class="btn btn-warning moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="editedNoteCopy.Mood == 'Mad'"
+							class="btn btn-danger moodBtn cursorDefault">
+							</button>
+							Current Mood
+				</span>
 				<div class="pull-right form-group">
+					<span>Change Mood:</span>
 					<div ng-class="{botBordBlue: isHappy}" class="inlineBlock moodDivs">
-						<button ng-click="setNoteMood('Happy', 'new')" class="btn btn-success moodBtn">
+						<button ng-click="setNoteMood('Happy', 'edit')" class="btn btn-success moodBtn">
 						</button>
 					</div>
 					<div ng-class="{botBordBlue: isNeutral}" class="inlineBlock moodDivs">
-						<button ng-click="setNoteMood('Neutral', 'new')" class="btn btn-warning moodBtn">
+						<button ng-click="setNoteMood('Neutral', 'edit')" class="btn btn-warning moodBtn">
 						</button>
 					</div>
 					<div ng-class="{botBordBlue: isMad}" class="inlineBlock moodDivs" id="madDiv">
-						<button ng-click="setNoteMood('Mad', 'new')" class="btn btn-danger moodBtn">
+						<button ng-click="setNoteMood('Mad', 'edit')" class="btn btn-danger moodBtn">
 						</button>
 					</div>
 				</div>
@@ -459,3 +485,49 @@
 	</div>
 </div>
 <!-- END #editNoteModal -->
+
+<!-- START #editedNoteHistoryModal -->
+<div class="modal fade" id="editedNoteHistoryModal" tabindex="-1" role="dialog" aria-labelledby="editedNoteHistoryModalTitle">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center" id="editedNoteHistoryModalTitle">Note Edit History</h4>
+			</div>
+			<div class="modal-body">
+				<div 
+				ng-repeat="note in editedNotes"
+				class="greyBtmBorder marginBot10px">
+					<div class="form-group">
+					<label>
+						<span ng-if="note.Mood" class="smallerMoodBtn">
+							<button 
+							ng-if="note.Mood == 'Happy'"
+							class="btn btn-success moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="note.Mood == 'Neutral'"
+							class="btn btn-warning moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="note.Mood == 'Mad'"
+							class="btn btn-danger moodBtn cursorDefault">
+								</button>
+						</span>
+						{{ note.Author }} edited on {{ note.DateEdited | date:'medium' }}
+					</label>
+						<input ng-model="note.Subject" class="form-control cursorText" type="text" readonly>
+					</div>
+					<div class="form-group">
+						<textarea ng-bind="note.Body" readonly cols="30" rows="6" class="form-control cursorText"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">Close</button>
+				<button ng-click="saveEditedNote()" type="button" class="btn btnPrimary" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END #editedNoteHistoryModal -->

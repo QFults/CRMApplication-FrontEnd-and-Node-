@@ -34,6 +34,14 @@ li {
   margin-top: 10px;
 }
 
+.marginBot10px {
+  margin-bottom: 10px;
+}
+
+.paddingBot10px {
+  padding-bottom: 10px;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -46,10 +54,31 @@ li {
   cursor: text !important;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 .botBordBlue {
   border-bottom: 3px solid #357ebd;
 }
 
 .inlineBlock {
   display: inline-block;
+}
+
+.wordWrap {
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+
+.linkWrap {
+    white-space: pre-wrap; /* css-3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.marginLeft50p {
+  margin-left: 45.5%;
 }

@@ -38,6 +38,28 @@ function create (req, res) {
 }
 
 // update function to modify an existing note
+function createEditedNote (req, res) {
+    axios.post('http://localhost:50313/api/NoteEdits', req.body)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
+function showEditHistory (req, res) {
+    console.log('node note id');
+    console.log(req.query.noteId);
+    axios.get('http://localhost:50313/api/NoteEdits?noteId=' + req.query.noteId)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
 function update (req, res) {
     axios.put('http://localhost:50313/api/notes/' + req.body.Id, req.body)
         .then(function (response) {
@@ -59,9 +81,22 @@ function destroy (req, res) {
         });
 }
 
+function destroyNoteEditsForNote (req, res) {
+    axios.delete('http://localhost:50313/api/noteedits?NoteId=' + req.query.NoteId)
+        .then(function (response) {
+            res.json(response);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
 module.exports = {
     index: index,
     create: create,
+    showEditHistory: showEditHistory,
     destroy: destroy,
-    update: update
+    destroyNoteEditsForNote: destroyNoteEditsForNote,
+    update: update,
+    createEditedNote: createEditedNote
 }

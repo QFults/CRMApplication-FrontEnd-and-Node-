@@ -43,9 +43,11 @@ function searchFCByEmail(req, res) {
     axios.get('https://api.fullcontact.com/v2/person.json?email=' + email, config)
         .then(function (response) {
             res.json({ object: response.data });
+            console.log(response.data.object);
         })
         .catch(function (error) {
             res.json(error)
+            console.log(error);
         });
 }
 
