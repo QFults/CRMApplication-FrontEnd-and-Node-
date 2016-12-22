@@ -1,8 +1,15 @@
+
+
 /* NAVBAR
 ****************************************/
+#customerNav {
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  background-color: #a5c0d9;
+  height: 60px;
+}
 
 .divBelowNav {
-  padding-top: 40px;
+  padding-top: 68px;
 }
 
 nav div h2 {
@@ -21,13 +28,15 @@ nav div h2 {
 .moodBtn {
   border-radius: 100%;
   font-weight: bold;
+  height: 30px;
+  width: 30px;
 }
 
 /* MISC
 ****************************************/
 
 .vh-90 {
-  height: 90vh;
+  height: 85.5vh;
   overflow-y: scroll;
 }
 
