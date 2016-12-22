@@ -3,16 +3,11 @@
     <div class="row">
         <nav class="navbar navbar-default myNav" role="navigation">
             <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
+                <!--Brand-->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
                     <a class="navbar-brand ourLogo" ui-sref="home">
-                        <img alt="Brand" src="./css/img/turn_blk.png">
+                        <img alt="Brand" src="./css/img/turn_blk.png"><br/>
+                        <h4>turn your leads into customers.</h4>
                     </a>
                 </div>
 
@@ -36,7 +31,7 @@
                                                 <div class="form-group">
                                                     <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                     <input type="password" ng-model="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                    <div class="help-block text-right"><a href="">Forgot your password?</a></div>
+                                                    <div class="help-block text-right"><a ng-click="recoverAccountModal()">Forgot your password?</a></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-primary btn-block" ng-click="login()">Login</button>
@@ -53,30 +48,11 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
-        <!--<div class="col-md-6">
-            <h1>CRM Application</h1>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <label>E-Mail</label>
-                    <input type="text" ng-model="email" />
-                </div>
-                <div class="col-md-6">
-                    <label>Password</label>
-                    <input type="text" ng-model="password" />
-                    <a ng-click="recoverAccountModal()">Forgot Password?</a>
-                </div>
-                <div class="col-md-6">
-                    <button ng-click="login()">Login</button>
-                </div>
-            </div>
-        </div>-->
     </div>
     <div class="row bodyStuff">
         <div class="col-md-6 ">
             <form class="form-style-9 myForm">
-                <h3>About Turn</h3>
+                <h2>About Turn</h2>
                 <hr>
                 <ul>
                     <li>
@@ -86,10 +62,13 @@
                         <h4>Transfer clients between your coworkers.</h4>
                     </li>
                     <li>
-                        <h4>Effectively keep track of all your interactions with clients.</h4>
+                        <h4>Effectively keep track of all your interactions with customers.</h4>
                     </li>
                     <li>
-                        <h4>Help 'Turn' your team into well oiled machine.</h4>
+                        <h4>Find more useful public information about your customers.</h4>
+                    </li>
+                    <li>
+                        <h4>Help 'Turn' your team into a well oiled machine.</h4>
                     </li>
                 </ul>
             </form>
@@ -121,36 +100,6 @@
                     </li>
                 </ul>
             </form>
-            <!--<div class="row">
-                <h2>Sign Up</h2>
-            </div>
-            <div class="row">
-                <label>First Name</label>
-                <input type="text" ng-model="newFirstName" />
-            </div>
-            <div class="row">
-                <label>Last Name</label>
-                <input type="text" ng-model="newLastName" />
-            </div>
-            <div class="row">
-                <label>E-Mail</label>
-                <input type="text" ng-model="newEmail" />
-            </div>
-            <div class="row">
-                <label>Confirm E-Mail</label>
-                <input type="text" ng-model="confirmNewEmail" />
-            </div>
-            <div class="row">
-                <label>Password</label>
-                <input type="text" ng-model="newPassword" />
-            </div>
-            <div class="row">
-                <label>Confirm Password</label>
-                <input type="text" ng-model="confirmNewPassword" />
-            </div>
-            <div class="row">
-                <button class="btn btn-primary" ng-click="newUser()">Sign Up</button>
-            </div>-->
         </div>
     </div>
 </div>
@@ -164,30 +113,30 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Enter your Email and we will send you a link to recover your account.
-                                    <input ng-model="newFName" class="form-control" type="text">
+                                    <input ng-model="recoverEmail" class="form-control" type="text">
                                     </label>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Recover</button>
+                <button ng-click="recover()" class="btn btn-success" data-dismiss="modal">Recover</button>
             </div>
         </div>
     </div>
 </div>
 <div class="pageFooter">
-        <div class="row">
-            <div class="col-md-4 footerDivs">
-                <img class="footerIcon" src="http://simpleicon.com/wp-content/uploads/facebook-2.png"></br>
-                <span style="font-size: 20px; padding-left: 9px">facebook</span>
-            </div>
-            <div class="col-md-4 footerDivs">
-                <img class="footerIcon" src="https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png"></br>
-                <span style="font-size: 20px; padding-left: 22px">twitter</span>
-            </div>
-            <div class="col-md-4 footerDivs">
-                <img class="footerIcon" src="http://www.iptours.com/img/linkedin.png"></br>
-                <span style="font-size: 20px; padding-left: 16px">linkedin</span>
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-md-4 footerDivs">
+            <img class="footerIcon" src="http://simpleicon.com/wp-content/uploads/facebook-2.png"></br>
+            <span style="font-size: 20px; padding-left: 9px">facebook</span>
+</div>
+<div class="col-md-4 footerDivs">
+    <img class="footerIcon" src="https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png"></br>
+    <span style="font-size: 20px; padding-left: 22px">twitter</span>
+</div>
+<div class="col-md-4 footerDivs">
+    <img class="footerIcon" src="http://www.iptours.com/img/linkedin.png"></br>
+    <span style="font-size: 20px; padding-left: 16px">linkedin</span>
+</div>
+</div>
 </div>

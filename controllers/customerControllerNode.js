@@ -1,8 +1,9 @@
 var axios = require('axios');
 
+//index
 function index(req, res) {
+    // gets all customers
     if (!req.query.userId & !req.query.information) {
-        console.log('nothing passed')
         axios.get('http://localhost:50313/api/customers')
             .then(function (response) {
                 var customers = response.data;
@@ -11,8 +12,8 @@ function index(req, res) {
             .catch(function (error) {
             });
     }
+    // gets a user's customers
     else if (!req.query.information) {
-        console.log(req.query.userId)
         axios.get('http://localhost:50313/api/customers?userId=' + req.query.userId)
             .then(function (response) {
                 var customers = response.data;
@@ -21,8 +22,8 @@ function index(req, res) {
             .catch(function (error) {
             });
     }
+    // gets customers based on any info provided
     else {
-        console.log('Info')
         axios.get('http://localhost:50313/api/customers?searchFor=' + req.query.information)
             .then(function (response) {
                 res.json({ customers: response.data });
@@ -32,6 +33,7 @@ function index(req, res) {
     }
 }
 
+// searching third party api for more customer information. Done using provided customer email
 function searchFCByEmail(req, res) {
 
     var email = req.query.email;
@@ -47,6 +49,7 @@ function searchFCByEmail(req, res) {
         });
 }
 
+// searching third party api for more customer information. Done using provided customer phone number
 function searchFCByPhone(req, res) {
     var phone = req.query.phone;
     var config = {
@@ -61,6 +64,7 @@ function searchFCByPhone(req, res) {
         });
 }
 
+// create function to make a new user
 function create(req, res) {
     if (req.body.Email == '' && req.body.Phone == '') {
         res.json({ post: false })
@@ -76,25 +80,25 @@ function create(req, res) {
     }
 }
 
-function update (req, res) {
+// update function to change the information about a customer
+function update(req, res) {
     axios.put('http://localhost:50313/api/customers/' + req.body.Id, req.body)
         .then(function (response) {
             res.json(response.data)
         })
         .catch(function (error) {
-            console.log(error);
             res.json(error);
         })
 }
 
-function destroy (req, res) {
+// destroy function to remove a customer from the database
+function destroy(req, res) {
     axios.delete('http://localhost:50313/api/customers/?id=' + req.params.id)
         .then(function (response) {
             res.json(response);
         })
         .catch(function (error) {
             res.json(error);
-            console.log(error);
         });
 }
 

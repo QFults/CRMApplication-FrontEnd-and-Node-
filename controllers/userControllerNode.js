@@ -1,7 +1,9 @@
 var axios = require('axios');
 
+// index function to get users
 function index(req, res) {
-        if (!req.query.email || !req.query.password) {
+    // returns all of the users
+        if (!req.query.email && !req.query.password) {
             axios.get('http://localhost:50313/api/users')
                 .then(function (response) {
                     res.json({ users: response.data });
@@ -9,6 +11,17 @@ function index(req, res) {
                 .catch(function (error) {
                 });
         }
+        // emails a user their account password
+        else if(!req.query.password) {
+            axios.get('http://localhost:50313/api/users?email=' + req.query.email)
+            .then(function(Response) {
+                res.json({message: 'An Email has been sent to you with your password'})
+            })
+            .catch(function(response) {
+                res.json({message: 'ERROR No account found for that specific email.'})
+            })
+        }
+        // login to user account
         else {
             axios.get('http://localhost:50313/api/users?email=' + req.query.email + '&password=' + req.query.password)
                 .then(function (response) {
@@ -20,7 +33,7 @@ function index(req, res) {
         }
     }
 
-
+// show function to get a user by their id
 function show(req, res) {
     axios.get('http://localhost:50313/api/users/' + req.params.id)
             .then(function (response) {
@@ -32,6 +45,7 @@ function show(req, res) {
     
 }
 
+// cretae function to make a new user
 function create(req, res) {
     axios.post('http://localhost:50313/api/users', req.body)
         .then(function (response) {
@@ -41,6 +55,8 @@ function create(req, res) {
             res.json({ userCreated: false })
         });
 }
+
+// update function to modify an existing user
 function update(req, res) {
     if (req.body.Email == '' || req.body.FirstName == '' || req.body.LastName == '') {
         res.json({ edited: false })
@@ -56,6 +72,7 @@ function update(req, res) {
     }
 }
 
+// destroy function to remove a user from the database
 function destroy(req, res) {
     var Id = req.params.id;
     axios.delete('http://localhost:50313/api/users/?id=' + Id)

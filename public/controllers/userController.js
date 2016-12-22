@@ -1,13 +1,17 @@
 angular.module('CRMApp').controller('userController', function ($scope, $http, $state, $stateParams, userService) {
+
+    //    check to make sure a user is signed in
     if (document.cookie == "") {
         $state.go('login')
     }
+    // returns all of the users in the database
     $scope.getUsers = function () {
         $http.get('http://localhost:3000/users')
             .then(function (response) {
                 userService.index(response.data.users);
             })
     }
+    // users
     $scope.getUsers();
     $scope.userID = null;
     $scope.email - '';
@@ -18,12 +22,12 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.confirmEmail = '';
     $scope.newPassword = '';
     $scope.confirmPassword = '';
+    $scope.recoverEmail = '';
     $scope.test = function () {
         alert(document.cookie)
     }
-    $scope.loggedIn = function () {
-        console.log('hello')
-    }
+
+    // sets the logged in user based on the cookie
     $scope.index = function () {
         if (document.cookie !== "") {
             $http.get('http://localhost:3000/getCookie')
@@ -41,6 +45,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
         };
     }
 
+// function to loginn to user account
     $scope.login = function () {
         $http.get(`http://localhost:3000/users?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
@@ -57,6 +62,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
             })
     };
 
+// create a new user
     $scope.newUser = function () {
         $http.post('http://localhost:3000/users', { firstName: $scope.newFirstName, lastName: $scope.newLastName, email: $scope.newEmail, password: $scope.newPassword })
             .then(function (response) {
@@ -74,14 +80,16 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
             })
     };
 
-    $scope.continue = function () {
-        $state.go('home')
-    }
-
+// opens the recover account modal
     $scope.recoverAccountModal = function () {
         $('#recoverAccountModal').modal();
     }
-    $scope.recover = function () {
 
+    // sends an email to user with their password
+    $scope.recover = function () {
+        $http.get(`http://localhost:3000/users?email=${$scope.recoverEmail}`)
+            .then(function (response) {
+                alert(response.data.message);
+            })
     }
 });
