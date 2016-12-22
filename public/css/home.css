@@ -136,7 +136,7 @@ nav div h2 {
 
 .searchCustomers {
   width: 25%;
-  height: 180px;
+  /*height: 180px;*/
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
@@ -185,19 +185,23 @@ opacity: 0.2;
   height: 100px;
   margin-left: 50px;
 }
+
 .newCustomerPic:hover {
    opacity: 0.7;
 }
+
 .newCustomerPic:active {
   opacity: 0.2;
 }
-.findCustomersLabel {
+
+/*.findCustomersLabel {
   position: absolute;
   left: 50%;
   top: 10%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-}
+}*/
+
 .findCustomerOptions {
   padding-top: 50px;
 }

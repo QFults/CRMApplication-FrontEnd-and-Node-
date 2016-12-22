@@ -3,14 +3,19 @@
 
     <div class="row home">
         <div class="col-md-4 searchCustomers">
-            <h3 class="findCustomersLabel">Find Customers</h3>
-            <div class="row findCustomerOptions">
+            <h3 class="text-center">Find Customers</h3>
+            <div class="form-group">
                 <label>Search All customers</label>
-                <input type="text" ng-model="customerInfo" />
-                <p>Leave empty to return all</p>
-                <button ng-click="findCustomer()">Search</button>
+                <input type="text" ng-model="customerInfo" placeholder="Empty returns all" class="form-control"/>
+                <div>
+                    <button 
+                    ng-click="findCustomer()"
+                    class="btn btn-default pull-right">
+                        Search
+                    </button>
+                </div>
             </div>
-            <div class="row">
+            <div class="form-group clearfix">
                 <label>Search By Rep</label>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{selectedUserName}}<span class="caret"></span></button>
@@ -18,7 +23,11 @@
                         <li ng-repeat="user in users"><a ng-click="setSelectedUser(user)">{{user.FirstName}} {{user.LastName}}</a></li>
                     </ul>
                 </div>
-                <button ng-click="findUserCustomers()">Search</button>
+                <button 
+                ng-click="findUserCustomers()"
+                class="btn btn-default">
+                    Search
+                </button>
             </div>
         </div>
         <div class="col-md-4 customerList">

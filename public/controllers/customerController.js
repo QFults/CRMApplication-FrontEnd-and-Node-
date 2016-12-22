@@ -255,7 +255,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.setSelectedUser = function (userObj) {
         $scope.selectedUser = userObj;
         userService.setSelectedUser(userObj);
-        $scope.selectedUserName = userObj.FirstName + userObj.LastName
+        $scope.selectedUserName = userObj.FirstName + " " + userObj.LastName
     }
 
     $scope.findUserCustomers = function () {
