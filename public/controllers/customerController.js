@@ -72,10 +72,15 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
     }
 
+    $scope.goHome = function() {
+                $('.submenu').hide();
+                $state.go('home');        
+    }
     $scope.logout = function() {
                 $http.get('http://localhost:3000/clearcookie')
             .then(function (response) {
                 $state.go('login');
+                $('.submenu').hide();
             })
     }
 
