@@ -379,6 +379,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.editNote = function (note) {
         $scope.uneditedNote = note;
         $scope.editedNote = angular.copy(note);
+        $scope.editedNoteCopy = angular.copy(note);
         $("#editNoteModal").modal();
         $('.moodDivs').removeClass('botBordBlue');
         $('.moodBtn').blur();
