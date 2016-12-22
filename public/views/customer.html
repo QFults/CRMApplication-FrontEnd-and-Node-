@@ -303,6 +303,17 @@
 				<div class="form-group">
 					<textarea cols="30" rows="6" readonly class="form-control cursorText">{{ note.Body }}</textarea>
 				</div>
+					<p 
+					ng-if="note.LastEditAuthor"
+					class="lastEditText">
+						Last edited by: {{ note.LastEditAuthor }} on {{ note.LastEditDate | date: 'medium'}}
+					</p>
+				<button 
+				 ng-click="viewNoteEditHistory(note)"
+				 ng-if="note.LastEditAuthor"
+				 class="btn btn-default">
+					Edit History
+				</button>
 				<div class="form-group pull-right">
 					<button ng-click="editNote(note)" class="btn btn-warning marginRight3px">
 							Edit
@@ -436,15 +447,15 @@
 				</div>
 				<div class="pull-right form-group">
 					<div ng-class="{botBordBlue: isHappy}" class="inlineBlock moodDivs">
-						<button ng-click="setNoteMood('Happy', 'new')" class="btn btn-success moodBtn">
+						<button ng-click="setNoteMood('Happy', 'edit')" class="btn btn-success moodBtn">
 						</button>
 					</div>
 					<div ng-class="{botBordBlue: isNeutral}" class="inlineBlock moodDivs">
-						<button ng-click="setNoteMood('Neutral', 'new')" class="btn btn-warning moodBtn">
+						<button ng-click="setNoteMood('Neutral', 'edit')" class="btn btn-warning moodBtn">
 						</button>
 					</div>
 					<div ng-class="{botBordBlue: isMad}" class="inlineBlock moodDivs" id="madDiv">
-						<button ng-click="setNoteMood('Mad', 'new')" class="btn btn-danger moodBtn">
+						<button ng-click="setNoteMood('Mad', 'edit')" class="btn btn-danger moodBtn">
 						</button>
 					</div>
 				</div>
@@ -457,3 +468,49 @@
 	</div>
 </div>
 <!-- END #editNoteModal -->
+
+<!-- START #editedNoteHistoryModal -->
+<div class="modal fade" id="editedNoteHistoryModal" tabindex="-1" role="dialog" aria-labelledby="editedNoteHistoryModalTitle">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center" id="editedNoteHistoryModalTitle">Note Edit History</h4>
+			</div>
+			<div class="modal-body">
+				<div 
+				ng-repeat="note in editedNotes"
+				class="greyBtmBorder marginBot10px">
+					<div class="form-group">
+					<label>
+						<span ng-if="note.Mood" class="smallerMoodBtn">
+							<button 
+							ng-if="note.Mood == 'Happy'"
+							class="btn btn-success moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="note.Mood == 'Neutral'"
+							class="btn btn-warning moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="note.Mood == 'Mad'"
+							class="btn btn-danger moodBtn cursorDefault">
+								</button>
+						</span>
+						{{ note.Author }} edited on {{ note.DateEdited | date:'medium' }}
+					</label>
+						<input ng-model="note.Subject" class="form-control cursorText" type="text" readonly>
+					</div>
+					<div class="form-group">
+						<textarea ng-bind="note.Body" readonly cols="30" rows="6" class="form-control cursorText"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">Close</button>
+				<button ng-click="saveEditedNote()" type="button" class="btn btnPrimary" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END #editedNoteHistoryModal -->

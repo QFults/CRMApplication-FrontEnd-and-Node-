@@ -43,6 +43,15 @@
   width: 25px;
 }
 
+.lastEditText {
+  font-size: .9em;
+  font-weight: 100;
+  font-style: italic;
+  margin-bottom: 2px;
+  margin-top: -15px;
+  margin-left: 2px;
+}
+
 /* MISC
 ****************************************/
 

@@ -171,7 +171,7 @@ nav div h2 {
 .repeatedCustomers {
   border-bottom: 3px groove #81a7ca;
   padding-bottom: 2px;
-  padding-top: 2px;
+  padding-top: 10px;
 }
 
 .repeatedCustomers:hover {

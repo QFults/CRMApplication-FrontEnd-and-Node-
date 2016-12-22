@@ -89,76 +89,8 @@
 
         });
     </script>
-                        <!-- Create New Modal -->
-            <div class="text-center modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="addNewCustomerTitle">Add New Customer</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>First Name
-                                    <input ng-model="newFName" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name
-                                    <input ng-model="newLName" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Email
-                                    <input ng-model="newEmail" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number
-                                    <input ng-model="newPNumber" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Date of Birth
-                                    <input ng-model="newDOB" class="form-control" type="datetime">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Status
-                                    <input ng-model="isLead" type="radio">Lead
-                                    <input ng-model="isClient" type="radio">Client
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Gender
-                                    <input ng-model="newGender" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>Address
-                                    <input ng-model="newAddr" class="form-control" type="text">
-                                    </label>
-                                <label>City
-                                    <input ng-model="newCity" class="form-control" type="text">
-                                    </label>
-                            </div>
-                            <div class="form-group">
-                                <label>State
-                                    <input ng-model="newState" class="form-control" type="text">
-                                    </label>
-                                <label>Zip Code
-                                    <input ng-model="newZip" class="form-control" type="text">
-                                    </label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <button ng-click="createNewCustomer()" class="btn btn-success" data-dismiss="modal">Create</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End #createNewInstructorModal -->
+            
+            <!-- START Edit User Modal-->
             <div class="text-center modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

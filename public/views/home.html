@@ -6,7 +6,7 @@
             <h3 class="text-center paddingBot10px">Find Customers</h3>
             <div class="form-group">
                 <label>Search All Customers</label>
-                <input type="text" ng-model="customerInfo" placeholder="left blank returns all" class="form-control searchInput" />
+                <input type="text" ng-model="customerInfo" placeholder="leave blank to return all customers" class="form-control searchInput" />
                 <div>
                     <button ng-click="findCustomer()" class="btn btn-default pull-right">
                         Search
@@ -33,10 +33,7 @@
             <!-- START Icons -->
             <div class="form-group iconsDiv">
                 <div class="cursorPointer">
-                    <img src="http://downloadicons.net/sites/default/files/email-message-icon-82430.png" class="emailPic" ng-click="contact()">Send Email
-                </div>
-                <div class="cursorPointer">
-                    <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                <span ng-click="createNewCustomerModal()">Create New Customer</span>
+                    <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                    <span ng-click="createNewCustomerModal()">Create New Customer</span>
                 </div>
             </div>
             <!-- END Icons -->
@@ -44,24 +41,23 @@
         </div>
         <div class="col-md-6 customerList">
             <h2 class="text-center">Customers</h2>
-            <input type="text" ng-show="isSearching" ng-model="filtering" class="form-control marginBot10px" placeholder="filter by name, lead state, or email" />
+            <input type="text" ng-show="isSearching" ng-model="filtering" class="form-control marginBot10px" placeholder="filter by name, lead state, or email"
+            />
             <div class="row customerPropertiesRow">
                 <div class="col-sm-3">
-                    <h3>Name</h3>
+                    <h4>Name</h4>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Lead State</h3>
+                    <h4>Lead State</h4>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Phone</h3>
+                    <h4>Phone</h4>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Email</h3>
+                    <h4>Email</h4>
                 </div>
             </div>
-            <div
-            class="row repeatedCustomers"
-            ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">
+            <div class="row repeatedCustomers" ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">
                 <div class="col-sm-3">
                     <p class="wordWrap">{{ customer.FirstName }} {{ customer.LastName }}</p>
                 </div>
@@ -75,7 +71,7 @@
                     <p><a class="linkWrap" href="{{ customer.Email }}">{{ customer.Email }}</a></p>
                 </div>
             </div>
-<!--            <div ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}
+            <!--            <div ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">{{customer.FirstName}} {{customer.LastName}}
 
             </div>-->
         </div>
@@ -85,66 +81,78 @@
 
     <!-- MODALS -->
     <div>
-        <!-- Create New Customer -->
-        <div class="text-center modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
+        <!-- START Create New Customer Modal -->
+        <div class="modal fade" id="createNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createNewCustomerModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="addNewCustomerTitle">Add New Customer</h4>
+                        <h4 class="modal-title text-center" id="addNewCustomerTitle">Add New Customer</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>First Name
-                                        <input ng-model="newFName" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newFName" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Last Name
-                                        <input ng-model="newLName" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newLName" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Email
-                                        <input ng-model="newEmail" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newEmail" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Phone Number
-                                        <input ng-model="newPNumber" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newPNumber" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Date of Birth
-                                        <input ng-model="newDOB" class="form-control" type="datetime">
-                                        </label>
+                                <input ng-model="newDOB" class="form-control" type="datetime">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Status
-                                        <input ng-model="isLead" type="radio">Lead
-                                        <input ng-model="isClient" type="radio">Client
-                                        </label>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="marginLeft50p">
+                            <div class="form-group">
+                                <span>
+                                    <input ng-model="isLead" type="radio">
+                                    Lead
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <span>
+                                    <input ng-model="isClient" type="radio">
+                                    Customer
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
                             <label>Gender
-                                        <input ng-model="newGender" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newGender" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>Address
-                                        <input ng-model="newAddr" class="form-control" type="text">
-                                        </label>
+                            <input ng-model="newAddr" class="form-control" type="text">
+                            </label>
                             <label>City
-                                        <input ng-model="newCity" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newCity" class="form-control" type="text">
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             <label>State
-                                        <input ng-model="newState" class="form-control" type="text">
-                                        </label>
+                            <input ng-model="newState" class="form-control" type="text">
+                            </label>
                             <label>Zip Code
-                                        <input ng-model="newZip" class="form-control" type="text">
-                                        </label>
+                                <input ng-model="newZip" class="form-control" type="text">
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -154,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <!-- END Create New Customer Modal -->
+        <!-- END Create New Customer -->
         <!-- START Edit User Modal -->
         <div class="text-center modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal">
             <div class="modal-dialog" role="document">
@@ -198,7 +206,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR clients have been reassigned.
+                            <spann class="color: red">**WARNING** You will not be able to delete your account until all YOUR customers have been reassigned.
                             </spann>
                             <div>
                                 <h4>Customers to Reassign</h4>

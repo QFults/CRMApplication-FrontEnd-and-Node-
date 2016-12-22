@@ -36,6 +36,28 @@ function create (req, res) {
         });
 }
 
+function createEditedNote (req, res) {
+    axios.post('http://localhost:50313/api/NoteEdits', req.body)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
+function showEditHistory (req, res) {
+    console.log('node note id');
+    console.log(req.query.noteId);
+    axios.get('http://localhost:50313/api/NoteEdits?noteId=' + req.query.noteId)
+        .then(function (response) {
+            res.json(response.data);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
 function update (req, res) {
     axios.put('http://localhost:50313/api/notes/' + req.body.Id, req.body)
         .then(function (response) {
@@ -60,6 +82,8 @@ function destroy (req, res) {
 module.exports = {
     index: index,
     create: create,
+    showEditHistory: showEditHistory,
     destroy: destroy,
-    update: update
+    update: update,
+    createEditedNote: createEditedNote
 }

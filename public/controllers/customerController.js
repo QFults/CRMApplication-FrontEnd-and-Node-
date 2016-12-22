@@ -39,6 +39,9 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.selectedUser = userService.getSelectedUser();
     setAssignedUser();
     // Notes
+    $scope.editedNote;
+    $scope.editedNotes = [];
+    $scope.originalNote;
     $scope.customerNotes = noteService.getCustomerNotes();
     $scope.newNoteSubject = '';
     $scope.newNoteBody = '';
@@ -127,11 +130,24 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                     alert('You must enter either Email or Password to create a new Customer')
                 }
                 else {
-                    alert('Customer Created!');
                     customerService.setSelectedCustomer(response.data.customer);
                     $state.go('customer')
 
                     $scope.selectedCustomer = customerService.getSelectedCustomer();
+                    $scope.newFName = '';
+                    $scope.newLName = '';
+                    $scope.newFName = '';
+                    $scope.newEmail = '';
+                    $scope.newFName = '';
+                    $scope.newPNumber = '';
+                    $scope.newDOB = '';
+                    $scope.isLead = false;
+                    $scope.isClient = false;
+                    $scope.newGender = '';
+                    $scope.newAddr = '';
+                    $scope.newCity = '';
+                    $scope.newState = '';
+                    $scope.newZip = '';
                 }
             })
     }
@@ -284,6 +300,17 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* NOTES
     **************************************/
 
+    $scope.viewNoteEditHistory = function (note) {
+        $scope.noteId = note.Id;
+        $http.get('http://localhost:3000/noteEdits?noteId=' + $scope.noteId)
+            .then(function (response) {
+
+                noteService.setEditedNotes(response.data);
+                $scope.editedNotes = noteService.getEditedNotes();
+            })
+        $("#editedNoteHistoryModal").modal();
+    }
+
     $scope.setNoteMood = function (mood, status) {
         if (status == 'new') {
             $scope.newNoteMood = mood;
@@ -363,6 +390,21 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         else {
             $('.moodDivs').removeClass('botBordBlue');
             $('.moodBtn').blur();
+            var authorName = $scope.loggedInUser.FirstName + ' ' + $scope.loggedInUser.LastName;
+
+            $scope.editedNote.LastEditDate = returnDate();
+            $scope.editedNote.LastEditAuthor = authorName;
+
+            $scope.recordedEdit = {};
+            $scope.recordedEdit.DateEdited = returnDate();
+            $scope.recordedEdit.Author = authorName;
+            $scope.recordedEdit.Subject = $scope.editedNote.Subject;
+            $scope.recordedEdit.Body = $scope.editedNote.Body;
+            $scope.recordedEdit.Mood = $scope.editedNote.Mood;
+            $scope.recordedEdit.CustomerId = $scope.editedNote.CustomerId;
+            // setting FK - many recordedEdits per note
+            $scope.recordedEdit.NoteId = $scope.editedNote.Id;
+            
             $http.put('http://localhost:3000/notes/' + $scope.editedNote.Id, $scope.editedNote)
                 .then(function (response) {
                     if (response.status != 200) {
@@ -370,6 +412,15 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                     }
                     else {
                         getSelectedCustomerNotes();
+
+                        $http.post('http://localhost:3000/noteEdits',
+                        $scope.recordedEdit
+                        )
+                            .then(function (response) {
+                                if ( response.status != 200 ) {
+                                    console.log(response.data);
+                                }
+                            })
                     }
                 });
         }
