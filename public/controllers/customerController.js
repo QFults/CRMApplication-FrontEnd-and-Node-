@@ -57,7 +57,16 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.fcByPhoneShown = false;
     $scope.loggedInUserCustomers = [];
 
+<<<<<<< HEAD
 // initializes the logged in user
+=======
+  $scope.dismissModal = function () {
+    $('#createNewCustomerModal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  }
+
+>>>>>>> 484eb1a686e65753ffee337c890ac1a8aa7b6848
     $scope.initUserCustomers = function () {
         $http.get('http://localhost:3000/getCookie')
             .then(function (response) {
@@ -136,7 +145,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
             .then(function (response) {
                 if (response.data.post == false) {
-                    alert('You must enter either Email or Phone Number to create a new Customer')
+                    alert('You must enter an Email to create a new Customer')
                 }
                 else {
                     customerService.setSelectedCustomer(response.data.customer);
@@ -157,6 +166,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                     $scope.newCity = '';
                     $scope.newState = '';
                     $scope.newZip = '';
+
+                    $scope.dismissModal();
                 }
             })
     }
