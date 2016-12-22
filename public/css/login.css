@@ -129,16 +129,41 @@
 .myNav {
   height: 70px;
   z-index: 1035;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
 }
 .myLogin {
   height: 70px;
 }
 .loginOptions {
   height: 70px;
+  margin-right: -138px !important;
 }
 .navSpan {
   padding-top: 8px;
 }
 .navDropDown {
   padding-top: 8px;
+}
+.ourLogo {
+    margin-top: 5px;
+}
+.myForm {
+      box-shadow: 0 3px 45px rgba(0, 0, 0, 0.5) !important;
+}
+.pageFooter {
+    margin-top: 92px;
+    width: 100%;
+    background-color: rgba(0,128,128,1);
+}
+.footerIcon {
+    width: 100px;
+    height: 100px;
+}
+.footerDivs {
+    padding-left: 190px;
+    margin-top: 66px;
+    margin-bottom: 110px;
+}
+.bodyStuff {
+    margin-top: 110px;
 }
