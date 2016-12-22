@@ -431,17 +431,24 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         var confirmed = confirm('Are you sure you want to permanently delete this note?');
 
         if (confirmed == true) {
-
-            
-            $http.delete('http://localhost:3000/notes/' + note.Id)
+            $http.delete('http://localhost:3000/noteedits?NoteId=' + note.Id)
                 .then(function (response) {
-                    if (response.status != 200) {
+                    if ( response.status != 200 ) {
                         alert('error status ' + response.status);
                     }
                     else {
-                        getSelectedCustomerNotes();
+                        $http.delete('http://localhost:3000/notes/' + note.Id)
+                            .then(function (response) {
+                                if (response.status != 200) {
+                                    alert('error status ' + response.status);
+                                }
+                                else {
+                                    getSelectedCustomerNotes();
+                                }
+                            });
                     }
-                });
+                })
+            
         }
     }
 

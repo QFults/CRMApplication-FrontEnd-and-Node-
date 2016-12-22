@@ -79,11 +79,22 @@ function destroy (req, res) {
         });
 }
 
+function destroyNoteEditsForNote (req, res) {
+    axios.delete('http://localhost:50313/api/noteedits?NoteId=' + req.query.NoteId)
+        .then(function (response) {
+            res.json(response);
+        })
+        .catch(function (error) {
+            res.json(error);
+        })
+}
+
 module.exports = {
     index: index,
     create: create,
     showEditHistory: showEditHistory,
     destroy: destroy,
+    destroyNoteEditsForNote: destroyNoteEditsForNote,
     update: update,
     createEditedNote: createEditedNote
 }

@@ -40,6 +40,7 @@ router.post('/notes', noteController.create);
 router.post('/noteEdits', noteController.createEditedNote);
 router.put('/notes/:id', noteController.update);
 router.delete('/notes/:id', noteController.destroy);
+router.delete('/noteEdits', noteController.destroyNoteEditsForNote);
 
 // sms routes
 router.get('/sms', smsController.test);
