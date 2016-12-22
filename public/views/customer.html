@@ -7,9 +7,7 @@
 			<a class="navbar-brand" ui-sref="home">
 				<img alt="Brand" src="./css/img/turn_blk.png">
 			</a>
-			<h2 class="text-center">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
-				<span class="pull-right">
-				</span>
+			<h2 class="customerNameNav">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
 			</h2>
 		</div>
 	</nav>
@@ -40,7 +38,7 @@
 	<div class="row row2">
 
 		<!-- START Left Col -->
-		<div class="col-md-6 vh-90">
+		<div class="col-md-6 vhCol">
 			<h3 class="text-center">
 				Personal Information
 			</h3>
@@ -122,14 +120,14 @@
 			<!-- Full Contact Results -->
 			<div class="greyTopBorder">
 				<h3 class="text-center">Full Contact Results</h3>
-				<button ng-click="getFCByEmail()" class="btn btn-info btn-block">
+				<button ng-click="getFCByEmail()" class="btn btn-info btn-block byEmailBtn">
 					Retrieve By Email
 				</button>
 				<button ng-if="fcByEmailShown" ng-click="hideFCEmailResults()" class="btn btn-default pull-right hideBtn">
 					Hide
 				</button>
 				<div ng-if="fcByEmailShown" class="fcEmailResults">
-					<h4 ng-if="fcEmailStatus == 'searching'" class="text-center">{{ fcEmailStatus }}</h4>
+					<h4 ng-if="fcEmailStatus == 'searching...'" class="text-center offsetHideBtn">{{ fcEmailStatus }}</h4>
 					<!-- Contact Info -->
 					<div ng-if="fcEmailResults.contactInfo">
 						<h4>
@@ -248,7 +246,7 @@
 		<!-- END Left Col -->
 
 		<!-- START Right Col -->
-		<div class="col-md-6 vh-90">
+		<div class="col-md-6 vhCol">
 			<h3 class="text-center">
 				Notes
 			</h3>
@@ -334,77 +332,77 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label>First Name
-						<input ng-model="editedCustomer.FirstName" class="form-control" type="text" value="{{ editedCustomer.FirstName }}">
+						<input ng-model="editedCustomer.FirstName" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Last Name
-						<input ng-model="editedCustomer.LastName" class="form-control" type="text" value="{{ editedCustomer.LastName }}">
+						<input ng-model="editedCustomer.LastName" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Nickname
-						<input ng-model="editedCustomer.Nickname" class="form-control" type="text" value="{{ editedCustomer.Nickname }}">
+						<input ng-model="editedCustomer.Nickname" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Lead State
-						<input ng-model="editedCustomer.LeadState" class="form-control" type="text" value="{{ editedCustomer.LeadState }}">
+						<input ng-model="editedCustomer.LeadState" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Email
-						<input ng-model="editedCustomer.Email" class="form-control" type="text" value="{{ editedCustomer.Email }}">
+						<input ng-model="editedCustomer.Email" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Phone
-						<input ng-model="editedCustomer.Phone" class="form-control" type="text" value="{{ editedCustomer.Phone }}">
+						<input ng-model="editedCustomer.Phone" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Street Address
-						<input ng-model="editedCustomer.StreetAddress" class="form-control" type="text" value="{{ editedCustomer.StreetAddress }}">
+						<input ng-model="editedCustomer.StreetAddress" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>City
-						<input ng-model="editedCustomer.City" class="form-control" type="text" value="{{ editedCustomer.City }}" >
+						<input ng-model="editedCustomer.City" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>State
-						<input ng-model="editedCustomer.State" class="form-control" type="text" value="{{ editedCustomer.State }}" >
+						<input ng-model="editedCustomer.State" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Zip
-						<input ng-model="editedCustomer.Zip" class="form-control" type="number" value="{{ editedCustomer.Zip }}" >
+						<input ng-model="editedCustomer.Zip" class="form-control" type="number">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>DOB
-						<input ng-model="editedCustomer.DOB" class="form-control" type="text" value="{{ editedCustomer.DOB }}" >
+						<input ng-model="editedCustomer.DOB" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Gender
-						<input ng-model="editedCustomer.Gender" class="form-control" type="text" value="{{ editedCustomer.Gender }}">
+						<input ng-model="editedCustomer.Gender" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Employer
-						<input ng-model="editedCustomer.Employer" class="form-control" type="text" value="{{ editedCustomer.Employer }}">
+						<input ng-model="editedCustomer.Employer" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Job Title
-						<input ng-model="editedCustomer.JobTitle" class="form-control" type="text" value="{{ editedCustomer.JobTitle }}">
+						<input ng-model="editedCustomer.JobTitle" class="form-control" type="text">
 					</label>
 				</div>
 				<div class="form-group">
 					<label>Tenure
-						<input ng-model="editedCustomer.Tenure" class="form-control" type="number" value="{{ editedCustomer.Tenure }}">
+						<input ng-model="editedCustomer.Tenure" class="form-control" type="number">
 					</label>
 				</div>
 			</div>

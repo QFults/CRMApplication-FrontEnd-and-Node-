@@ -159,7 +159,6 @@ nav div h2 {
 }
 
 .customerList {
-  /*width: 25%;*/
   height: 92vh;
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
@@ -167,21 +166,20 @@ nav div h2 {
   margin-right: 105px;
   margin-left: 100px;
   margin-top: -5px;
-  /*padding-left: 55px;*/
 }
 
 .repeatedCustomers {
-  border-bottom: 1px solid grey;
+  border-bottom: 3px groove #81a7ca;
   padding-bottom: 2px;
   padding-top: 2px;
 }
 
 .repeatedCustomers:hover {
-  background-color: #CBF3F0;
+  background-color: #c9d9e8;
 }
 
 .customerPropertiesRow {
-  border-bottom: 3px solid grey;
+  border-bottom: 3px groove #94b4d1;
   margin-bottom: 5px;
 }
 

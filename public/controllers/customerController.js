@@ -6,6 +6,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $http.get('http://localhost:3000/users')
         .then(function (response) {
             userService.index(response.data.users);
+            $scope.users = userService.getAllUsers();
         })
 
     // Customers
@@ -308,7 +309,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     }
 
     $scope.saveNewNote = function () {
-        if ($scope.newNoteMood == '' || $scope.newNoteBody == '' || $scope.newNoteSubject == '') {
+        if ($scope.newNoteBody == '' || $scope.newNoteSubject == '') {
             alert("Please specify a mood, subject, and body before saving.");
         }
         else {
@@ -399,7 +400,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $scope.fcEmailStatus = 'searching...';
         $http.get(`http://localhost:3000/customers/byEmail?email=${$scope.selectedCustomer.Email}`)
             .then(function (response) {
-                $scope.fcEmailStatus = null;
+                $scope.fcEmailStatus = 'null'
                 $scope.fcEmailResults = response.data.object;
                 console.log(response.data.object);
             });

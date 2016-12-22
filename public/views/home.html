@@ -6,7 +6,7 @@
             <h3 class="text-center paddingBot10px">Find Customers</h3>
             <div class="form-group">
                 <label>Search All Customers</label>
-                <input type="text" ng-model="customerInfo" placeholder="Empty returns all" class="form-control searchInput" />
+                <input type="text" ng-model="customerInfo" placeholder="left blank returns all" class="form-control searchInput" />
                 <div>
                     <button ng-click="findCustomer()" class="btn btn-default pull-right">
                         Search
@@ -32,15 +32,19 @@
 
             <!-- START Icons -->
             <div class="form-group iconsDiv">
-                <img src="http://downloadicons.net/sites/default/files/email-message-icon-82430.png" class="emailPic" ng-click="contact()">                Send Email
-                <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                <span ng-click="createNewCustomerModal()">Create New Customer</span>
+                <div class="cursorPointer">
+                    <img src="http://downloadicons.net/sites/default/files/email-message-icon-82430.png" class="emailPic" ng-click="contact()">Send Email
+                </div>
+                <div class="cursorPointer">
+                    <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                <span ng-click="createNewCustomerModal()">Create New Customer</span>
+                </div>
             </div>
             <!-- END Icons -->
 
         </div>
         <div class="col-md-6 customerList">
             <h2 class="text-center">Customers</h2>
-            <input type="text" ng-show="isSearching" ng-model="filtering" class="form-control marginBot10px" placeholder="filter" />
+            <input type="text" ng-show="isSearching" ng-model="filtering" class="form-control marginBot10px" placeholder="filter by name, lead state, or email" />
             <div class="row customerPropertiesRow">
                 <div class="col-sm-3">
                     <h3>Name</h3>

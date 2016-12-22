@@ -54,6 +54,10 @@ li {
   cursor: text !important;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 .botBordBlue {
   border-bottom: 3px solid #357ebd;
 }
