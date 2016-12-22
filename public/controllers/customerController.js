@@ -32,7 +32,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.selectedCustomer = customerService.getSelectedCustomer();
     $scope.editedCustomer = {};
     // Users
-    $scope.selectedUserName = 'Select A User';
+    $scope.selectedUserName = 'Select An Agent';
     $scope.loggedInUser = userService.getLoggedInUser();
     $scope.users = userService.getAllUsers();
     $scope.selectedUser = userService.getSelectedUser();
@@ -255,7 +255,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.setSelectedUser = function (userObj) {
         $scope.selectedUser = userObj;
         userService.setSelectedUser(userObj);
-        $scope.selectedUserName = userObj.FirstName + " " + userObj.LastName
+        $scope.selectedUserName = userObj.FirstName + " " + userObj.LastName;
+        $scope.findUserCustomers();
     }
 
     $scope.findUserCustomers = function () {

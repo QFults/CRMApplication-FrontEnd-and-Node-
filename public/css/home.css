@@ -140,20 +140,49 @@ nav div h2 {
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
-  padding-left: 45px;
+  padding-left: 25px;
   margin-left: 78px;
   margin-top: -5px;
 }
 
+.searchInput {
+  margin-bottom: 5px;
+}
+
+.searchByAssignee {
+  width: 100%;
+}
+
+.iconsDiv {
+  margin-top: 50px;
+  border-top: 1px solid grey;
+}
+
 .customerList {
-  width: 25%;
+  /*width: 25%;*/
   height: 92vh;
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
   margin-right: 105px;
   margin-left: 100px;
-  margin-top: -5px
+  margin-top: -5px;
+  /*padding-left: 55px;*/
+}
+
+.repeatedCustomers {
+  border-bottom: 1px solid grey;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.repeatedCustomers:hover {
+  background-color: #CBF3F0;
+}
+
+.customerPropertiesRow {
+  border-bottom: 3px solid grey;
+  margin-bottom: 5px;
 }
 
 .homeOptions {
