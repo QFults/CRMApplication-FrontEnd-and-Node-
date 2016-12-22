@@ -4,6 +4,10 @@ margin: 0;
 box-sizing: border-box;
 }
 
+nav div a img {
+  width: 125px;
+}
+
 h1, h2, h3, h4, h5 {
   margin-top: 10px;
 }
@@ -24,6 +28,10 @@ li {
 
 .marginRight3px {
   margin-right: 3px;
+}
+
+.marginTop10px {
+  margin-top: 10px;
 }
 
 .bold {
