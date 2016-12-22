@@ -294,7 +294,7 @@
 							<button 
 							ng-if="note.Mood == 'Mad'"
 							class="btn btn-danger moodBtn cursorDefault">
-								</button>
+							</button>
 						</span>
 						{{ note.DateAdded | date:'medium' }} - {{ note.Author }}
 					</label>
@@ -436,7 +436,8 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Subject
+					<label>
+						Subject
 					</label>
 					<input ng-model="editedNote.Subject" class="form-control" type="text" value="{{ editedNote.Subject }}">
 				</div>
@@ -445,6 +446,21 @@
 					</label>
 					<textarea ng-model="editedNote.Body" placeholder="Body" cols="30" rows="6" class="form-control" value="{{ editedNote.Body }}"></textarea>
 				</div>
+				<span>
+							<button 
+							ng-if="editedNote.Mood == 'Happy'"
+							class="btn btn-success moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="editedNote.Mood == 'Neutral'"
+							class="btn btn-warning moodBtn cursorDefault">
+							</button>
+							<button 
+							ng-if="editedNote.Mood == 'Mad'"
+							class="btn btn-danger moodBtn cursorDefault">
+							</button>
+							Current Mood
+				</span>
 				<div class="pull-right form-group">
 					<div ng-class="{botBordBlue: isHappy}" class="inlineBlock moodDivs">
 						<button ng-click="setNoteMood('Happy', 'edit')" class="btn btn-success moodBtn">

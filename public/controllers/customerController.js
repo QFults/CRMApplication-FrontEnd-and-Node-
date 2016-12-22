@@ -377,6 +377,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     }
 
     $scope.editNote = function (note) {
+        $scope.uneditedNote = note;
         $scope.editedNote = angular.copy(note);
         $("#editNoteModal").modal();
         $('.moodDivs').removeClass('botBordBlue');
@@ -387,7 +388,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         if ($scope.editedNote.Subject == '' || $scope.editedNote.Body == '') {
             alert('Please fill out both the subject line and body of before saving.');
         }
-        else {
+        else if ( $scope.uneditedNote.Subject != $scope.editedNote.Subject || $scope.uneditedNote.Body != $scope.editedNote.Body || $scope.uneditedNote.Mood != $scope.editedNote.Mood ) {
             $('.moodDivs').removeClass('botBordBlue');
             $('.moodBtn').blur();
             var authorName = $scope.loggedInUser.FirstName + ' ' + $scope.loggedInUser.LastName;
@@ -430,6 +431,8 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         var confirmed = confirm('Are you sure you want to permanently delete this note?');
 
         if (confirmed == true) {
+
+            
             $http.delete('http://localhost:3000/notes/' + note.Id)
                 .then(function (response) {
                     if (response.status != 200) {
