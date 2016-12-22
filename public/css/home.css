@@ -159,7 +159,6 @@ nav div h2 {
 }
 
 .customerList {
-  height: 92vh;
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
@@ -169,7 +168,7 @@ nav div h2 {
 }
 
 .repeatedCustomers {
-  border-bottom: 3px groove #81a7ca;
+  border-top: 3px groove #81a7ca;
   padding-bottom: 2px;
   padding-top: 10px;
 }
@@ -179,7 +178,6 @@ nav div h2 {
 }
 
 .customerPropertiesRow {
-  border-bottom: 3px groove #94b4d1;
   margin-bottom: 5px;
 }
 

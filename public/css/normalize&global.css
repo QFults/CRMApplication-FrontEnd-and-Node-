@@ -82,3 +82,7 @@ li {
 .marginLeft50p {
   margin-left: 45.5%;
 }
+
+.emptyDiv {
+  height: 20px;
+}
