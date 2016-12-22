@@ -136,7 +136,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
             .then(function (response) {
                 if (response.data.post == false) {
-                    alert('You must enter either Email or Password to create a new Customer')
+                    alert('You must enter either Email or Phone Number to create a new Customer')
                 }
                 else {
                     customerService.setSelectedCustomer(response.data.customer);
