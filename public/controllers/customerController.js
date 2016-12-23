@@ -1,5 +1,6 @@
 angular.module("CRMApp").controller("customerController", function ($scope, $http, customerService, userService, noteService, $state) {
 
+
     // check to make sure user has logged in
     if (document.cookie == "") {
         $state.go('login')
@@ -57,6 +58,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.fcByEmailShown = false;
     $scope.fcByPhoneShown = false;
     $scope.loggedInUserCustomers = [];
+
 
     $scope.dismissModal = function () {
         $('#createNewCustomerModal').modal('hide');

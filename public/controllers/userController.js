@@ -1,5 +1,6 @@
 angular.module('CRMApp').controller('userController', function ($scope, $http, $state, $stateParams, userService) {
 
+
     //    check to make sure a user is signed in
     if (document.cookie == "") {
         $state.go('login')
@@ -26,6 +27,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
     $scope.test = function () {
         alert(document.cookie)
     }
+
 
     // sets the logged in user based on the cookie
     $scope.index = function () {

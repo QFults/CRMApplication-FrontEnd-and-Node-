@@ -2,6 +2,30 @@
 <div class="container-fluid" ng-controller="customerController">
     <div class="row logoRow">
         <img class="animated rotateInDownLeft" src="./css/img/turn_blk.png" alt="Brand Logo">
+            <!-- START Logged In User Dropdown -->
+            <div class="dropdown pull-right" style="margin-right: 0px">
+                <a class="account">
+                    <img src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" class="profile-circle"
+                    />
+                </a>
+                <div class="submenu" style="display: none; ">
+                <ul class="root">
+                    <li>
+                        <a ng-click="goHome()">Home</a>
+                    </li>
+                    <li>
+                        <a ng-click="editUserModal()">Edit Profile</a>
+                    </li>
+                    <li>
+                        <a ng-click="deleteUserModal()">Delete Profile</a>
+                    </li>
+                    <li>
+                        <a ng-click="logout()">Log Out</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+<!-- END Logged In User Drop Down -->
     </div>
     <div class="row home">
         <div class="col-md-5 searchCustomers animated fadeIn">
@@ -31,14 +55,14 @@
             <!-- START Icons -->
             <div class="form-group iconsDiv">
                 <div class="cursorPointer">
-                    <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                    <span ng-click="createNewCustomerModal()">Create New Customer</span>
+                    <img src="https://cdn4.iconfinder.com/data/icons/mosaicon-09/512/add_user-512.png" class="newCustomerPic" ng-click="createNewCustomerModal()">                    <span ng-click="createNewCustomerModal()">Add a New Customer</span>
                 </div>
             </div>
             <!-- END Icons -->
 
         </div>
         <div ng-hide="customerListShown" class="getStartedMessage">
-            <h2 class="animated pulse">Get Started By Searching Your Customers</h2>
+            <h2 class="animated pulse">Get Started By Searching Your Customers <br> Or Add a New Customer</h2>
         </div>
         <div ng-show="customerListShown" class="col-md-6 customerList animated fadeInDown">
             <h2 class="text-center">Customer Results</h2>
@@ -224,3 +248,33 @@
         </div>
         <!-- END Delete User Modal-->
     </div>
+<script> 
+    $(document).ready(function () {
+
+        $(".account").click(function () {
+            var X = $(this).attr('id');
+            if (X == 1) {
+                $(".submenu").hide();
+                $(this).attr('id', '0');
+            }
+            else {
+                $(".submenu").show();
+                $(this).attr('id', '1');
+            }
+        });
+
+        $(".submenu").mouseup(function () {
+            return false
+        });
+
+        $(".account").mouseup(function () {
+            return false
+        });
+
+        $(document).mouseup(function () {
+            $(".submenu").hide();
+            $(".account").attr('id', '');
+        });
+
+    });
+</script>
