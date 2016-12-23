@@ -45,7 +45,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
         };
     }
 
-// function to loginn to user account
+    // function to loginn to user account
     $scope.login = function () {
         $http.get(`http://localhost:3000/users?email=${$scope.email}&password=${$scope.password}`)
             .then(function (response) {
@@ -62,7 +62,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
             })
     };
 
-// create a new user
+    // create a new user
     $scope.newUser = function () {
         $http.post('http://localhost:3000/users', { firstName: $scope.newFirstName, lastName: $scope.newLastName, email: $scope.newEmail, password: $scope.newPassword })
             .then(function (response) {
@@ -80,7 +80,7 @@ angular.module('CRMApp').controller('userController', function ($scope, $http, $
             })
     };
 
-// opens the recover account modal
+    // opens the recover account modal
     $scope.recoverAccountModal = function () {
         $('#recoverAccountModal').modal();
     }

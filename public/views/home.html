@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <div class="container-fluid" ng-controller="customerController">
-
+    <div class="row logoRow">
+        <img class="animated rotateInDownLeft" src="./css/img/turn_blk.png" alt="Brand Logo">
+    </div>
     <div class="row home">
-        <div class="col-md-5 searchCustomers">
-            <h3 class="text-center paddingBot10px">Find Customers</h3>
+        <div class="col-md-5 searchCustomers animated fadeIn">
+            <h3 class="text-center paddingBot10px">Search Customers</h3>
             <div class="form-group">
                 <label>Search All Customers</label>
-                <input type="text" ng-model="customerInfo" placeholder="leave blank to return all customers" class="form-control searchInput" />
+                <input type="text" ng-model="customerInfo" placeholder="leave blank to return all customers" class="form-control searchInput"
+                />
                 <div>
                     <button ng-click="findCustomer()" class="btn btn-default pull-right">
                         Search
@@ -22,11 +25,6 @@
                             <li ng-repeat="user in users"><a ng-click="setSelectedUser(user)">{{user.FirstName}} {{user.LastName}}</a></li>
                         </ul>
                     </div>
-                    <!--                <button 
-                ng-click="findUserCustomers()"
-                class="btn btn-default">
-                    Search
-                </button>-->
                 </div>
             </div>
 
@@ -39,8 +37,11 @@
             <!-- END Icons -->
 
         </div>
-        <div class="col-md-6 customerList">
-            <h2 class="text-center">Customers</h2>
+        <div ng-hide="customerListShown" class="getStartedMessage">
+            <h2 class="animated pulse">Get Started By Searching Your Customers</h2>
+        </div>
+        <div ng-show="customerListShown" class="col-md-6 customerList animated fadeInDown">
+            <h2 class="text-center">Customer Results</h2>
             <input type="text" ng-show="isSearching" ng-model="filtering" class="form-control marginBot10px" placeholder="filter by name, lead state, or email"
             />
             <div class="row customerPropertiesRow">
@@ -57,7 +58,7 @@
                     <h4>Email</h4>
                 </div>
             </div>
-            <div class="row repeatedCustomers" ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">
+            <div class="row repeatedCustomers animated fadeIn" ng-click="setSelectedCustomer(customer)" ng-repeat="customer in displayedCustomers | filter:filtering">
                 <div class="col-sm-3">
                     <p class="wordWrap">{{ customer.FirstName }} {{ customer.LastName }}</p>
                 </div>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid animated fadeIn">
 
 	<nav class="navbar navbar-fixed-top" id="customerNav">
 		<div class="container-fluid">
 			<a class="navbar-brand" ui-sref="home">
-				<img alt="Brand" src="./css/img/turn_blk.png">
+				<img class="animated rotateInDownLeft" alt="Brand" src="./css/img/turn_blk.png">
 			</a>
 			<h2 class="customerNameNav">{{ selectedCustomer.FirstName }} {{ selectedCustomer.LastName }} <span ng-if="selectedCustomer.Nickname">({{ selectedCustomer.Nickname }})</span>
 			</h2>
@@ -279,7 +279,7 @@
 			</div>
 			<!-- END New Note -->
 			<!-- START Current Notes -->
-			<div ng-repeat="note in customerNotes" class="greyTopBorder clearfix paddingTop10px">
+			<div ng-repeat="note in customerNotes" class="greyTopBorder clearfix paddingTop10px animated fadeInDown">
 				<div class="form-group">
 					<label>
 						<span ng-if="note.Mood" class="smallerMoodBtn">
@@ -303,15 +303,10 @@
 				<div class="form-group">
 					<textarea cols="30" rows="6" readonly class="form-control cursorText">{{ note.Body }}</textarea>
 				</div>
-					<p 
-					ng-if="note.LastEditAuthor"
-					class="lastEditText">
-						Last edited by: {{ note.LastEditAuthor }} on {{ note.LastEditDate | date: 'medium'}}
-					</p>
-				<button 
-				 ng-click="viewNoteEditHistory(note)"
-				 ng-if="note.LastEditAuthor"
-				 class="btn btn-default">
+				<p ng-if="note.LastEditAuthor" class="lastEditText">
+					Last edited by: {{ note.LastEditAuthor }} on {{ note.LastEditDate | date: 'medium'}}
+				</p>
+				<button ng-click="viewNoteEditHistory(note)" ng-if="note.LastEditAuthor" class="btn btn-default">
 					Edit History
 				</button>
 				<div class="form-group pull-right">
@@ -495,11 +490,9 @@
 				<h4 class="modal-title text-center" id="editedNoteHistoryModalTitle">Note Edit History</h4>
 			</div>
 			<div class="modal-body">
-				<div 
-				ng-repeat="note in editedNotes"
-				class="greyBtmBorder marginBot10px">
+				<div ng-repeat="note in editedNotes" class="greyBtmBorder marginBot10px">
 					<div class="form-group">
-					<label>
+						<label>
 						<span ng-if="note.Mood" class="smallerMoodBtn">
 							<button 
 							ng-if="note.Mood == 'Happy'"

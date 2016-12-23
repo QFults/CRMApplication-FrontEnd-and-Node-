@@ -1,17 +1,18 @@
 angular.module("CRMApp").controller("customerController", function ($scope, $http, customerService, userService, noteService, $state) {
 
-// check to make sure user has logged in
+    // check to make sure user has logged in
     if (document.cookie == "") {
         $state.go('login')
     }
     // returns all of the users in the database
-        $http.get('http://localhost:3000/users')
+    $http.get('http://localhost:3000/users')
         .then(function (response) {
             userService.index(response.data.users);
             $scope.users = userService.getAllUsers();
         })
 
     // Customers
+    $scope.customerListShown = false;
     $scope.newFName = '';
     $scope.newLName = '';
     $scope.newFName = '';
@@ -57,16 +58,13 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.fcByPhoneShown = false;
     $scope.loggedInUserCustomers = [];
 
-<<<<<<< HEAD
-// initializes the logged in user
-=======
-  $scope.dismissModal = function () {
-    $('#createNewCustomerModal').modal('hide');
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
-  }
+    $scope.dismissModal = function () {
+        $('#createNewCustomerModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    }
 
->>>>>>> 484eb1a686e65753ffee337c890ac1a8aa7b6848
+    // initializes the logged in user
     $scope.initUserCustomers = function () {
         $http.get('http://localhost:3000/getCookie')
             .then(function (response) {
@@ -88,21 +86,21 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
     }
 
-// sends the user to the home page
-    $scope.goHome = function() {
-                $('.submenu').hide();
-                $state.go('home');        
+    // sends the user to the home page
+    $scope.goHome = function () {
+        $('.submenu').hide();
+        $state.go('home');
     }
     // logout function to kiick user out of their account
-    $scope.logout = function() {
-                $http.get('http://localhost:3000/clearcookie')
+    $scope.logout = function () {
+        $http.get('http://localhost:3000/clearcookie')
             .then(function (response) {
                 $state.go('login');
                 $('.submenu').hide();
             })
     }
 
-// function to return formatted current date
+    // function to return formatted current date
     function returnDate() {
         var now = new Date();
         return (now.getMonth() + 1) + '/' + now.getDate() + '/' + now.getFullYear() + ' ' + now.getHours() + ':' + now.getMinutes()
@@ -111,7 +109,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* CUSTOMERS
     ****************************************/
 
-// sets the selected Customer to view the page for
+    // sets the selected Customer to view the page for
     $scope.setSelectedCustomer = function (customer) {
         customerService.setSelectedCustomer(customer);
         $http.get('http://localhost:3000/notes?customerId=' + customer.Id)
@@ -126,7 +124,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $("#createNewCustomerModal").modal();
     }
 
-// posts a new customer
+    // posts a new customer
     $scope.createNewCustomer = function () {
         $http.post(`http://localhost:3000/customers`,
             {
@@ -178,7 +176,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $("#editCustomerModal").modal();
     }
 
-// edits a customer's information
+    // edits a customer's information
     $scope.saveEditedCustomer = function () {
         $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, $scope.editedCustomer)
             .then(function (response) {
@@ -187,7 +185,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             });
     }
 
-// changes which user a customer belongs to
+    // changes which user a customer belongs to
     $scope.transferCustomer = function (user) {
         $scope.selectedCustomer.UserId = user.Id;
         $http.put('http://localhost:3000/customers/' + $scope.selectedCustomer.Id, $scope.selectedCustomer)
@@ -220,7 +218,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* USERS
     ****************************************/
 
-// returns all users in the database
+    // returns all users in the database
     function getAllUsers() {
         $http.get('http://localhost:3000/users/')
             .then(function (response) {
@@ -229,7 +227,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
     }
 
-// sets the user who's customers you wish to iew
+    // sets the user who's customers you wish to iew
     function setAssignedUser() {
         for (var i = 0; i < $scope.users.length; i++) {
             if ($scope.users[i].Id == $scope.selectedCustomer.UserId) {
@@ -243,7 +241,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $("#editUserModal").modal();
     }
 
-// edits a users information
+    // edits a users information
     $scope.editUser = function () {
         $http.put('http://localhost:3000/users/' + userService.loggedInUser.Id, {
             'Id': userService.loggedInUser.Id,
@@ -270,7 +268,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $("#deleteUserModal").modal();
     }
 
-// removes a users account
+    // removes a users account
     $scope.deleteAccount = function () {
         $http.delete('http://localhost:3000/users/' + userService.loggedInUser.Id)
             .then(function (response) {
@@ -285,7 +283,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
     };
 
-//opens up a customer page to allow the user to reassign them 
+    //opens up a customer page to allow the user to reassign them 
     $scope.reassignCustomer = function (customer) {
         customerService.setSelectedCustomer(customer);
         $scope.selectedCustomer = customerService.getSelectedCustomer();
@@ -296,15 +294,16 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $state.go('customer')
     }
 
-// sets the selected user
+    // sets the selected user
     $scope.setSelectedUser = function (userObj) {
+        $scope.customerListShown = true;
         $scope.selectedUser = userObj;
         userService.setSelectedUser(userObj);
         $scope.selectedUserName = userObj.FirstName + " " + userObj.LastName;
         $scope.findUserCustomers();
     }
 
-// searches to find a users customers
+    // searches to find a users customers
     $scope.findUserCustomers = function () {
         $http.get(`http://localhost:3000/customers?userId=${$scope.selectedUser.Id}`)
             .then(function (response) {
@@ -314,8 +313,9 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             })
     }
 
-// searches for customers that match any information passed in
+    // searches for customers that match any information passed in
     $scope.findCustomer = function () {
+        $scope.customerListShown = true;
         $http.get(`http://localhost:3000/customers?information=${$scope.customerInfo}`)
             .then(function (response) {
                 $scope.isSearching = true;
@@ -326,7 +326,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     /* NOTES
     **************************************/
 
-// sets a mood review for an interaction with a customer
+    // sets a mood review for an interaction with a customer
     $scope.viewNoteEditHistory = function (note) {
         $scope.noteId = note.Id;
         $http.get('http://localhost:3000/noteEdits?noteId=' + $scope.noteId)
@@ -362,7 +362,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         }
     }
 
-// saves a new note
+    // saves a new note
     $scope.saveNewNote = function () {
         if ($scope.newNoteBody == '' || $scope.newNoteSubject == '') {
             alert("Please specify a mood, subject, and body before saving.");
@@ -396,7 +396,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         }
     }
 
-// returns a selected customers notes
+    // returns a selected customers notes
     function getSelectedCustomerNotes() {
         $http.get('http://localhost:3000/notes?customerId=' + $scope.selectedCustomer.Id)
             .then(function (response) {
@@ -405,7 +405,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             });
     }
 
-// modifies the notes of a specified customer
+    // modifies the notes of a specified customer
     $scope.editNote = function (note) {
         $scope.uneditedNote = note;
         $scope.editedNote = angular.copy(note);
@@ -415,12 +415,12 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         $('.moodBtn').blur();
     }
 
-// saves teh changes of an edited note
+    // saves teh changes of an edited note
     $scope.saveEditedNote = function () {
         if ($scope.editedNote.Subject == '' || $scope.editedNote.Body == '') {
             alert('Please fill out both the subject line and body of before saving.');
         }
-        else if ( $scope.uneditedNote.Subject != $scope.editedNote.Subject || $scope.uneditedNote.Body != $scope.editedNote.Body || $scope.uneditedNote.Mood != $scope.editedNote.Mood ) {
+        else if ($scope.uneditedNote.Subject != $scope.editedNote.Subject || $scope.uneditedNote.Body != $scope.editedNote.Body || $scope.uneditedNote.Mood != $scope.editedNote.Mood) {
             $('.moodDivs').removeClass('botBordBlue');
             $('.moodBtn').blur();
             var authorName = $scope.loggedInUser.FirstName + ' ' + $scope.loggedInUser.LastName;
@@ -437,7 +437,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             $scope.recordedEdit.CustomerId = $scope.editedNote.CustomerId;
             // setting FK - many recordedEdits per note
             $scope.recordedEdit.NoteId = $scope.editedNote.Id;
-            
+
             $http.put('http://localhost:3000/notes/' + $scope.editedNote.Id, $scope.editedNote)
                 .then(function (response) {
                     if (response.status != 200) {
@@ -447,10 +447,10 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                         getSelectedCustomerNotes();
 
                         $http.post('http://localhost:3000/noteEdits',
-                        $scope.recordedEdit
+                            $scope.recordedEdit
                         )
                             .then(function (response) {
-                                if ( response.status != 200 ) {
+                                if (response.status != 200) {
                                     console.log(response.data);
                                 }
                             })
@@ -459,14 +459,14 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
         }
     }
 
-// removes a note from the database
+    // removes a note from the database
     $scope.deleteNote = function (note) {
         var confirmed = confirm('Are you sure you want to permanently delete this note?');
 
         if (confirmed == true) {
             $http.delete('http://localhost:3000/noteedits?NoteId=' + note.Id)
                 .then(function (response) {
-                    if ( response.status != 200 ) {
+                    if (response.status != 200) {
                         alert('error status ' + response.status);
                     }
                     else {
@@ -481,14 +481,14 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
                             });
                     }
                 })
-            
+
         }
     }
 
     /* FULL CONTACT
     **************************************/
 
-// returns email information from full contact api
+    // returns email information from full contact api
     $scope.getFCByEmail = function () {
         console.log($scope.selectedCustomer.Email);
         $scope.fcByEmailShown = true
@@ -501,7 +501,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             });
     }
 
-// returns phone number information from full contact api
+    // returns phone number information from full contact api
     $scope.searchCustomerPhone = function () {
         $scope.fcPhoneResults = 'searching...';
         $http.get(`http://localhost:3000/customers/byPhone?phone=${$scope.selectedCustomer.Phone}`)
@@ -510,7 +510,7 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
             });
     }
 
-// hides the returned infromation from full contact api
+    // hides the returned infromation from full contact api
     $scope.hideFCEmailResults = function () {
         $scope.fcByEmailShown = false;
     }

@@ -7,13 +7,9 @@ var userController = require('../controllers/userControllerNode');
 var customerController = require('../controllers/customerControllerNode');
 var noteController = require('../controllers/noteControllerNode');
 
-// what the route looks like between your public and node controllers
-// just examples, will have more routes based on different methods in controllers
-
 router.get('/', function (req, res) {
   res.render('index')
 });
-
 
 // user routes
 router.get('/users', userController.index);
