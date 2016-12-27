@@ -57,16 +57,13 @@ angular.module("CRMApp").controller("customerController", function ($scope, $htt
     $scope.fcByPhoneShown = false;
     $scope.loggedInUserCustomers = [];
 
-<<<<<<< HEAD
-// initializes the logged in user
-=======
   $scope.dismissModal = function () {
     $('#createNewCustomerModal').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
   }
 
->>>>>>> 484eb1a686e65753ffee337c890ac1a8aa7b6848
+// initializes the logged in user
     $scope.initUserCustomers = function () {
         $http.get('http://localhost:3000/getCookie')
             .then(function (response) {
