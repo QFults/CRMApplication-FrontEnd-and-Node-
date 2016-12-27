@@ -3,7 +3,7 @@ var axios = require('axios');
 // index function to get notes
 function index(req, res) {
     // returns all notes
-    if ( !req.query.customerId ) {
+    if (!req.query.customerId) {
         axios.get('http://localhost:50313/api/notes')
             .then(function (response) {
                 var notes = response.data;
@@ -16,18 +16,18 @@ function index(req, res) {
     // only returns notes for a specified customer
     else {
         axios.get('http://localhost:50313/api/notes?customerId=' + req.query.customerId)
-        .then(function (response) {
-            var notes = response.data;
-            res.json({ notes: notes });
-        })
-        .catch(function (error) {
-            res.json(error);
-        });
+            .then(function (response) {
+                var notes = response.data;
+                res.json({ notes: notes });
+            })
+            .catch(function (error) {
+                res.json(error);
+            });
     }
 }
 
 // create function to make a new note
-function create (req, res) {
+function create(req, res) {
     axios.post('http://localhost:50313/api/notes', req.body)
         .then(function (response) {
             res.json(response.data);
@@ -38,7 +38,7 @@ function create (req, res) {
 }
 
 // update function to modify an existing note
-function createEditedNote (req, res) {
+function createEditedNote(req, res) {
     axios.post('http://localhost:50313/api/NoteEdits', req.body)
         .then(function (response) {
             res.json(response.data);
@@ -48,7 +48,7 @@ function createEditedNote (req, res) {
         })
 }
 
-function showEditHistory (req, res) {
+function showEditHistory(req, res) {
     console.log('node note id');
     console.log(req.query.noteId);
     axios.get('http://localhost:50313/api/NoteEdits?noteId=' + req.query.noteId)
@@ -60,7 +60,7 @@ function showEditHistory (req, res) {
         })
 }
 
-function update (req, res) {
+function update(req, res) {
     axios.put('http://localhost:50313/api/notes/' + req.body.Id, req.body)
         .then(function (response) {
             res.json(response.data);
@@ -71,7 +71,7 @@ function update (req, res) {
 }
 
 // destroy function to remove a note from the database
-function destroy (req, res) {
+function destroy(req, res) {
     axios.delete('http://localhost:50313/api/notes/?id=' + req.params.id)
         .then(function (response) {
             res.json(response);
@@ -81,7 +81,7 @@ function destroy (req, res) {
         });
 }
 
-function destroyNoteEditsForNote (req, res) {
+function destroyNoteEditsForNote(req, res) {
     axios.delete('http://localhost:50313/api/noteedits?NoteId=' + req.query.NoteId)
         .then(function (response) {
             res.json(response);

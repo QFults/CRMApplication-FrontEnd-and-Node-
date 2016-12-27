@@ -1,3 +1,13 @@
+.logoRow {
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+
+.logoRow > img {
+  width: 125px;
+  margin-left: 10px;
+}
+
 /*-----Profile Icon*/
 div.dropdown {
 color: #555;
@@ -100,6 +110,8 @@ nav div h2 {
   margin-right: 6.5%;
 }
 
+
+
 /* LEFT COL
 ****************************************/
 
@@ -155,6 +167,7 @@ nav div h2 {
 
 .iconsDiv {
   margin-top: 50px;
+  padding-top: 20px;
   border-top: 1px solid grey;
 }
 
@@ -186,7 +199,7 @@ nav div h2 {
   background:rgba(165, 192, 217, 0.5);
   box-shadow: 0 22px 28px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
-  margin-top: -5px;
+  margin-top: 10px;
   margin-right: 1px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -219,14 +232,15 @@ opacity: 0.2;
   opacity: 0.2;
 }
 
-/*.findCustomersLabel {
-  position: absolute;
-  left: 50%;
-  top: 10%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}*/
-
 .findCustomerOptions {
   padding-top: 50px;
+}
+
+.getStartedMessage {
+  margin-left: 40%;
+  margin-top: 7%;
+}
+
+.getStartedMessage > h2 {
+  color: grey;
 }

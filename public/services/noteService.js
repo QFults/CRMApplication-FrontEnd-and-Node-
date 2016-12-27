@@ -1,14 +1,14 @@
 angular.module("CRMApp").service("noteService", function ($http) {
 
-// note service  variables
+  // note service  variables
   var _customerNotes = [];
   var _editedNotes = [];
 
   /* SETS
   ********************/
 
-// sets the notes for the selected Customer
-  this.setSelectedCustomerNotes = function(notes) {
+  // sets the notes for the selected Customer
+  this.setSelectedCustomerNotes = function (notes) {
     _customerNotes = notes;
   }
 
@@ -18,7 +18,7 @@ angular.module("CRMApp").service("noteService", function ($http) {
 
   /* GETS
   ********************/
-// returns the notes
+  // returns the notes
   this.getCustomerNotes = function () {
     return _customerNotes;
   }
@@ -26,17 +26,6 @@ angular.module("CRMApp").service("noteService", function ($http) {
   this.getEditedNotes = function () {
     return _editedNotes;
   }
-
-  /* CREATE
-  ********************/
-
-
-  /* UPDATE
-  ********************/
-
-
-  /* DELETE
-  ********************/
 
 });
 
